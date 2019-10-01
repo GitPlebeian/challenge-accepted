@@ -66,6 +66,7 @@ class Challenge {
     }
 }
 
+// Initialize Challenge from record
 extension Challenge {
     convenience init? (record: CKRecord) {
         guard let title = record[ChallengeConstants.titleKey] as? String,
@@ -87,6 +88,7 @@ extension Challenge {
     }
 }
 
+// Initialize CKRecord with challenge data
 extension CKRecord {
     convenience init(challenge: Challenge) {
         self.init(recordType: ChallengeConstants.recordTypeKey, recordID: challenge.recordID)
