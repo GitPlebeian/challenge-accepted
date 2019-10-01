@@ -88,9 +88,9 @@ extension CKRecord {
     convenience init(user: User) {
         self.init(recordType: UserKeys.typeKey, recordID: user.ckRecordID)
         self.setValue(user.username, forKey: UserKeys.usernameKey)
-        setValue(user.completedChallenges, forKey: UserKeys.completedChallengesKey)
-        setValue(user.createdChallenges, forKey: UserKeys.createdChallengesKey)
-        setValue(user.appleUserReference, forKey: UserKeys.appleUserReferenceKey)
-        setValue(user.photoAsset, forKey: UserKeys.photoAssetKey)
+        self.setValue(user.completedChallenges, forKey: UserKeys.completedChallengesKey)
+        self.setValue(user.createdChallenges, forKey: UserKeys.createdChallengesKey)
+        self.setValue(user.appleUserReference, forKey: UserKeys.appleUserReferenceKey)
+        self.setValue(user.photoAsset, forKey: UserKeys.photoAssetKey)
     }
 }
