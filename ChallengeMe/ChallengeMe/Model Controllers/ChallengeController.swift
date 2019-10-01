@@ -59,7 +59,7 @@ class ChallengeController {
     }
     
     // Delete Challenges
-    func updateChallenge(user: User, challenge: Challenge, completion: @escaping (Bool) -> Void) {
+    func deleteChallenges(user: User, challenge: Challenge, completion: @escaping (Bool) -> Void) {
         guard let indexOfChallengeToDeleteUser = user.completedChallenges.firstIndex(of: challenge) else {
             completion(false)
             return
