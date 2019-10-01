@@ -16,8 +16,9 @@ class UserController {
     var currentUser: User?
     let publicDB = CKContainer.default().publicCloudDatabase
     
+    // MARK: - CRUD
+    // create
     func createUser(username: String, profilePhoto: UIImage, completion: @escaping (Bool) -> Void) {
-        
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
@@ -44,6 +45,7 @@ class UserController {
         }
     }
     
+    // read
     func fetchUser(completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: UserKeys.typeKey, predicate: predicate)
@@ -60,4 +62,39 @@ class UserController {
             }
         }
     }
+    
+    // update
+    func updateUser(user: User, profilePhoto: UIImage, completion: @escaping (Bool) -> Void) {
+        user.profilePhoto = profilePhoto
+        
+        let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(user: user)], recordIDsToDelete: nil)
+        modificationOp.savePolicy = .changedKeys
+        modificationOp.queuePriority = .veryHigh
+        modificationOp.qualityOfService = .default
+        modificationOp.modifyRecordsCompletionBlock = { (_, _, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(false)
+                return
+            }
+            completion(true)
+        }
+        publicDB.add(modificationOp)
+    }
+    
+    // delete
+    func deleteUser(user: User, completion: @escaping (Bool) -> Void) {
+        guard let currentUser = currentUser else { return }
+        let recordID = currentUser.recordID
+        publicDB.delete(withRecordID: recordID) { (success, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                 completion(false)
+                 return
+            }
+            completion(true)
+        }
+    }
+    
+    
 }
