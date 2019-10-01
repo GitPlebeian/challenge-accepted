@@ -16,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        ChallengeController.shared.createChallenge(title: "Dick", description: "But", measurement: "Dick", longitude: 50, latitude: 50, photo: UIImage(named: "d")!) { (challenge) in
+//            if let challenge = challenge {
+//                print("Good to go")
+//            }
+//        }
+        ChallengeController.shared.fetchChallenges(longitude: 50, latitude: 50) { (success) in
+            if success {
+                print("Good")
+                print(ChallengeController.shared.challenges)
+            } else {
+                print("Bad")
+            }
+        }
         return true
     }
 

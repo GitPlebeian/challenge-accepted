@@ -17,6 +17,7 @@
 		868D14312343B2FD00B7691B /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14302343B2FD00B7691B /* Challenge.swift */; };
 		868D14332343B31A00B7691B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14322343B31A00B7691B /* UserController.swift */; };
 		868D14352343B32500B7691B /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14342343B32500B7691B /* ChallengeController.swift */; };
+		868D14392343FF7700B7691B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868D14382343FF7700B7691B /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		868D14302343B2FD00B7691B /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		868D14322343B31A00B7691B /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		868D14342343B32500B7691B /* ChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeController.swift; sourceTree = "<group>"; };
+		868D14362343FF7500B7691B /* ChallengeMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChallengeMe.entitlements; sourceTree = "<group>"; };
+		868D14382343FF7700B7691B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				868D14392343FF7700B7691B /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +54,7 @@
 			children = (
 				868D14112343B25800B7691B /* ChallengeMe */,
 				868D14102343B25800B7691B /* Products */,
+				868D14372343FF7700B7691B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +69,7 @@
 		868D14112343B25800B7691B /* ChallengeMe */ = {
 			isa = PBXGroup;
 			children = (
+				868D14362343FF7500B7691B /* ChallengeMe.entitlements */,
 				868D142D2343B2D800B7691B /* Storyboards */,
 				868D14292343B26200B7691B /* View Controllers */,
 				868D142A2343B26900B7691B /* Models */,
@@ -117,6 +123,14 @@
 				868D14202343B25800B7691B /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		868D14372343FF7700B7691B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				868D14382343FF7700B7691B /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,8 +354,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChallengeMe/ChallengeMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5H77479UZ4;
+				DEVELOPMENT_TEAM = 2WP5X762NJ;
 				INFOPLIST_FILE = ChallengeMe/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -358,8 +373,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChallengeMe/ChallengeMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5H77479UZ4;
+				DEVELOPMENT_TEAM = 2WP5X762NJ;
 				INFOPLIST_FILE = ChallengeMe/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

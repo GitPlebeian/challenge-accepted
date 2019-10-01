@@ -16,8 +16,8 @@ struct ChallengeConstants {
     fileprivate static let descriptionKey = "descriptionKey"
     fileprivate static let measurementKey = "measurement"
     fileprivate static let timestampKey = "timestamp"
-    fileprivate static let longitudeKey = "logitude"
-    fileprivate static let latitudeKey = "latitude"
+    static let longitudeKey = "logitude"
+    static let latitudeKey = "latitude"
     fileprivate static let photoKey = "photo"
 }
 
