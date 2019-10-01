@@ -8,14 +8,17 @@
 
 import Foundation
 import CloudKit
+import UIKit
 
 struct ChallengeConstants {
     static let recordTypeKey = "Challenge"
     fileprivate static let titleKey = "title"
-    fileprivate static let longitudeKey = "logitude"
-    fileprivate static let latitudeKey = "latitude"
     fileprivate static let descriptionKey = "descriptionKey"
     fileprivate static let measurementKey = "measurement"
+    fileprivate static let timestampKey = "timestamp"
+    fileprivate static let longitudeKey = "logitude"
+    fileprivate static let latitudeKey = "latitude"
+    fileprivate static let photoKey = "photo"
 }
 
 class Challenge {
@@ -23,17 +26,43 @@ class Challenge {
     var title: String
     var description: String
     var measurement: String
+    var timestamp: Date
     let latitude: Double
     let longitude: Double
     let recordID: CKRecord.ID
+    var photoData: Data?
+    var photo: UIImage? {
+        get {
+            guard let photoData = photoData else {return nil}
+            return UIImage(data: photoData)
+        }
+        set {
+            photoData = newValue?.jpegData(compressionQuality: 0.5)
+        }
+    }
+    var imageAsset: CKAsset? {
+        get {
+            let tempDirectory = NSTemporaryDirectory()
+            let tempDirecotryURL = URL(fileURLWithPath: tempDirectory)
+            let fileURL = tempDirecotryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("jpg")
+            do {
+                try photoData?.write(to: fileURL)
+            } catch let error {
+                print("Error writing to temp url \(error) \(error.localizedDescription)")
+            }
+            return CKAsset(fileURL: fileURL)
+        }
+    }
     
-    init(title: String, description: String, measurement: String, latitude: Double, longitude: Double, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(title: String, description: String, measurement: String, timestamp: Date = Date(), latitude: Double, longitude: Double, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), photo: UIImage) {
         self.title = title
         self.description = description
         self.measurement = measurement
+        self.timestamp = timestamp
         self.latitude = latitude
         self.longitude = longitude
         self.recordID = recordID
+        self.photo = photo
     }
 }
 
@@ -42,10 +71,19 @@ extension Challenge {
         guard let title = record[ChallengeConstants.titleKey] as? String,
             let description = record[ChallengeConstants.descriptionKey] as? String,
             let measurement = record[ChallengeConstants.measurementKey] as? String,
+            let timestamp = record[ChallengeConstants.timestampKey] as? Date,
             let latitude = record[ChallengeConstants.latitudeKey] as? Double,
-            let longitude = record[ChallengeConstants.longitudeKey] as? Double else {return nil}
-        
-        self.init(title: title, description: description, measurement: measurement, latitude: latitude, longitude: longitude, recordID: record.recordID)
+            let longitude = record[ChallengeConstants.longitudeKey] as? Double,
+            let imageAsset = record[ChallengeConstants.photoKey] as? CKAsset,
+            let imageFileURL = imageAsset.fileURL else {return nil}
+        do {
+            let data = try Data(contentsOf: imageFileURL)
+            guard let image = UIImage(data: data) else {return nil}
+            self.init(title: title, description: description, measurement: measurement, timestamp: timestamp, latitude: latitude, longitude: longitude, recordID: record.recordID, photo: image)
+        } catch {
+            print("Error at \(#function) \(error) \(error.localizedDescription)")
+            return nil
+        }
     }
 }
 
@@ -57,6 +95,8 @@ extension CKRecord {
         self.setValue(challenge.measurement, forKey: ChallengeConstants.measurementKey)
         self.setValue(challenge.longitude, forKey: ChallengeConstants.longitudeKey)
         self.setValue(challenge.latitude, forKey: ChallengeConstants.latitudeKey)
+        self.setValue(challenge.timestamp, forKey: ChallengeConstants.timestampKey)
+        self.setValue(challenge.imageAsset, forKey: ChallengeConstants.photoKey)
     }
 }
 
