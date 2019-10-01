@@ -10,16 +10,13 @@ import Foundation
 import UIKit.UIImage
 import CloudKit
 
-
 struct UserKeys {
-    
     static let usernameKey = "Username"
     static let completedChallengesKey = "Completed Challenges"
     static let createdChallengesKey = "Created Challenges"
     static let appleUserReferenceKey = "Apple User Reference"
     static let photoAssetKey = "Photo Asset"
     static let typeKey = "User"
-    
 }
 
 class User {
@@ -28,7 +25,7 @@ class User {
     var completedChallenges: [Challenge]
     var createdChallenges: [Challenge]
     var appleUserReference: CKRecord.Reference
-    var ckRecordID: CKRecord.ID
+    var recordID: CKRecord.ID
     var photoData: Data?
     var profilePhoto: UIImage? {
         get {
@@ -52,41 +49,47 @@ class User {
         }
     }
    
-    init(username: String, completedChallenges: [Challenge], createdChallenges: [Challenge], appleUserReference: CKRecord.Reference, ckRecordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), profilePhoto: UIImage?) {
+    init(username: String, completedChallenges: [Challenge] = [], createdChallenges: [Challenge] = [], appleUserReference: CKRecord.Reference, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), profilePhoto: UIImage?) {
         
         self.username = username
         self.completedChallenges = completedChallenges
         self.createdChallenges = createdChallenges
         self.appleUserReference = appleUserReference
-        self.ckRecordID = ckRecordID
+        self.recordID = recordID
         self.profilePhoto = profilePhoto
     }
-    
+}
+
+extension User {
     // Initialize User from iCloud
-    init?(record: CKRecord) {
+    convenience init?(record: CKRecord) {
         guard let username = record[UserKeys.usernameKey] as? String,
             let completedChallenges = record[UserKeys.completedChallengesKey] as? [Challenge],
             let createdChallenges = record[UserKeys.createdChallengesKey] as? [Challenge],
             let appleUserReference = record[UserKeys.appleUserReferenceKey] as? CKRecord.Reference,
-            let imageAsset = record[UserKeys.photoAssetKey] as? CKAsset else { return nil }
-        
-        self.username = username
-        self.completedChallenges = completedChallenges
-        self.createdChallenges = createdChallenges
-        self.appleUserReference = appleUserReference
-        self.ckRecordID = record.recordID
+            let imageAsset = record[UserKeys.photoAssetKey] as? CKAsset,
+            let imageAssetURL = imageAsset.fileURL else { return nil }
         do {
-            guard let imageURL = imageAsset.fileURL else { return }
-            self.photoData = try Data(contentsOf: imageURL)
+            let data = try Data(contentsOf: imageAssetURL)
+            guard let image = UIImage(data: data) else { return nil }
+            self.init(username: username, completedChallenges: completedChallenges, createdChallenges: createdChallenges, appleUserReference: appleUserReference, recordID: record.recordID, profilePhoto: image)
         } catch {
             print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            return nil
         }
     }
 }
 
+extension User: Equatable {
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.recordID == rhs.recordID
+    }
+}
+
 extension CKRecord {
+    // save User to iCloud
     convenience init(user: User) {
-        self.init(recordType: UserKeys.typeKey, recordID: user.ckRecordID)
+        self.init(recordType: UserKeys.typeKey, recordID: user.recordID)
         self.setValue(user.username, forKey: UserKeys.usernameKey)
         self.setValue(user.completedChallenges, forKey: UserKeys.completedChallengesKey)
         self.setValue(user.createdChallenges, forKey: UserKeys.createdChallengesKey)
