@@ -4,7 +4,7 @@
 <dict>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>remote-notification</string>
+		<string>App downloads content in response to push notification</string>
 		<string>fetch</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
