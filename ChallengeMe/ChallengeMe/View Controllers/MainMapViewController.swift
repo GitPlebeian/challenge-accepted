@@ -17,13 +17,13 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var fetchButton: UIButton!
+    @IBOutlet var mapGestureRecognizer: UITapGestureRecognizer!
     
     // MARK: - Properties
     
     let regionInMeters: Double = 1000
     let locationManager = CLLocationManager()
-    
-    @IBOutlet var mapGestureRecognizer: UITapGestureRecognizer!
+    var currentAnnotations: [MKAnnotation] = []
     
     // MARK: - Lifecycle
     
@@ -48,6 +48,7 @@ class MainMapViewController: UIViewController {
             DispatchQueue.main.async {
                 if let challenge = challenge {
                     self.map.addAnnotation(longdon)
+                    self.currentAnnotations.append(longdon)
                     let feedback = UINotificationFeedbackGenerator()
                     feedback.notificationOccurred(.success)
                 }
@@ -64,16 +65,26 @@ class MainMapViewController: UIViewController {
     @IBAction func fetchButtonTapped(_ sender: Any) {
         let feedback = UIImpactFeedbackGenerator()
         feedback.impactOccurred()
+        map.removeAnnotations(self.currentAnnotations)
         ChallengeController.shared.fetchChallenges(longitude: map.centerCoordinate.longitude, latitude: map.centerCoordinate.latitude) { (success) in
             DispatchQueue.main.async {
                 let feedback = UINotificationFeedbackGenerator()
                 print("\(ChallengeController.shared.challenges.count)")
                 if success {
                     feedback.notificationOccurred(.success)
-                    
+                    self.currentAnnotations.removeAll(keepingCapacity: false)
+                    for challenge in ChallengeController.shared.challenges {
+                        let annotation = MKPointAnnotation()
+                        annotation.title = challenge.title
+                        let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
+                        annotation.coordinate = coordinate
+                        self.currentAnnotations.append(annotation)
+                    }
+                    self.map.addAnnotations(self.currentAnnotations)
                 } else {
                     feedback.notificationOccurred(.error)
                 }
+                
             }
         }
     }
