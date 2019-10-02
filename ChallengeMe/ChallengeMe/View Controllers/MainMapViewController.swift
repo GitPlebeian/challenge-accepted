@@ -174,7 +174,7 @@ extension MainMapViewController: MKMapViewDelegate {
         mapItem.openInMaps(launchOptions: launchOptions)
     }
 }
-
+//
 extension MainMapViewController: UIGestureRecognizerDelegate {
     
 }
