@@ -18,6 +18,7 @@
 		868D14332343B31A00B7691B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14322343B31A00B7691B /* UserController.swift */; };
 		868D14352343B32500B7691B /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14342343B32500B7691B /* ChallengeController.swift */; };
 		868D14392343FF7700B7691B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868D14382343FF7700B7691B /* CloudKit.framework */; };
+		869AD69F234507B1003E2C42 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD69E234507B1003E2C42 /* MainMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		868D14342343B32500B7691B /* ChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeController.swift; sourceTree = "<group>"; };
 		868D14362343FF7500B7691B /* ChallengeMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChallengeMe.entitlements; sourceTree = "<group>"; };
 		868D14382343FF7700B7691B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		869AD69E234507B1003E2C42 /* MainMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		868D14292343B26200B7691B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				869AD69E234507B1003E2C42 /* MainMapViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869AD69F234507B1003E2C42 /* MainMapViewController.swift in Sources */,
 				868D14352343B32500B7691B /* ChallengeController.swift in Sources */,
 				868D14332343B31A00B7691B /* UserController.swift in Sources */,
 				868D142F2343B2F200B7691B /* User.swift in Sources */,
