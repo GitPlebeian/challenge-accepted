@@ -77,4 +77,26 @@ class ChallengeController {
             }
         }
     }
+    
+    // Remote Notification Subscription
+    func subscribeToRemoteNotifications(completion: @escaping (Error?) -> Void) {
+        
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: ChallengeConstants.recordTypeKey, predicate: predicate, options: [.firesOnRecordCreation])
+        
+        let notificationInfo = CKSubscription.NotificationInfo()
+        notificationInfo.alertBody = "Hey! Someone !"
+        notificationInfo.shouldBadge = true
+        notificationInfo.soundName = "default"
+        subscription.notificationInfo = notificationInfo
+        
+        publicDB.save(subscription) { (_, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                 completion(error)
+                 return
+            }
+            completion(nil)
+        }
+    }
 }
