@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3A4-wH-37b">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Map View Controller-->
+        <scene sceneID="Dxd-xz-Kuo">
+            <objects>
+                <viewController id="3A4-wH-37b" customClass="MainMapViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Igf-Pq-84R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ynS-gZ-CEX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="8ab-uu-iqr" appends="YES" id="RnO-bh-dda"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boj-Iv-8aF">
+                                <rect key="frame" x="50" y="802" width="100" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="7tL-tE-daH"/>
+                                    <constraint firstAttribute="height" constant="40" id="RTU-MI-c7l"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="3A4-wH-37b" eventType="touchUpInside" id="zMI-hq-S1d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sWV-8T-Kh1">
+                                <rect key="frame" x="264" y="802" width="100" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="0Ze-4d-KZC"/>
+                                    <constraint firstAttribute="height" constant="40" id="po8-eG-Rd7"/>
+                                </constraints>
+                                <state key="normal" title="Fetch">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="fetchButtonTapped:" destination="3A4-wH-37b" eventType="touchUpInside" id="Fvo-lu-PWc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YFe-xm-WZz" firstAttribute="bottom" secondItem="sWV-8T-Kh1" secondAttribute="bottom" constant="20" id="7c4-Tu-rhb"/>
+                            <constraint firstItem="ynS-gZ-CEX" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" id="A0Y-sI-j2U"/>
+                            <constraint firstItem="boj-Iv-8aF" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" constant="50" id="e6L-Jk-GAP"/>
+                            <constraint firstItem="ynS-gZ-CEX" firstAttribute="trailing" secondItem="YFe-xm-WZz" secondAttribute="trailing" id="eWO-qt-NwS"/>
+                            <constraint firstAttribute="bottom" secondItem="ynS-gZ-CEX" secondAttribute="bottom" id="meQ-8e-Ud2"/>
+                            <constraint firstItem="ynS-gZ-CEX" firstAttribute="top" secondItem="Igf-Pq-84R" secondAttribute="top" id="pWN-0W-chc"/>
+                            <constraint firstItem="YFe-xm-WZz" firstAttribute="trailing" secondItem="sWV-8T-Kh1" secondAttribute="trailing" constant="50" id="ulY-Gi-m53"/>
+                            <constraint firstItem="YFe-xm-WZz" firstAttribute="bottom" secondItem="boj-Iv-8aF" secondAttribute="bottom" constant="20" id="vnf-yW-TWs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YFe-xm-WZz"/>
+                    </view>
+                    <connections>
+                        <outlet property="fetchButton" destination="sWV-8T-Kh1" id="9T6-UA-xNj"/>
+                        <outlet property="map" destination="ynS-gZ-CEX" id="j74-IA-rhZ"/>
+                        <outlet property="mapGestureRecognizer" destination="8ab-uu-iqr" id="Sjp-YI-m7D"/>
+                        <outlet property="saveButton" destination="boj-Iv-8aF" id="6KA-bi-LiV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YNx-gw-EoU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8ab-uu-iqr">
+                    <connections>
+                        <action selector="tappedOnMap:" destination="3A4-wH-37b" id="thO-54-HJD"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1994" y="294"/>
+        </scene>
+    </scenes>
+</document>

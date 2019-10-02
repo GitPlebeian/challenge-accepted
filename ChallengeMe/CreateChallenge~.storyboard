@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aE5-SW-fRU">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Map View Controller-->
+        <scene sceneID="rkA-Nb-tXH">
+            <objects>
+                <viewController id="aE5-SW-fRU" customClass="MainMapViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bq7-Ks-W1R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ewd-cQ-n6B">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="uZA-Cp-g68" appends="YES" id="7uk-p7-aIo"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqT-Dd-w8I">
+                                <rect key="frame" x="50" y="802" width="100" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Wpo-Fw-brK"/>
+                                    <constraint firstAttribute="height" constant="40" id="eTm-8h-vUy"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="aE5-SW-fRU" eventType="touchUpInside" id="4gY-k3-yoK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaj-j2-Rcd">
+                                <rect key="frame" x="264" y="802" width="100" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="6Og-to-EE9"/>
+                                    <constraint firstAttribute="height" constant="40" id="WIG-y2-w7V"/>
+                                </constraints>
+                                <state key="normal" title="Fetch">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="fetchButtonTapped:" destination="aE5-SW-fRU" eventType="touchUpInside" id="3yM-pD-8br"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ewd-cQ-n6B" firstAttribute="trailing" secondItem="X66-ez-5d2" secondAttribute="trailing" id="0us-v6-hXw"/>
+                            <constraint firstItem="X66-ez-5d2" firstAttribute="bottom" secondItem="gaj-j2-Rcd" secondAttribute="bottom" constant="20" id="1hy-hj-Lt3"/>
+                            <constraint firstItem="X66-ez-5d2" firstAttribute="bottom" secondItem="jqT-Dd-w8I" secondAttribute="bottom" constant="20" id="2gr-U6-VOM"/>
+                            <constraint firstItem="X66-ez-5d2" firstAttribute="trailing" secondItem="gaj-j2-Rcd" secondAttribute="trailing" constant="50" id="Apw-wi-lv6"/>
+                            <constraint firstItem="ewd-cQ-n6B" firstAttribute="top" secondItem="bq7-Ks-W1R" secondAttribute="top" id="N0C-w8-osB"/>
+                            <constraint firstAttribute="bottom" secondItem="ewd-cQ-n6B" secondAttribute="bottom" id="UFz-W8-np2"/>
+                            <constraint firstItem="jqT-Dd-w8I" firstAttribute="leading" secondItem="X66-ez-5d2" secondAttribute="leading" constant="50" id="tWX-40-oeS"/>
+                            <constraint firstItem="ewd-cQ-n6B" firstAttribute="leading" secondItem="X66-ez-5d2" secondAttribute="leading" id="wit-8m-Xcd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X66-ez-5d2"/>
+                    </view>
+                    <connections>
+                        <outlet property="fetchButton" destination="gaj-j2-Rcd" id="r3S-FV-n1k"/>
+                        <outlet property="map" destination="ewd-cQ-n6B" id="Ghy-T0-445"/>
+                        <outlet property="mapGestureRecognizer" destination="uZA-Cp-g68" id="vh6-X9-Akn"/>
+                        <outlet property="saveButton" destination="jqT-Dd-w8I" id="4G8-wj-wyC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rVF-Om-lyd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="uZA-Cp-g68">
+                    <connections>
+                        <action selector="tappedOnMap:" destination="aE5-SW-fRU" id="0rf-dD-ido"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-538" y="-30"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="MBL-uf-fug">
+            <objects>
+                <tabBarController id="Gb6-es-aqH" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ebz-aI-6mH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Ig5-5d-aeN" kind="relationship" relationship="viewControllers" id="kTt-Qx-Kux"/>
+                        <segue destination="iiY-ZO-9wp" kind="relationship" relationship="viewControllers" id="UKg-R7-Avr"/>
+                        <segue destination="nlm-hL-75H" kind="relationship" relationship="viewControllers" id="7Is-fU-1zH"/>
+                        <segue destination="hU8-pc-jqI" kind="relationship" relationship="viewControllers" id="Iz3-g2-OeH"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="reS-0X-KvJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="-30"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="QYZ-us-NYa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" id="iiY-ZO-9wp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Ae8-lo-L7x"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l9m-SH-Dws" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="759" y="-210"/>
+        </scene>
+        <!--Friends-->
+        <scene sceneID="VT4-oE-ZAG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Friends" id="Ig5-5d-aeN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="fyr-E0-W85"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JtT-YH-fcZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="778" y="-249"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="I3C-DK-i6Y">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="nlm-hL-75H" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="e9G-R9-1T6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1nS-P1-Aoh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="778" y="-161"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="oQd-Ix-BHB">
+            <objects>
+                <viewController id="hU8-pc-jqI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ypq-0M-QvJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rNy-Ev-Gy3"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="bDs-FR-a2u"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W7P-eM-F4p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1143" y="252"/>
+        </scene>
+    </scenes>
+</document>

@@ -19,6 +19,11 @@
 		868D14352343B32500B7691B /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14342343B32500B7691B /* ChallengeController.swift */; };
 		868D14392343FF7700B7691B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868D14382343FF7700B7691B /* CloudKit.framework */; };
 		869AD69F234507B1003E2C42 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD69E234507B1003E2C42 /* MainMapViewController.swift */; };
+		869AD6A2234548ED003E2C42 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869AD6A0234548ED003E2C42 /* Map.storyboard */; };
+		869AD6A423454917003E2C42 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869AD6A323454917003E2C42 /* Friends.storyboard */; };
+		869AD6A923454A46003E2C42 /* CreateChallenge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869AD6A823454A46003E2C42 /* CreateChallenge.storyboard */; };
+		869AD6AB23454F3D003E2C42 /* CreateChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */; };
+		869AD6AD23454F70003E2C42 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD6AC23454F70003E2C42 /* FriendsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +42,11 @@
 		868D14362343FF7500B7691B /* ChallengeMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChallengeMe.entitlements; sourceTree = "<group>"; };
 		868D14382343FF7700B7691B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		869AD69E234507B1003E2C42 /* MainMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
+		869AD6A1234548ED003E2C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/Base.lproj/Map.storyboard; sourceTree = "<group>"; };
+		869AD6A323454917003E2C42 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
+		869AD6A823454A46003E2C42 /* CreateChallenge.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateChallenge.storyboard; sourceTree = "<group>"; };
+		869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeViewController.swift; sourceTree = "<group>"; };
+		869AD6AC23454F70003E2C42 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				869AD69E234507B1003E2C42 /* MainMapViewController.swift */,
+				869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */,
+				869AD6AC23454F70003E2C42 /* FriendsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -122,6 +134,9 @@
 		868D142D2343B2D800B7691B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				869AD6A823454A46003E2C42 /* CreateChallenge.storyboard */,
+				869AD6A323454917003E2C42 /* Friends.storyboard */,
+				869AD6A0234548ED003E2C42 /* Map.storyboard */,
 				868D14182343B25800B7691B /* Main.storyboard */,
 				868D14202343B25800B7691B /* LaunchScreen.storyboard */,
 			);
@@ -194,9 +209,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869AD6A923454A46003E2C42 /* CreateChallenge.storyboard in Resources */,
 				868D14222343B25800B7691B /* LaunchScreen.storyboard in Resources */,
+				869AD6A423454917003E2C42 /* Friends.storyboard in Resources */,
 				868D141F2343B25800B7691B /* Assets.xcassets in Resources */,
 				868D141A2343B25800B7691B /* Main.storyboard in Resources */,
+				869AD6A2234548ED003E2C42 /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +229,9 @@
 				868D14352343B32500B7691B /* ChallengeController.swift in Sources */,
 				868D14332343B31A00B7691B /* UserController.swift in Sources */,
 				868D142F2343B2F200B7691B /* User.swift in Sources */,
+				869AD6AB23454F3D003E2C42 /* CreateChallengeViewController.swift in Sources */,
 				868D141D2343B25800B7691B /* ChallengeMe.xcdatamodeld in Sources */,
+				869AD6AD23454F70003E2C42 /* FriendsViewController.swift in Sources */,
 				868D14132343B25800B7691B /* AppDelegate.swift in Sources */,
 				868D14152343B25800B7691B /* SceneDelegate.swift in Sources */,
 				868D14312343B2FD00B7691B /* Challenge.swift in Sources */,
@@ -235,6 +255,14 @@
 				868D14212343B25800B7691B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		869AD6A0234548ED003E2C42 /* Map.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				869AD6A1234548ED003E2C42 /* Base */,
+			);
+			name = Map.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
