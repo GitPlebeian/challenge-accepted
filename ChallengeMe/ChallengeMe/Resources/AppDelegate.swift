@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
         return true
     }
 
@@ -86,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let location = locationManager.location?.coordinate {
             ChallengeController.shared.fetchChallenges(longitude: location.longitude, latitude: location.latitude) { (success) in
                 if success {
-                    print("Received Remote Notification and fetched challenges")
+                    print("Received remote notification and fetched challenges")
                 }
             }
         }
