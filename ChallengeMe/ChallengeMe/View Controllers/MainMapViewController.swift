@@ -17,6 +17,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var centerOnUserButton: UIButton!
     @IBOutlet weak var searchThisAreaButton: UIButton!
+    @IBOutlet weak var createChallengeButton: UIButton!
     
     // MARK: - Properties
     
@@ -36,12 +37,18 @@ class MainMapViewController: UIViewController {
     
     // MARK: - Actions
     
+    @IBAction func createChallengeButtonTapped(_ sender: Any) {
+        let createChallengeStoryboard = UIStoryboard(name: "CreateChallenge", bundle: nil)
+        let viewController = createChallengeStoryboard.instantiateViewController(withIdentifier: "createChallengeNavigationController")
+        viewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
     @IBAction func searchThisAreaButtonTapped(_ sender: Any) {
         if waitingForSearch == false {
-            
+            disableSearchThisAreaButton()
         } else {
-            
+            return
         }
         map.removeAnnotations(self.currentAnnotations)
         ChallengeController.shared.fetchChallenges(longitude: map.centerCoordinate.longitude, latitude: map.centerCoordinate.latitude) { (success) in
@@ -50,6 +57,7 @@ class MainMapViewController: UIViewController {
                 if success {
                     feedback.notificationOccurred(.success)
                     self.waitingForSearch = false
+                    self.enableSearchThisAreaButton()
                     self.currentAnnotations.removeAll(keepingCapacity: false)
                     for challenge in ChallengeController.shared.challenges {
                         let annotation = MKPointAnnotation()
@@ -72,6 +80,20 @@ class MainMapViewController: UIViewController {
     }
     
     // MARK: - Custom Funcitons
+    
+    func disableSearchThisAreaButton() {
+        searchThisAreaButton.isEnabled = false
+        UIView.animate(withDuration: 0.2) {
+            self.searchThisAreaButton.alpha = 0.5
+        }
+    }
+    
+    func enableSearchThisAreaButton() {
+        searchThisAreaButton.isEnabled = true
+        UIView.animate(withDuration: 0.2) {
+            self.searchThisAreaButton.alpha = 1
+        }
+    }
     
     func presentBasicError(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -120,12 +142,14 @@ class MainMapViewController: UIViewController {
         } else {
             locationToLoad = map.centerCoordinate
         }
+        disableSearchThisAreaButton()
         map.removeAnnotations(self.currentAnnotations)
         ChallengeController.shared.fetchChallenges(longitude: locationToLoad.longitude, latitude: locationToLoad.latitude) { (success) in
             DispatchQueue.main.async {
                 print("\(ChallengeController.shared.challenges.count)")
                 if success {
                     self.waitingForSearch = false
+                    self.enableSearchThisAreaButton()
                     self.currentAnnotations.removeAll(keepingCapacity: false)
                     for challenge in ChallengeController.shared.challenges {
                         let annotation = MKPointAnnotation()

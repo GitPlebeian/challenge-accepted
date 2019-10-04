@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="She-KO-nRf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hU8-pc-jqI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -10,14 +10,13 @@
         <!--Create Challenge View Controller-->
         <scene sceneID="oQd-Ix-BHB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W7P-eM-F4p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="hU8-pc-jqI" customClass="CreateChallengeViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createChallengeNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hU8-pc-jqI" customClass="CreateChallengeViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ypq-0M-QvJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tME-Yb-jWN">
-                                <rect key="frame" x="0.0" y="88" width="414" height="1429"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1522"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afk-mV-Tky">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
@@ -70,28 +69,9 @@
                     <navigationItem key="navigationItem" id="jHM-PN-usN"/>
                     <size key="freeformSize" width="414" height="1600"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W7P-eM-F4p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2052.1739130434785" y="251.78571428571428"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="uaL-iV-oHN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="She-KO-nRf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="rFc-CM-B5u"/>
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hxI-sg-Y8Y">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hU8-pc-jqI" kind="relationship" relationship="rootViewController" id="Xur-4f-R0i"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="epd-by-5FW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1142.0289855072465" y="251.78571428571428"/>
         </scene>
     </scenes>
 </document>
