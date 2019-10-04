@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		865A7862234790FD00FEC8EA /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A7861234790FD00FEC8EA /* MainTabBarViewController.swift */; };
 		868D14132343B25800B7691B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14122343B25800B7691B /* AppDelegate.swift */; };
 		868D14152343B25800B7691B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14142343B25800B7691B /* SceneDelegate.swift */; };
 		868D141A2343B25800B7691B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 868D14182343B25800B7691B /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		865A7861234790FD00FEC8EA /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		868D140F2343B25800B7691B /* ChallengeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChallengeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868D14122343B25800B7691B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		868D14142343B25800B7691B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		865A7860234790B900FEC8EA /* Navigation View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				865A7861234790FD00FEC8EA /* MainTabBarViewController.swift */,
+			);
+			path = "Navigation View Controllers";
+			sourceTree = "<group>";
+		};
 		868D14062343B25800B7691B = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +105,7 @@
 		868D14292343B26200B7691B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				865A7860234790B900FEC8EA /* Navigation View Controllers */,
 				869AD69E234507B1003E2C42 /* MainMapViewController.swift */,
 				869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */,
 				869AD6AC23454F70003E2C42 /* FriendsViewController.swift */,
@@ -228,6 +239,7 @@
 				869AD69F234507B1003E2C42 /* MainMapViewController.swift in Sources */,
 				868D14352343B32500B7691B /* ChallengeController.swift in Sources */,
 				868D14332343B31A00B7691B /* UserController.swift in Sources */,
+				865A7862234790FD00FEC8EA /* MainTabBarViewController.swift in Sources */,
 				868D142F2343B2F200B7691B /* User.swift in Sources */,
 				869AD6AB23454F3D003E2C42 /* CreateChallengeViewController.swift in Sources */,
 				868D141D2343B25800B7691B /* ChallengeMe.xcdatamodeld in Sources */,
