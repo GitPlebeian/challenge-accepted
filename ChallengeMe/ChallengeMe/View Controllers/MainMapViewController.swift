@@ -15,63 +15,41 @@ class MainMapViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var map: MKMapView!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var fetchButton: UIButton!
-    @IBOutlet var mapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var centerOnUserButton: UIButton!
+    @IBOutlet weak var searchThisAreaButton: UIButton!
     
     // MARK: - Properties
     
-    let regionInMeters: Double = 1000
+    let regionInMeters: Double = 5000
     let locationManager = CLLocationManager()
     var currentAnnotations: [MKAnnotation] = []
+    var waitingForSearch = true
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         map.delegate = self
-        mapGestureRecognizer.delegate = self
         checkLocationServices()
         updateViews()
     }
     
     // MARK: - Actions
     
-    @IBAction func tappedOnMap(_ sender: UITapGestureRecognizer) {
-        let location = sender.location(in: map)
-        let coordinate = map.convert(location, toCoordinateFrom: map)
-        
-        let longdon = MKPointAnnotation()
-        longdon.title = "Challenge"
-        longdon.coordinate = coordinate
-        ChallengeController.shared.createChallenge(title: "Challenge", description: "Challenge Descrioptions", measurement: "Time", longitude: coordinate.longitude, latitude: coordinate.latitude, photo: UIImage(named: "d")!) { (challenge) in
-            DispatchQueue.main.async {
-                if let challenge = challenge {
-                    self.map.addAnnotation(longdon)
-                    self.currentAnnotations.append(longdon)
-                    let feedback = UINotificationFeedbackGenerator()
-                    feedback.notificationOccurred(.success)
-                }
-            }
-        }
-    }
     
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        let feedback = UIImpactFeedbackGenerator()
-        feedback.impactOccurred()
-        
-        
-    }
-    @IBAction func fetchButtonTapped(_ sender: Any) {
-        let feedback = UIImpactFeedbackGenerator()
-        feedback.impactOccurred()
+    @IBAction func searchThisAreaButtonTapped(_ sender: Any) {
+        if waitingForSearch == false {
+            
+        } else {
+            
+        }
         map.removeAnnotations(self.currentAnnotations)
         ChallengeController.shared.fetchChallenges(longitude: map.centerCoordinate.longitude, latitude: map.centerCoordinate.latitude) { (success) in
             DispatchQueue.main.async {
                 let feedback = UINotificationFeedbackGenerator()
-                print("\(ChallengeController.shared.challenges.count)")
                 if success {
                     feedback.notificationOccurred(.success)
+                    self.waitingForSearch = false
                     self.currentAnnotations.removeAll(keepingCapacity: false)
                     for challenge in ChallengeController.shared.challenges {
                         let annotation = MKPointAnnotation()
@@ -83,16 +61,36 @@ class MainMapViewController: UIViewController {
                     self.map.addAnnotations(self.currentAnnotations)
                 } else {
                     feedback.notificationOccurred(.error)
+                    self.presentBasicError(title: "Error", message: "We couldn't get Challenges from the database")
                 }
-                
             }
         }
     }
+    
+    @IBAction func centerOnUserButtonTapped(_ sender: Any) {
+        centerMapOnUser()
+    }
+    
     // MARK: - Custom Funcitons
     
+    func presentBasicError(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+    
+    func centerMapOnUser() {
+        if let location = locationManager.location?.coordinate {
+            map.showsUserLocation = true
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            map.setRegion(region, animated: true)
+        }
+    }
+    
     func updateViews() {
-        saveButton.layer.cornerRadius = saveButton.frame.height / 2
-        fetchButton.layer.cornerRadius = fetchButton.frame.height / 2
+        centerOnUserButton.layer.cornerRadius = centerOnUserButton.frame.height / 2
+        searchThisAreaButton.layer.cornerRadius = searchThisAreaButton.frame.height / 2
     }
     
     func setupLocationManager() {
@@ -103,23 +101,50 @@ class MainMapViewController: UIViewController {
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
-            checkLocationAuthorization()
+//            checkLocationAuthorization()
         } else {
             // Error handling
         }
     }
     
-    func updateMapView() {
-        if let location = locationManager.location?.coordinate {
+    func updateMapViewForLoad() {
+        var locationToLoad: CLLocationCoordinate2D
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+            return
+        } else if let location = locationManager.location?.coordinate {
             map.showsUserLocation = true
             let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             map.setRegion(region, animated: true)
+            locationToLoad = location
+        } else {
+            locationToLoad = map.centerCoordinate
+        }
+        map.removeAnnotations(self.currentAnnotations)
+        ChallengeController.shared.fetchChallenges(longitude: locationToLoad.longitude, latitude: locationToLoad.latitude) { (success) in
+            DispatchQueue.main.async {
+                print("\(ChallengeController.shared.challenges.count)")
+                if success {
+                    self.waitingForSearch = false
+                    self.currentAnnotations.removeAll(keepingCapacity: false)
+                    for challenge in ChallengeController.shared.challenges {
+                        let annotation = MKPointAnnotation()
+                        annotation.title = challenge.title
+                        let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
+                        annotation.coordinate = coordinate
+                        self.currentAnnotations.append(annotation)
+                    }
+                    self.map.addAnnotations(self.currentAnnotations)
+                } else {
+                    self.presentBasicError(title: "Error", message: "We couldn't get Challenges from the database")
+                }
+            }
         }
     }
     
     func checkLocationAuthorization() {
         switch  CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse: updateMapView()
+        case .authorizedWhenInUse: break
         case .notDetermined: locationManager.requestWhenInUseAuthorization()
         case .restricted:
             break
@@ -136,11 +161,11 @@ class MainMapViewController: UIViewController {
 extension MainMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        print("Did UPDATE locations")
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
+        updateMapViewForLoad()
     }
 }
 
@@ -173,8 +198,4 @@ extension MainMapViewController: MKMapViewDelegate {
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         mapItem.openInMaps(launchOptions: launchOptions)
     }
-}
-//
-extension MainMapViewController: UIGestureRecognizerDelegate {
-    
 }
