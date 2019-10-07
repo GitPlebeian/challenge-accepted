@@ -69,6 +69,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8610FE94234B8D5900AB009D /* Helper Methods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Helper Methods";
+			sourceTree = "<group>";
+		};
 		865A7860234790B900FEC8EA /* Navigation View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +109,7 @@
 				868D14292343B26200B7691B /* View Controllers */,
 				868D142A2343B26900B7691B /* Models */,
 				868D142B2343B27400B7691B /* Model Controllers */,
+				8610FE94234B8D5900AB009D /* Helper Methods */,
 				868D142C2343B28E00B7691B /* Resources */,
 				868D141B2343B25800B7691B /* ChallengeMe.xcdatamodeld */,
 			);

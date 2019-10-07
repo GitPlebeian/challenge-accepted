@@ -16,6 +16,44 @@ class ChallengeController {
     
     var challenges: [Challenge] = []
     let publicDB = CKContainer.default().publicCloudDatabase
+    let searchAreaMeasurement = 0.2
+    
+    // MARK: - Helper
+    
+    func getLongitudeMeasurementForLatitude(latitude: Double) -> Double {
+        var latitude = latitude
+        if latitude < 0 {
+            latitude *= -1
+        }
+        print(latitude)
+        if latitude < 10 {
+            return searchAreaMeasurement
+        } else if latitude < 20 {
+            return searchAreaMeasurement + 0.01
+        } else if latitude < 30 {
+            return searchAreaMeasurement + 0.02
+        } else if latitude < 40 {
+            return searchAreaMeasurement + 0.04
+        } else if latitude < 45 {
+            return searchAreaMeasurement + 0.06
+        } else if latitude < 50 {
+            return searchAreaMeasurement + 0.08
+        } else if latitude < 55 {
+            return searchAreaMeasurement + 0.11
+        } else if latitude < 60 {
+            return searchAreaMeasurement + 0.16
+        } else if latitude < 65 {
+            return searchAreaMeasurement + 0.19
+        } else if latitude < 70 {
+            return searchAreaMeasurement + 0.23
+        } else if latitude < 75 {
+            return searchAreaMeasurement + 0.3
+        } else if latitude < 80 {
+            return searchAreaMeasurement + 0.4
+        } else {
+            return searchAreaMeasurement + 0.6
+        }
+    }
     
     // MARK: - CRUD
     
@@ -40,7 +78,11 @@ class ChallengeController {
     
     // Fetch Challenges
     func fetchChallenges(longitude: Double, latitude: Double, completion: @escaping (Bool) -> Void) {
-        let predicate2 = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [ChallengeConstants.longitudeKey, longitude + 1, ChallengeConstants.longitudeKey, longitude - 1, ChallengeConstants.latitudeKey, latitude + 1, ChallengeConstants.latitudeKey, latitude - 1])
+        let predicate2 = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
+            ChallengeConstants.longitudeKey, longitude + getLongitudeMeasurementForLatitude(latitude: latitude),
+            ChallengeConstants.longitudeKey, longitude - getLongitudeMeasurementForLatitude(latitude: latitude),
+            ChallengeConstants.latitudeKey, latitude + searchAreaMeasurement,
+            ChallengeConstants.latitudeKey, latitude - searchAreaMeasurement])
         let query = CKQuery(recordType: ChallengeConstants.recordTypeKey, predicate: predicate2)
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
@@ -77,6 +119,8 @@ class ChallengeController {
             }
         }
     }
+    
+    // MARK: - Subscriptions
     
     // Remote Notification Subscription
     func subscribeToRemoteNotifications(completion: @escaping (Error?) -> Void) {
