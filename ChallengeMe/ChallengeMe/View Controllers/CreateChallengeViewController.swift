@@ -89,7 +89,7 @@ class CreateChallengeViewController: UIViewController {
             let challengeImage = challengeImage,
             let tags = tagsTextField.text else { return }
         
-        ChallengeController.shared.createChallenge(title: title, description: description, measurement: measurement, longitude: location.longitude, latitude: location.latitude, photo: challengeImage) { (success) in
+        ChallengeController.shared.createChallenge(title: title, description: description, measurement: measurement, longitude: location.longitude, latitude: location.latitude, tags: tags, photo: challengeImage) { (success) in
             if success {
                 print("A challenge was saved")
             } else {
