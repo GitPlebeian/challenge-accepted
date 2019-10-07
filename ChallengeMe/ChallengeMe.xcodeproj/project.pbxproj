@@ -31,6 +31,7 @@
 		86E210E4234BA890001AE931 /* CreatedChallenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */; };
 		86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */; };
 		86E210E8234BAA14001AE931 /* ChallengeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E7234BAA14001AE931 /* ChallengeHistoryViewController.swift */; };
+		86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */; };
 		A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatedChallenges.storyboard; sourceTree = "<group>"; };
 		86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesViewController.swift; sourceTree = "<group>"; };
 		86E210E7234BAA14001AE931 /* ChallengeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHistoryViewController.swift; sourceTree = "<group>"; };
+		86E210EA234BCE51001AE931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/ChallengeMe/Storyboards/Base.lproj/ChallengeDetail.storyboard; sourceTree = "<group>"; };
 		A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +173,7 @@
 		868D142D2343B2D800B7691B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */,
 				868D14182343B25800B7691B /* Main.storyboard */,
 				869AD6A823454A46003E2C42 /* CreateChallenge.storyboard */,
 				869AD6A323454917003E2C42 /* Profile.storyboard */,
@@ -254,6 +257,7 @@
 				869AD6A423454917003E2C42 /* Profile.storyboard in Resources */,
 				868D141F2343B25800B7691B /* Assets.xcassets in Resources */,
 				865A78652347ABAA00FEC8EA /* Notifications.storyboard in Resources */,
+				86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */,
 				86E210E4234BA890001AE931 /* CreatedChallenges.storyboard in Resources */,
 				868D141A2343B25800B7691B /* Main.storyboard in Resources */,
 				869AD6A2234548ED003E2C42 /* Map.storyboard in Resources */,
@@ -319,6 +323,14 @@
 				869AD6A1234548ED003E2C42 /* Base */,
 			);
 			name = Map.storyboard;
+			sourceTree = "<group>";
+		};
+		86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86E210EA234BCE51001AE931 /* Base */,
+			);
+			name = ChallengeDetail.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

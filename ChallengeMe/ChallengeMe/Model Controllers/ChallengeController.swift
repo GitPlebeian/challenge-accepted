@@ -77,8 +77,7 @@ class ChallengeController {
     
     // Fetch Challenges
     func fetchChallenges(longitude: Double, latitude: Double, completion: @escaping (Bool) -> Void) {
-        let predicate = NSPredicate(value: true)
-        let predicate2 = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
+        let predicate = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
             ChallengeConstants.longitudeKey, longitude + getLongitudeMeasurementForLatitude(latitude: latitude),
             ChallengeConstants.longitudeKey, longitude - getLongitudeMeasurementForLatitude(latitude: latitude),
             ChallengeConstants.latitudeKey, latitude + searchAreaMeasurement,
