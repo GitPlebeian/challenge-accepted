@@ -274,16 +274,20 @@
             </objects>
             <point key="canvasLocation" x="2052.1739130434785" y="251.78571428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Challenge Map View Controller-->
         <scene sceneID="4ql-sb-iKe">
             <objects>
-                <viewController id="aqT-TB-Vcy" sceneMemberID="viewController">
+                <viewController id="aqT-TB-Vcy" customClass="CreateChallengeMapViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nTd-2y-AgJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NNg-Nl-FqJ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="RlV-OR-eUq" appends="YES" id="rI2-i0-OJi"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-YA-llZ">
                                 <rect key="frame" x="0.0" y="767" width="414" height="41"/>
@@ -292,6 +296,9 @@
                                 <state key="normal" title="Confirm Location">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="confirmLocationButtonTapped:" destination="aqT-TB-Vcy" eventType="touchUpInside" id="0pK-Ys-5vT"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select where on the map you would like the challenge." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kH-pS-WA0">
                                 <rect key="frame" x="82" y="100.5" width="250" height="41"/>
@@ -320,8 +327,17 @@
                         <viewLayoutGuide key="safeArea" id="YCq-T9-rbg"/>
                     </view>
                     <navigationItem key="navigationItem" id="VBz-6Q-clD"/>
+                    <connections>
+                        <outlet property="mapGestureRecognizer" destination="RlV-OR-eUq" id="Kos-TN-ebF"/>
+                        <outlet property="selectLocationMapView" destination="NNg-Nl-FqJ" id="2U1-3o-gSr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmx-cX-JxZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="RlV-OR-eUq">
+                    <connections>
+                        <action selector="tappedOnMap:" destination="aqT-TB-Vcy" id="kpf-wO-Qx7"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3068" y="252"/>
         </scene>

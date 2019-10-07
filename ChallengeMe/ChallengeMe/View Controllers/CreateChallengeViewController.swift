@@ -44,6 +44,7 @@ class CreateChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadViews()
+        
     }
     
     // MARK: - Actions
@@ -52,6 +53,10 @@ class CreateChallengeViewController: UIViewController {
         challengeLocation = location
     }
     @IBAction func selectLocationButtonTapped(_ sender: Any) {
+        guard let mapVC = UIStoryboard(name: "CreateChallenge", bundle: nil).instantiateViewController(identifier: "CreateChallengeMapViewController") as? CreateChallengeMapViewController else { return }
+        mapVC.delegate = self
+        mapVC.modalPresentationStyle = .fullScreen
+        present(mapVC, animated: true)
     }
     @IBAction func timerSwitchToggled(_ sender: Any) {
         timer.toggle()
@@ -65,17 +70,15 @@ class CreateChallengeViewController: UIViewController {
         countDown.toggle()
         toggleCountDownView()
     }
-    
     @IBAction func uploadImageButtonTapped(_ sender: Any) {
         // checks to see if there are any photos in the photo library to access
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             requestPhotoLibraryAuthorization()
         }
     }
-    
     @IBAction func takePictureButtonTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            
+            requestCameraAuthorization()
         }
     }
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
@@ -83,9 +86,17 @@ class CreateChallengeViewController: UIViewController {
             let description = descriptionTextView.text,
             let location = challengeLocation,
             let measurement = measurementTextField.text,
+            let challengeImage = challengeImage,
             let tags = tagsTextField.text else { return }
         
-//            ChallengeController.shared.createChallenge(title: title, description: description, measurement: measurement, longitude: location.longitude, latitude: location.latitude, photo: selectedImage, completion: <#T##(Challenge?) -> Void#>)
+        ChallengeController.shared.createChallenge(title: title, description: description, measurement: measurement, longitude: location.longitude, latitude: location.latitude, photo: challengeImage) { (success) in
+            if success {
+                print("A challenge was saved")
+            } else {
+                print("There was an error saving challenge")
+            }
+            
+        }
     }
     
     // MARK: - Custom Methods
@@ -96,42 +107,46 @@ class CreateChallengeViewController: UIViewController {
     }
     
     func toggleTimerView() {
-        if timerSwitch.isOn == true {
-            countingUpButton.isHidden = false
-            countingDownButton.isHidden = false
-            countingUpLabel.isHidden = false
-            countingDownLabel.isHidden = false
-            
-        } else {
-            countingUpButton.isHidden = true
-            countingDownButton.isHidden = true
-            countingUpLabel.isHidden = true
-            countingDownLabel.isHidden = true
-            hoursTextField.isHidden = true
-            hoursLabel.isHidden = true
-            minutesTextField.isHidden = true
-            minutesLabel.isHidden = true
-            secondsTextField.isHidden = true
-            secondsLabel.isHidden = true
+        UIView.animate(withDuration: 0.2) {
+            if self.timerSwitch.isOn == true {
+                self.countingUpButton.isHidden = false
+                self.countingDownButton.isHidden = false
+                self.countingUpLabel.isHidden = false
+                self.countingDownLabel.isHidden = false
+                
+            } else {
+                self.countingUpButton.isHidden = true
+                self.countingDownButton.isHidden = true
+                self.countingUpLabel.isHidden = true
+                self.countingDownLabel.isHidden = true
+                self.hoursTextField.isHidden = true
+                self.hoursLabel.isHidden = true
+                self.minutesTextField.isHidden = true
+                self.minutesLabel.isHidden = true
+                self.secondsTextField.isHidden = true
+                self.secondsLabel.isHidden = true
+            }
         }
     }
     
     func toggleCountDownView() {
-        if countDown == true {
-            hoursTextField.isHidden = false
-            hoursLabel.isHidden = false
-            minutesTextField.isHidden = false
-            minutesLabel.isHidden = false
-            secondsTextField.isHidden = false
-            secondsLabel.isHidden = false
-        } else {
-            hoursTextField.isHidden = true
-            hoursLabel.isHidden = true
-            minutesTextField.isHidden = true
-            minutesLabel.isHidden = true
-            secondsTextField.isHidden = true
-            secondsLabel.isHidden = true
-        }
+            UIView.animate(withDuration: 0.2) {
+                if self.countDown == true {
+                    self.hoursTextField.isHidden = false
+                    self.hoursLabel.isHidden = false
+                    self.minutesTextField.isHidden = false
+                    self.minutesLabel.isHidden = false
+                    self.secondsTextField.isHidden = false
+                    self.secondsLabel.isHidden = false
+                } else {
+                    self.hoursTextField.isHidden = true
+                    self.hoursLabel.isHidden = true
+                    self.minutesTextField.isHidden = true
+                    self.minutesLabel.isHidden = true
+                    self.secondsTextField.isHidden = true
+                    self.secondsLabel.isHidden = true
+                }
+            }
     }
     
     fileprivate func presentPhotoPickerController() {
@@ -209,18 +224,13 @@ class CreateChallengeViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         }
-    
-    
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension CreateChallengeViewController: CreateChallengeMapDelegate {
+    
+    func didTap(at coordinates: CLLocationCoordinate2D) {
+        challengeLocation = coordinates
     }
-    */
-
 }
 
 extension CreateChallengeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

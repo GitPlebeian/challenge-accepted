@@ -20,21 +20,21 @@ class ChallengeController {
     // MARK: - CRUD
     
     // Create Challenge
-    func createChallenge(title: String, description: String, measurement: String, longitude: Double, latitude: Double, photo: UIImage, completion: @escaping (Challenge?) -> Void) {
+    func createChallenge(title: String, description: String, measurement: String, longitude: Double, latitude: Double, photo: UIImage, completion: @escaping (Bool) -> Void) {
         let challenge = Challenge(title: title, description: description, measurement: measurement, latitude: latitude, longitude: longitude, photo: photo)
         let challengeRecord = CKRecord(challenge: challenge)
         publicDB.save(challengeRecord) { (record, error) in
             if let error = error {
                 print("Error at: \(#function) Error: \(error)\nLocalized Error: \(error.localizedDescription)")
-                completion(nil)
+                completion(false)
                 return
             }
             guard let record = record,let challenge = Challenge(record: record) else {
-                completion(nil)
+                completion(false)
                 return
             }
             self.challenges.append(challenge)
-            completion(challenge)
+            completion(true)
         }
     }
     

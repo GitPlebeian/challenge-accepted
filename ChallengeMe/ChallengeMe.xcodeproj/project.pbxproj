@@ -27,6 +27,7 @@
 		869AD6A923454A46003E2C42 /* CreateChallenge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869AD6A823454A46003E2C42 /* CreateChallenge.storyboard */; };
 		869AD6AB23454F3D003E2C42 /* CreateChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */; };
 		869AD6AD23454F70003E2C42 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD6AC23454F70003E2C42 /* ProfileViewController.swift */; };
+		A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		869AD6A823454A46003E2C42 /* CreateChallenge.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateChallenge.storyboard; sourceTree = "<group>"; };
 		869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeViewController.swift; sourceTree = "<group>"; };
 		869AD6AC23454F70003E2C42 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeMapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				865A7860234790B900FEC8EA /* Navigation View Controllers */,
 				869AD69E234507B1003E2C42 /* MainMapViewController.swift */,
 				869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */,
+				A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */,
 				869AD6AC23454F70003E2C42 /* ProfileViewController.swift */,
 				865A78662347ABFD00FEC8EA /* NotificationsViewController.swift */,
 			);
@@ -247,6 +250,7 @@
 				868D14352343B32500B7691B /* ChallengeController.swift in Sources */,
 				868D14332343B31A00B7691B /* UserController.swift in Sources */,
 				865A78672347ABFD00FEC8EA /* NotificationsViewController.swift in Sources */,
+				A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */,
 				865A7862234790FD00FEC8EA /* MainTabBarViewController.swift in Sources */,
 				868D142F2343B2F200B7691B /* User.swift in Sources */,
 				869AD6AB23454F3D003E2C42 /* CreateChallengeViewController.swift in Sources */,
