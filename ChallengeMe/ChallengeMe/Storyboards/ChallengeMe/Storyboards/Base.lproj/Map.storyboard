@@ -87,16 +87,6 @@
             </objects>
             <point key="canvasLocation" x="2902.898550724638" y="293.97321428571428"/>
         </scene>
-        <!--CreateChallenge-->
-        <scene sceneID="yfC-Xo-IyS">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CreateChallenge" id="geL-pL-7JT" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Mca-6d-oz0"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="odE-8q-nGp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3418" y="294"/>
-        </scene>
         <!--Item-->
         <scene sceneID="jam-sC-pu2">
             <objects>
