@@ -239,8 +239,8 @@ extension MainMapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let createChallengeStoryboard = UIStoryboard(name: "CreateChallenge", bundle: nil)
-        let viewController = createChallengeStoryboard.instantiateViewController(withIdentifier: "createChallengeNavigationController")
+        let challengeDetailStoryboard = UIStoryboard(name: "ChallengeDetail", bundle: nil)
+        let viewController = challengeDetailStoryboard.instantiateViewController(withIdentifier: "challengeDetail")
         viewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(viewController, animated: true)
 //        let placemark = MKPlacemark(coordinate: view.annotation!.coordinate)
