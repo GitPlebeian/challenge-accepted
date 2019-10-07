@@ -25,7 +25,6 @@ class ChallengeController {
         if latitude < 0 {
             latitude *= -1
         }
-        print(latitude)
         if latitude < 10 {
             return searchAreaMeasurement
         } else if latitude < 20 {
@@ -78,12 +77,12 @@ class ChallengeController {
     
     // Fetch Challenges
     func fetchChallenges(longitude: Double, latitude: Double, completion: @escaping (Bool) -> Void) {
-        let predicate2 = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
+        let predicate = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
             ChallengeConstants.longitudeKey, longitude + getLongitudeMeasurementForLatitude(latitude: latitude),
             ChallengeConstants.longitudeKey, longitude - getLongitudeMeasurementForLatitude(latitude: latitude),
             ChallengeConstants.latitudeKey, latitude + searchAreaMeasurement,
             ChallengeConstants.latitudeKey, latitude - searchAreaMeasurement])
-        let query = CKQuery(recordType: ChallengeConstants.recordTypeKey, predicate: predicate2)
+        let query = CKQuery(recordType: ChallengeConstants.recordTypeKey, predicate: predicate)
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
                 print("Error at: \(#function) Error: \(error)\nLocalized Error: \(error.localizedDescription)")
