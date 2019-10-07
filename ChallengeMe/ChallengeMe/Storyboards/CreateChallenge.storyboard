@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="1522"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afk-mV-Tky">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write Challenge Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WAo-Xa-JXx">
                                                 <rect key="frame" x="8" y="8" width="398" height="34"/>
@@ -34,7 +34,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type tags..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q3k-Ta-MZB">
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="set some hashtags" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q3k-Ta-MZB">
                                                 <rect key="frame" x="8" y="257" width="215" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -204,7 +204,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4X-jr-6bt">
-                                                <rect key="frame" x="115" y="879" width="194" height="44"/>
+                                                <rect key="frame" x="109" y="1050" width="194" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.9840274453163147" green="0.728199303150177" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -215,10 +215,14 @@
                                                     <action selector="createChallengeButtonTapped:" destination="hU8-pc-jqI" eventType="touchUpInside" id="2bl-kp-0X7"/>
                                                 </connections>
                                             </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uuD-4q-clG">
+                                                <rect key="frame" x="75" y="868" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1600" id="Dw6-Ni-2cn"/>
+                                            <constraint firstAttribute="height" constant="1200" id="Dw6-Ni-2cn"/>
                                             <constraint firstItem="WAo-Xa-JXx" firstAttribute="top" secondItem="Afk-mV-Tky" secondAttribute="top" constant="8" id="IH6-B0-uZk"/>
                                             <constraint firstAttribute="trailing" secondItem="WAo-Xa-JXx" secondAttribute="trailing" constant="8" id="gfv-bw-baQ"/>
                                             <constraint firstItem="WAo-Xa-JXx" firstAttribute="leading" secondItem="Afk-mV-Tky" secondAttribute="leading" constant="8" id="ygg-JF-38s"/>
@@ -264,6 +268,7 @@
                         <outlet property="secondsLabel" destination="X9n-nt-Kcx" id="dwF-c3-lvp"/>
                         <outlet property="secondsTextField" destination="XWb-t1-sQD" id="sRd-9f-2wf"/>
                         <outlet property="selectLocationButton" destination="8j1-BT-TcK" id="eHm-h3-OxR"/>
+                        <outlet property="selectedImage" destination="uuD-4q-clG" id="Yoy-8x-6j3"/>
                         <outlet property="tagsTextField" destination="q3k-Ta-MZB" id="TNm-RR-WAF"/>
                         <outlet property="timerSwitch" destination="I4S-bl-UGO" id="wZW-oY-TZh"/>
                         <outlet property="titleTextField" destination="WAo-Xa-JXx" id="6WK-N3-Ph2"/>
