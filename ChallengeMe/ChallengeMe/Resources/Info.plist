@@ -2,20 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
-	<key>NSCameraUsageDescription</key>
-	<string>Take a photo of the location to create a challenge</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Select a photo from your library to create a challenge</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>App downloads content in response to push notification</string>
-		<string>fetch</string>
-		<string>remote-notification</string>
-	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is used to find challenges near you</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>MainMapViewController</string>
 	<key>CFBundleExecutable</key>
@@ -32,8 +18,16 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Take a photo of the location to create a challenge</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is used to find challenges near you</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Select a photo from your library to create a challenge</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -53,6 +47,12 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>App downloads content in response to push notification</string>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
