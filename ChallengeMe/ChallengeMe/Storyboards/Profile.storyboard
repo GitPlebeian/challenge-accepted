@@ -39,6 +39,9 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Challenge History"/>
+                                        <connections>
+                                            <action selector="challengeHistoryButtonTapped:" destination="r90-hI-Csq" eventType="touchUpInside" id="IN5-Lj-BTo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STN-Rk-9aj">
                                         <rect key="frame" x="0.0" y="82" width="331" height="50"/>
@@ -48,6 +51,9 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Created Challenges"/>
+                                        <connections>
+                                            <action selector="createdChallengesButtonTapped:" destination="r90-hI-Csq" eventType="touchUpInside" id="BRx-i2-IQB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -80,51 +86,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyK-o4-NGJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2058" y="-358"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="sQo-Tx-zp9">
-            <objects>
-                <viewController id="rv2-gc-OOz" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ni0-Ak-zxL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="lRK-PZ-0Y3"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YIy-Ie-cvA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2897" y="-557"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="h8D-yl-U6F">
-            <objects>
-                <viewController id="HTz-Wu-M47" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="S1t-IY-DRy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="i63-zQ-YmH"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fU9-tM-Yij" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3708" y="-557"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="kRo-Fu-tN8">
-            <objects>
-                <viewController id="j27-6e-SvJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nbg-Un-Nza">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="yvJ-hY-kts"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i2y-ti-s9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4468" y="-423"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="DTr-6S-qTI">

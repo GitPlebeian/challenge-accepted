@@ -25,6 +25,21 @@ class ProfileViewController: UIViewController {
         updateViews()
     }
     
+    // MARK: - Actions
+    
+    @IBAction func challengeHistoryButtonTapped(_ sender: Any) {
+        let challengeHistoryStoryboard = UIStoryboard(name: "ChallengeHistory", bundle: nil)
+        let viewController = challengeHistoryStoryboard.instantiateViewController(withIdentifier: "challengeHistory")
+        viewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    @IBAction func createdChallengesButtonTapped(_ sender: Any) {
+        let createdChallengesStoryboard = UIStoryboard(name: "CreatedChallenges", bundle: nil)
+        let viewController = createdChallengesStoryboard.instantiateViewController(withIdentifier: "createdChallenges")
+        viewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     // MARK: - Custom Functions
     
     func updateViews() {
