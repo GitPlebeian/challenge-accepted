@@ -87,9 +87,16 @@ class CreateChallengeViewController: UIViewController {
             let location = challengeLocation,
             let measurement = measurementTextField.text,
             let challengeImage = challengeImage,
-            let tags = tagsTextField.text else { return }
+            let tagString = tagsTextField.text else { return }
         
-        ChallengeController.shared.createChallenge(title: title, description: description, measurement: measurement, longitude: location.longitude, latitude: location.latitude, tags: tags, photo: challengeImage) { (success) in
+        var hashtags: [String] {
+            return tagString
+            .split(separator: " ") // divide into 'substrings'
+                .map { String($0) } // turn back into 'strings'
+                .filter { $0.hasPrefix("#") } // only keep #strings
+        }
+        
+        ChallengeController.shared.createChallenge(title: title, description: description, measurement: measurement, longitude: location.longitude, latitude: location.latitude, tags: hashtags, photo: challengeImage) { (success) in
             if success {
                 print("A challenge was saved")
             } else {
@@ -162,7 +169,6 @@ class CreateChallengeViewController: UIViewController {
                switch status {
                case .authorized:
                    self.presentPhotoPickerController()
-               // TODO: info.plist privacy photo library usage description
                case .notDetermined:
                    if status == PHAuthorizationStatus.authorized {
                        self.presentPhotoPickerController()
@@ -197,7 +203,6 @@ class CreateChallengeViewController: UIViewController {
             switch AVCaptureDevice.authorizationStatus(for: .video) {
             case .authorized:
                 self.setupCaptureSession()
-            // TODO: info.plist privacy NSCameraUsageDescription
             case .notDetermined:
                 AVCaptureDevice.requestAccess(for: .video) { (granted) in
                     if granted {
