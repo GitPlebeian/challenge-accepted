@@ -239,11 +239,14 @@ extension MainMapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        let placemark = MKPlacemark(coordinate: view.annotation!.coordinate)
-        let mapItem = MKMapItem(placemark: placemark)
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        mapItem.openInMaps(launchOptions: launchOptions)
+        let createChallengeStoryboard = UIStoryboard(name: "CreateChallenge", bundle: nil)
+        let viewController = createChallengeStoryboard.instantiateViewController(withIdentifier: "createChallengeNavigationController")
+        viewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(viewController, animated: true)
+//        let placemark = MKPlacemark(coordinate: view.annotation!.coordinate)
+//        let mapItem = MKMapItem(placemark: placemark)
+//        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+//        mapItem.openInMaps(launchOptions: launchOptions)
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
