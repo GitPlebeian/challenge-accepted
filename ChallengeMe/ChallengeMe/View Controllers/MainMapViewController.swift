@@ -56,11 +56,18 @@ class MainMapViewController: UIViewController {
             map.removeOverlay(searchArea)
         }
         var cordinateArray: [CLLocationCoordinate2D] = []
-        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.searchAreaMeasurement))
-        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude + ChallengeController.shared.searchAreaMeasurement))
-        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude - ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude + ChallengeController.shared.searchAreaMeasurement))
-        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude - ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.searchAreaMeasurement))
-        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.searchAreaMeasurement))
+        let latitude = map.centerCoordinate.latitude
+        let longitude = map.centerCoordinate.longitude
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+            
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude + ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+            
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude - ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude + ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+            
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude - ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+            
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+        
         let line = MKPolyline(coordinates: cordinateArray, count: 5)
         currentSearchArea = line
         map.addOverlay(line)
