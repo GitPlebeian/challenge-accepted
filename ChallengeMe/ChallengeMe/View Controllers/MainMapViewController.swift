@@ -25,6 +25,7 @@ class MainMapViewController: UIViewController {
     let locationManager = CLLocationManager()
     var currentAnnotations: [MKAnnotation] = []
     var waitingForSearch = true
+    var currentSearchArea: MKPolyline?
     
     // MARK: - Lifecycle
     
@@ -50,6 +51,20 @@ class MainMapViewController: UIViewController {
         } else {
             return
         }
+        
+        if let searchArea = currentSearchArea {
+            map.removeOverlay(searchArea)
+        }
+        var cordinateArray: [CLLocationCoordinate2D] = []
+        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.searchAreaMeasurement))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude + ChallengeController.shared.searchAreaMeasurement))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude - ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude + ChallengeController.shared.searchAreaMeasurement))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude - ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.searchAreaMeasurement))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: map.centerCoordinate.latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.searchAreaMeasurement))
+        let line = MKPolyline(coordinates: cordinateArray, count: 5)
+        currentSearchArea = line
+        map.addOverlay(line)
+        
         map.removeAnnotations(self.currentAnnotations)
         ChallengeController.shared.fetchChallenges(longitude: map.centerCoordinate.longitude, latitude: map.centerCoordinate.latitude) { (success) in
             DispatchQueue.main.async {
@@ -124,6 +139,7 @@ class MainMapViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
 //            checkLocationAuthorization()
+            updateMapViewForLoad()
         } else {
             // Error handling
         }
@@ -199,10 +215,10 @@ extension MainMapViewController: MKMapViewDelegate {
         if annotation.isKind(of: MKUserLocation.self) {
             return nil
         }
-        
+
         let identifier = "marker"
         var view: MKAnnotationView
-        
+
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
@@ -222,4 +238,13 @@ extension MainMapViewController: MKMapViewDelegate {
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         mapItem.openInMaps(launchOptions: launchOptions)
     }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let overlay = overlay as? MKPolyline else {return MKOverlayRenderer()}
+        let polyLineRender = MKPolylineRenderer(polyline: overlay)
+        polyLineRender.strokeColor = .blue
+        polyLineRender.lineWidth = 1
+        return polyLineRender
+    }
 }
+

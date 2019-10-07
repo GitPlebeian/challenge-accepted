@@ -16,6 +16,7 @@ class ChallengeController {
     
     var challenges: [Challenge] = []
     let publicDB = CKContainer.default().publicCloudDatabase
+    let searchAreaMeasurement = 0.2
     
     // MARK: - CRUD
     
@@ -40,7 +41,7 @@ class ChallengeController {
     
     // Fetch Challenges
     func fetchChallenges(longitude: Double, latitude: Double, completion: @escaping (Bool) -> Void) {
-        let predicate2 = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [ChallengeConstants.longitudeKey, longitude + 1, ChallengeConstants.longitudeKey, longitude - 1, ChallengeConstants.latitudeKey, latitude + 1, ChallengeConstants.latitudeKey, latitude - 1])
+        let predicate2 = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [ChallengeConstants.longitudeKey, longitude + searchAreaMeasurement, ChallengeConstants.longitudeKey, longitude - searchAreaMeasurement, ChallengeConstants.latitudeKey, latitude + searchAreaMeasurement, ChallengeConstants.latitudeKey, latitude - searchAreaMeasurement])
         let query = CKQuery(recordType: ChallengeConstants.recordTypeKey, predicate: predicate2)
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
