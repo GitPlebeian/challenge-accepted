@@ -4,7 +4,7 @@
 <dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Take a photo of the location to create a challenge</string>
-	<key>NSAppleMusicUsageDescription</key>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Select a photo from your library to create a challenge</string>
 	<key>UIBackgroundModes</key>
 	<array>

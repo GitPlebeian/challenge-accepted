@@ -53,7 +53,7 @@ class CreateChallengeViewController: UIViewController {
         challengeLocation = location
     }
     @IBAction func selectLocationButtonTapped(_ sender: Any) {
-        guard let mapVC = UIStoryboard(name: "CreateChallenge", bundle: nil).instantiateViewController(identifier: "CreateChallengeMapViewController") as? CreateChallengeMapViewController else { return }
+        guard let mapVC = UIStoryboard(name: "CreateChallenge", bundle: nil).instantiateViewController(identifier: "CreateChallengeMap") as? CreateChallengeMapViewController else { return }
         mapVC.delegate = self
         mapVC.modalPresentationStyle = .fullScreen
         present(mapVC, animated: true)
@@ -157,10 +157,12 @@ class CreateChallengeViewController: UIViewController {
     }
     
     fileprivate func presentPhotoPickerController() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .photoLibrary
-        self.present(imagePickerController, animated: true)
+        DispatchQueue.main.async {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true)
+        }
     }
     
     fileprivate func requestPhotoLibraryAuthorization() {
