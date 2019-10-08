@@ -35,27 +35,32 @@ class SetupViewController: UIViewController {
                     viewController.modalPresentationStyle = .fullScreen
                     self.present(viewController, animated: true, completion: nil)
                 } else {
-                    self.presentErrorAlert(title: "Big Error Sugma", message: "Dick moove dog")
+                    self.presentErrorAlertForSaveUser(title: "Database", message: "We couldn't connect to the database. Please try again in a bit")
                 }
             }
         }
     }
     @IBAction func refreshButtonTapped(_ sender: Any) {
-        
+        refreshButton.isHidden = true
+        loadingDataActivityIndicator.isHidden = false
+        loadUser()
     }
     
     // MARK: - Custom Functions
     
     func updateViews() {
         usernameTextField.layer.cornerRadius = usernameTextField.frame.height / 2
+        refreshButton.layer.cornerRadius = refreshButton.frame.height / 2
+        saveUsernameButton.layer.cornerRadius = saveUsernameButton.frame.height / 2
         loadingDataActivityIndicator.startAnimating()
+        
     }
     
     func loadUser() {
         UserController.shared.fetchCurrentUser { (networkSuccess, userExists) in
             DispatchQueue.main.async {
+                self.loadingDataActivityIndicator.isHidden = true
                 if networkSuccess {
-                    self.loadingDataActivityIndicator.isHidden = true
                     if userExists {
                         let mainTabBarStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
                         let viewController = mainTabBarStoryboard.instantiateViewController(withIdentifier: "mainTabBar")
@@ -65,16 +70,25 @@ class SetupViewController: UIViewController {
                         self.setUserStackView.isHidden = false
                     }
                 } else {
-                    self.presentErrorAlert(title: "Database", message: "We couldn't connect to the database. Please try again in a bit")
+                    self.presentErrorAlertForFetch(title: "Database", message: "We couldn't connect to the database. Please try again in a bit")
                 }
             }
         }
     }
     
-    func presentErrorAlert(title: String, message: String) {
+    func presentErrorAlertForFetch(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: title, style: .default) { (_) in
-            
+            self.refreshButton.isHidden = false
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+    func presentErrorAlertForSaveUser(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: title, style: .default) { (_) in
+            self.refreshButton.isHidden = false
+            self.setUserStackView.isHidden = true
         }
         alertController.addAction(okAction)
         present(alertController, animated: true)

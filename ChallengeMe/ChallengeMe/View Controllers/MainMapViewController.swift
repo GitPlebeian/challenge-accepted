@@ -135,6 +135,7 @@ class MainMapViewController: UIViewController {
     func updateViews() {
         centerOnUserButton.layer.cornerRadius = centerOnUserButton.frame.height / 2
         searchThisAreaButton.layer.cornerRadius = searchThisAreaButton.frame.height / 2
+        createChallengeButton.layer.cornerRadius = createChallengeButton.frame.height / 2
     }
     
     func setupLocationManager() {
@@ -208,7 +209,7 @@ class MainMapViewController: UIViewController {
 extension MainMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Did UPDATE locations")
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
