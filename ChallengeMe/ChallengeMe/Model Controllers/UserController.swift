@@ -23,9 +23,9 @@ class UserController {
         let challenge = Challenge(title: "Challenge Title", description: "Description", measurement: "Measure", latitude: 180, longitude: 60, tags: ["boi","BoiTAg"], photo: UIImage(named: "d")!)
         let user = User(username: "Boi", appleUserReference: CKRecord.Reference(recordID: CKRecord.ID(recordName: "dickcheese"), action: .none), profilePhoto: nil)
         
-//        let newUser = User(username: "Name", messages: [message], messagesReferences: [], completedChallenges: [challenge], completedChallengesReferences: [], createdChallenges: [challenge], createdChallengesReferences: [], friends: [user], friendsReferences: [], appleUserReference: appleUserReference, profilePhoto: nil)
+        let newUser = User(username: "Name", messages: [message], messagesReferences: [appleUserReference], completedChallenges: [challenge], completedChallengesReferences: [appleUserReference], createdChallenges: [challenge], createdChallengesReferences: [appleUserReference], friends: [user], friendsReferences: [appleUserReference], appleUserReference: appleUserReference, profilePhoto: UIImage(named: "d"))
         
-        let userRecord = CKRecord(user: user)
+        let userRecord = CKRecord(user: newUser)
         self.publicDB.save(userRecord, completionHandler:  { (record, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
