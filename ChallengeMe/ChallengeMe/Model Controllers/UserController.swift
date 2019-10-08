@@ -17,31 +17,9 @@ class UserController {
     let publicDB = CKContainer.default().publicCloudDatabase
     
     // MARK: - CRUD
-    // create
-    func createCurrentUser(username: String, profilePhoto: UIImage?, appleUserReference: CKRecord.Reference, completion: @escaping (Bool) -> Void) {
-        let message = Message(toUser: CKRecord.ID(recordName: "d"), fromUser: CKRecord.ID(recordName: "d"), challenge: CKRecord.ID(recordName: "d"))
-        let challenge = Challenge(title: "Challenge Title", description: "Description", measurement: "Measure", latitude: 180, longitude: 60, tags: ["boi","BoiTAg"], photo: UIImage(named: "d")!)
-        let user = User(username: "Boi", appleUserReference: CKRecord.Reference(recordID: CKRecord.ID(recordName: "dickcheese"), action: .none), profilePhoto: nil)
-        
-        let newUser = User(username: "Name", messages: [message], messagesReferences: [appleUserReference], completedChallenges: [challenge], completedChallengesReferences: [appleUserReference], createdChallenges: [challenge], createdChallengesReferences: [appleUserReference], friends: [user], friendsReferences: [appleUserReference], appleUserReference: appleUserReference, profilePhoto: UIImage(named: "d"))
-        
-        let userRecord = CKRecord(user: newUser)
-        self.publicDB.save(userRecord, completionHandler:  { (record, error) in
-            if let error = error {
-                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-                completion(false)
-                return
-            }
-            if let record = record {
-                let savedUser = User(record: record)
-                self.currentUser = savedUser
-                completion(true)
-            }
-        })
-    }
     
-    // read
-    func fetchCurrentUser(completion: @escaping (Bool) -> Void) {
+    // create
+    func createCurrentUser(username: String, completion: @escaping (Bool) -> Void) {
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
@@ -51,30 +29,50 @@ class UserController {
             
             guard let recordID = recordID else {completion(false); return}
             let reference = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
+            
+            let newUser = User(username: username, appleUserReference: reference, profilePhoto: UIImage(named: "d")!)
+            let userRecord = CKRecord(user: newUser)
+            self.publicDB.save(userRecord, completionHandler:  { (record, error) in
+                if let error = error {
+                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                    completion(false)
+                    return
+                }
+                if let record = record {
+                    let savedUser = User(record: record)
+                    self.currentUser = savedUser
+                    completion(true)
+                }
+            })
+        }
+    }
+    
+    // read
+    func fetchCurrentUser(completion: @escaping (Bool, Bool) -> Void) {
+        CKContainer.default().fetchUserRecordID { (recordID, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(false, false)
+                return
+            }
+            
+            guard let recordID = recordID else {completion(false, false); return}
+            let reference = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
 
             let predicate = NSPredicate(format: "%K == %@", UserKeys.appleUserReferenceKey, reference)
             let query = CKQuery(recordType: UserKeys.typeKey, predicate: predicate)
             self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
                 if let error = error {
                     print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-                    completion(false)
-                    self.createCurrentUser(username: "bob", profilePhoto: nil, appleUserReference: reference) { (success) in
-                        if success {
-                            print("BoiBOIBOI")
-                        }
-                    }
+                    completion(false, false)
                     return
                 }
                 if let record = records?.first {
                     let foundUser = User(record: record)
                     self.currentUser = foundUser
-                    completion(true)
+                    completion(true, true)
                 } else {
-                    self.createCurrentUser(username: "bob", profilePhoto: nil, appleUserReference: reference) { (success) in
-                        if success {
-                            print("BoiBOIBOI")
-                        }
-                    }
+                    completion(true, false)
                 }
             }
 //            NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
