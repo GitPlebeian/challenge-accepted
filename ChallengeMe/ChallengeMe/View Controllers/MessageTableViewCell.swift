@@ -11,7 +11,7 @@ import UIKit
 class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var fromUserImage: UIView!
     @IBOutlet weak var fromUserNameLabel: UILabel!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

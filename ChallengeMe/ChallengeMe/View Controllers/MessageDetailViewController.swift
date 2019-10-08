@@ -1,20 +1,22 @@
 //
-//  NotificationsViewController.swift
+//  MessageDetailViewController.swift
 //  ChallengeMe
 //
-//  Created by Jackson Tubbs on 10/4/19.
+//  Created by Michael Moore on 10/8/19.
 //  Copyright © 2019 Jax Tubbs. All rights reserved.
 //
 
 import UIKit
 
-class NotificationsViewController: UITableViewController {
+class MessageDetailViewController: UIViewController {
 
+    var message: Message?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
-    
     
 
     /*
