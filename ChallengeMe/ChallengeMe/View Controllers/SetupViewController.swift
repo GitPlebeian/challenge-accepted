@@ -1,23 +1,34 @@
 //
-//  MainTabBarViewController.swift
+//  SetupViewController.swift
 //  ChallengeMe
 //
-//  Created by Jackson Tubbs on 10/4/19.
+//  Created by Jackson Tubbs on 10/8/19.
 //  Copyright © 2019 Jax Tubbs. All rights reserved.
 //
 
 import UIKit
 
-class MainTabBarViewController: UITabBarController {
+class SetupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        selectedIndex = 1
+        updateViews()
+        loadUser()
+    }
+    
+    // MARK: - Custom Functions
+    
+    func updateViews() {
         
     }
     
-
+    func loadUser() {
+        UserController.shared.fetchCurrentUser { (success) in
+            print(success)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

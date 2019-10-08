@@ -12,12 +12,12 @@ import CloudKit
 
 struct UserKeys {
     static let usernameKey = "Username"
-    static let messagesReferencesKey = "Messages References"
-    static let completedChallengesReferencesKey = "Completed Challenges References"
-    static let createdChallengesReferencesKey = "Created Challenges References"
-    static let friendsReferencesKey = "Friends References"
-    static let photoAssetKey = "Photo Asset"
-    static let appleUserReferenceKey = "Apple User Reference"
+    static let messagesReferencesKey = "MessagesReferences"
+    static let completedChallengesReferencesKey = "CompletedChallengesReferences"
+    static let createdChallengesReferencesKey = "CreatedChallengesReferences"
+    static let friendsReferencesKey = "FriendsReferences"
+    static let photoAssetKey = "PhotoAsset"
+    static let appleUserReferenceKey = "AppleUserReference"
     static let typeKey = "User"
 }
 
@@ -40,7 +40,11 @@ class User {
             guard let photoData = self.photoData else { return nil }
             return UIImage(data: photoData)
         } set {
-            self.photoData = newValue?.jpegData(compressionQuality: 0.5)
+            if let newValue = newValue {
+                self.photoData = newValue.jpegData(compressionQuality: 0.5)
+            } else {
+                self.photoData = UIImage(named: "d")!.jpegData(compressionQuality: 0.5)
+            }
         }
     }
     var photoAsset: CKAsset? {

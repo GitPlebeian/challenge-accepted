@@ -18,10 +18,14 @@ class UserController {
     
     // MARK: - CRUD
     // create
-    func createUser(username: String, profilePhoto: UIImage?, completion: @escaping (Bool) -> Void) {
-        let newUser = User(username: username, profilePhoto: profilePhoto)
-        let userRecord = CKRecord(user: newUser)
+    func createCurrentUser(username: String, profilePhoto: UIImage?, appleUserReference: CKRecord.Reference, completion: @escaping (Bool) -> Void) {
+        let message = Message(toUser: CKRecord.ID(recordName: "d"), fromUser: CKRecord.ID(recordName: "d"), challenge: CKRecord.ID(recordName: "d"))
+        let challenge = Challenge(title: "Challenge Title", description: "Description", measurement: "Measure", latitude: 180, longitude: 60, tags: ["boi","BoiTAg"], photo: UIImage(named: "d")!)
+        let user = User(username: "Boi", appleUserReference: CKRecord.Reference(recordID: CKRecord.ID(recordName: "dickcheese"), action: .none), profilePhoto: nil)
         
+//        let newUser = User(username: "Name", messages: [message], messagesReferences: [], completedChallenges: [challenge], completedChallengesReferences: [], createdChallenges: [challenge], createdChallengesReferences: [], friends: [user], friendsReferences: [], appleUserReference: appleUserReference, profilePhoto: nil)
+        
+        let userRecord = CKRecord(user: user)
         self.publicDB.save(userRecord, completionHandler:  { (record, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
@@ -37,20 +41,44 @@ class UserController {
     }
     
     // read
-    func fetchUser(completion: @escaping (Bool) -> Void) {
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: UserKeys.typeKey, predicate: predicate)
-        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+    func fetchCurrentUser(completion: @escaping (Bool) -> Void) {
+        CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-                 completion(false)
-                 return
+                completion(false)
+                return
             }
-            if let record = records?.first {
-                let foundUser = User(record: record)
-                self.currentUser = foundUser
-                completion(true)
+            
+            guard let recordID = recordID else {completion(false); return}
+            let reference = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
+
+            let predicate = NSPredicate(format: "%K == %@", UserKeys.appleUserReferenceKey, reference)
+            let query = CKQuery(recordType: UserKeys.typeKey, predicate: predicate)
+            self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
+                if let error = error {
+                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                    completion(false)
+                    self.createCurrentUser(username: "bob", profilePhoto: nil, appleUserReference: reference) { (success) in
+                        if success {
+                            print("BoiBOIBOI")
+                        }
+                    }
+                    return
+                }
+                if let record = records?.first {
+                    let foundUser = User(record: record)
+                    self.currentUser = foundUser
+                    completion(true)
+                } else {
+                    self.createCurrentUser(username: "bob", profilePhoto: nil, appleUserReference: reference) { (success) in
+                        if success {
+                            print("BoiBOIBOI")
+                        }
+                    }
+                }
             }
+//            NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
+//            ChallengeConstants.longitudeKey, longitude + getLo
         }
     }
     

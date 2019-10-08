@@ -21,6 +21,8 @@
 		868D14332343B31A00B7691B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14322343B31A00B7691B /* UserController.swift */; };
 		868D14352343B32500B7691B /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14342343B32500B7691B /* ChallengeController.swift */; };
 		868D14392343FF7700B7691B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868D14382343FF7700B7691B /* CloudKit.framework */; };
+		8699DB85234CE5F700CE3E27 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8699DB84234CE5F700CE3E27 /* SetupViewController.swift */; };
+		8699DB88234CE97700CE3E27 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8699DB86234CE97700CE3E27 /* TabBar.storyboard */; };
 		869AD69F234507B1003E2C42 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD69E234507B1003E2C42 /* MainMapViewController.swift */; };
 		869AD6A2234548ED003E2C42 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869AD6A0234548ED003E2C42 /* Map.storyboard */; };
 		869AD6A423454917003E2C42 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869AD6A323454917003E2C42 /* Profile.storyboard */; };
@@ -56,6 +58,8 @@
 		868D14342343B32500B7691B /* ChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeController.swift; sourceTree = "<group>"; };
 		868D14362343FF7500B7691B /* ChallengeMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChallengeMe.entitlements; sourceTree = "<group>"; };
 		868D14382343FF7700B7691B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		8699DB84234CE5F700CE3E27 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		8699DB87234CE97700CE3E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/Base.lproj/TabBar.storyboard; sourceTree = "<group>"; };
 		869AD69E234507B1003E2C42 /* MainMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
 		869AD6A1234548ED003E2C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/Base.lproj/Map.storyboard; sourceTree = "<group>"; };
 		869AD6A323454917003E2C42 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				A5F1F9EA234BE9D50015894B /* MessageTableViewCell.swift */,
 				86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */,
 				86E210E7234BAA14001AE931 /* ChallengeHistoryViewController.swift */,
+				8699DB84234CE5F700CE3E27 /* SetupViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 		868D142D2343B2D800B7691B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				8699DB86234CE97700CE3E27 /* TabBar.storyboard */,
 				86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */,
 				868D14182343B25800B7691B /* Main.storyboard */,
 				869AD6A823454A46003E2C42 /* CreateChallenge.storyboard */,
@@ -264,6 +270,7 @@
 				869AD6A923454A46003E2C42 /* CreateChallenge.storyboard in Resources */,
 				868D14222343B25800B7691B /* LaunchScreen.storyboard in Resources */,
 				869AD6A423454917003E2C42 /* Profile.storyboard in Resources */,
+				8699DB88234CE97700CE3E27 /* TabBar.storyboard in Resources */,
 				868D141F2343B25800B7691B /* Assets.xcassets in Resources */,
 				865A78652347ABAA00FEC8EA /* Notifications.storyboard in Resources */,
 				86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */,
@@ -295,6 +302,7 @@
 				A5F1F9EB234BE9D50015894B /* MessageTableViewCell.swift in Sources */,
 				868D14132343B25800B7691B /* AppDelegate.swift in Sources */,
 				86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */,
+				8699DB85234CE5F700CE3E27 /* SetupViewController.swift in Sources */,
 				868D14152343B25800B7691B /* SceneDelegate.swift in Sources */,
 				A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */,
 				86E210E8234BAA14001AE931 /* ChallengeHistoryViewController.swift in Sources */,
@@ -327,6 +335,14 @@
 				868D14212343B25800B7691B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8699DB86234CE97700CE3E27 /* TabBar.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8699DB87234CE97700CE3E27 /* Base */,
+			);
+			name = TabBar.storyboard;
 			sourceTree = "<group>";
 		};
 		869AD6A0234548ED003E2C42 /* Map.storyboard */ = {
