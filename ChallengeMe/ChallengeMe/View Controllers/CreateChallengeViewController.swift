@@ -24,18 +24,6 @@ class CreateChallengeViewController: UIViewController {
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var currentLocationButton: UIButton!
     @IBOutlet weak var selectLocationButton: UIButton!
-    @IBOutlet weak var measurementTextField: UITextField!
-    @IBOutlet weak var timerSwitch: UISwitch!
-    @IBOutlet weak var countingUpButton: UIButton!
-    @IBOutlet weak var countingUpLabel: UILabel!
-    @IBOutlet weak var countingDownButton: UIButton!
-    @IBOutlet weak var countingDownLabel: UILabel!
-    @IBOutlet weak var hoursTextField: UITextField!
-    @IBOutlet weak var hoursLabel: UILabel!
-    @IBOutlet weak var minutesTextField: UITextField!
-    @IBOutlet weak var minutesLabel: UILabel!
-    @IBOutlet weak var secondsTextField: UITextField!
-    @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var createChallengeButton: UIButton!
     
@@ -63,18 +51,6 @@ class CreateChallengeViewController: UIViewController {
         mapVC.modalPresentationStyle = .fullScreen
         present(mapVC, animated: true)
     }
-    @IBAction func timerSwitchToggled(_ sender: Any) {
-        timer.toggle()
-        toggleTimerView()
-    }
-    @IBAction func countingUpButtonTapped(_ sender: Any) {
-        countDown.toggle()
-        toggleCountDownView()
-    }
-    @IBAction func countingDownButtonTapped(_ sender: Any) {
-        countDown.toggle()
-        toggleCountDownView()
-    }
     @IBAction func uploadImageButtonTapped(_ sender: Any) {
         // checks to see if there are any photos in the photo library to access
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -89,76 +65,42 @@ class CreateChallengeViewController: UIViewController {
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         guard let title = titleTextField.text,
             let description = descriptionTextView.text,
-            let location = challengeLocation,
-            let measurement = measurementTextField.text,
             let challengeImage = selectedImage.image,
             let tagString = tagsTextField.text else { return }
         var hashtags: [String] {
-            return tagString
-                .split(separator: " ") // divide into 'substrings'
-                .map { String($0) } // turn back into 'strings'
-                .filter { $0.hasPrefix("#") } // only keep #strings
-        }
-        ChallengeController.shared.createChallenge(title: title, description: description, measurement: measurement, longitude: location.longitude, latitude: location.latitude, tags: hashtags, photo: challengeImage) { (success) in
-            if success {
-                print("A challenge was saved")
-            } else {
-                print("There was an error saving challenge")
+                   return tagString
+                       .split(separator: " ") // divide into 'substrings'
+                       .map { String($0) } // turn back into 'strings'
+                       .filter { $0.hasPrefix("#") } // only keep #strings
+               }
+        
+        if challengeLocation == nil {
+            guard let currentLocation = locationManager.location?.coordinate else { return }
+            ChallengeController.shared.createChallenge(title: title, description: description, longitude: currentLocation.longitude, latitude: currentLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
+                if success {
+                    print("A challenge was saved")
+                } else {
+                    print("There was an error saving challenge")
+                }
             }
-            
+        } else {
+            guard let selectedLocation = challengeLocation else { return }
+            ChallengeController.shared.createChallenge(title: title, description: description, longitude: selectedLocation.longitude, latitude: selectedLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
+                if success {
+                    print("A challenge was saved")
+                } else {
+                    print("There was an error saving challenge")
+                }
+            }
         }
     }
     
     // MARK: - Custom Methods
     func loadViews() {
-        timerSwitch.setOn(false, animated: true)
-        toggleTimerView()
-        toggleCountDownView()
         selectedImage.isHidden = false
     }
     
-    func toggleTimerView() {
-        UIView.animate(withDuration: 0.2) {
-            if self.timerSwitch.isOn == true {
-                self.countingUpButton.isHidden = false
-                self.countingDownButton.isHidden = false
-                self.countingUpLabel.isHidden = false
-                self.countingDownLabel.isHidden = false
-                
-            } else {
-                self.countingUpButton.isHidden = true
-                self.countingDownButton.isHidden = true
-                self.countingUpLabel.isHidden = true
-                self.countingDownLabel.isHidden = true
-                self.hoursTextField.isHidden = true
-                self.hoursLabel.isHidden = true
-                self.minutesTextField.isHidden = true
-                self.minutesLabel.isHidden = true
-                self.secondsTextField.isHidden = true
-                self.secondsLabel.isHidden = true
-            }
-        }
-    }
     
-    func toggleCountDownView() {
-        UIView.animate(withDuration: 0.2) {
-            if self.countDown == true {
-                self.hoursTextField.isHidden = false
-                self.hoursLabel.isHidden = false
-                self.minutesTextField.isHidden = false
-                self.minutesLabel.isHidden = false
-                self.secondsTextField.isHidden = false
-                self.secondsLabel.isHidden = false
-            } else {
-                self.hoursTextField.isHidden = true
-                self.hoursLabel.isHidden = true
-                self.minutesTextField.isHidden = true
-                self.minutesLabel.isHidden = true
-                self.secondsTextField.isHidden = true
-                self.secondsLabel.isHidden = true
-            }
-        }
-    }
     
     fileprivate func presentPhotoPickerController() {
         DispatchQueue.main.async {
