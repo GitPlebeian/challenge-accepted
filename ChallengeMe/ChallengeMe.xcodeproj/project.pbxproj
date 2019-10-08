@@ -39,6 +39,7 @@
 		A5F1F9E9234BDEE30015894B /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9E8234BDEE30015894B /* MessageController.swift */; };
 		A5F1F9EB234BE9D50015894B /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9EA234BE9D50015894B /* MessageTableViewCell.swift */; };
 		A5FD520A234CEBAC006E171D /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD5209234CEBAC006E171D /* MessageDetailViewController.swift */; };
+		A5FD520C234CF7E6006E171D /* ChallengeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		A5F1F9E8234BDEE30015894B /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		A5F1F9EA234BE9D50015894B /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		A5FD5209234CEBAC006E171D /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
+		A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				865A7860234790B900FEC8EA /* Navigation View Controllers */,
 				869AD69E234507B1003E2C42 /* MainMapViewController.swift */,
 				869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */,
+				A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */,
 				A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */,
 				869AD6AC23454F70003E2C42 /* ProfileViewController.swift */,
 				865A78662347ABFD00FEC8EA /* MessagesTableViewController.swift */,
@@ -306,6 +309,7 @@
 				A5F1F9EB234BE9D50015894B /* MessageTableViewCell.swift in Sources */,
 				868D14132343B25800B7691B /* AppDelegate.swift in Sources */,
 				86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */,
+				A5FD520C234CF7E6006E171D /* ChallengeDetailViewController.swift in Sources */,
 				8699DB85234CE5F700CE3E27 /* SetupViewController.swift in Sources */,
 				868D14152343B25800B7691B /* SceneDelegate.swift in Sources */,
 				A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */,
