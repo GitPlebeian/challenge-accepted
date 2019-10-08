@@ -10,13 +10,13 @@
         <!--Root View Controller-->
         <scene sceneID="6oR-cT-0tv">
             <objects>
-                <tableViewController id="uSc-dR-cW4" customClass="NotificationsViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="uSc-dR-cW4" customClass="MessagesTableViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WIh-cX-hcX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="134" id="c4F-G5-Hoh" customClass="MessageTableViewCell" customModule="ChallengeMe" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="134" id="c4F-G5-Hoh" customClass="MessageTableViewCell" customModule="ChallengeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="134"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c4F-G5-Hoh" id="8hv-Ie-UHH">
@@ -80,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="1378.2608695652175" y="51.5625"/>
         </scene>
-        <!--View Controller-->
+        <!--Message Detail View Controller-->
         <scene sceneID="KLJ-H0-Jku">
             <objects>
-                <viewController id="7hQ-Dx-11S" sceneMemberID="viewController">
+                <viewController id="7hQ-Dx-11S" customClass="MessageDetailViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0yk-Ec-qgB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
