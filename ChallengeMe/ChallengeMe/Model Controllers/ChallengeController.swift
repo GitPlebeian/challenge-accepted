@@ -57,8 +57,8 @@ class ChallengeController {
     // MARK: - CRUD
     
     // Create Challenge
-    func createChallenge(title: String, description: String, measurement: String, longitude: Double, latitude: Double, tags: [String], photo: UIImage, completion: @escaping (Bool) -> Void) {
-        let challenge = Challenge(title: title, description: description, measurement: measurement, latitude: latitude, longitude: longitude, tags: tags, photo: photo)
+    func createChallenge(title: String, description: String, longitude: Double, latitude: Double, tags: [String], photo: UIImage, completion: @escaping (Bool) -> Void) {
+        let challenge = Challenge(title: title, description: description, latitude: latitude, longitude: longitude, tags: tags, photo: photo)
         let challengeRecord = CKRecord(challenge: challenge)
         publicDB.save(challengeRecord) { (record, error) in
             if let error = error {

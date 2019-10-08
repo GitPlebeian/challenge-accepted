@@ -113,5 +113,25 @@ class UserController {
         }
     }
     
+    func convertRecordToCompletedChallenges() {
+        guard let currentUser = currentUser else { return }
+        for completedChallengeReference in currentUser.completedChallengesReferences {
+            for challenge in ChallengeController.shared.challenges {
+                if completedChallengeReference.recordID == challenge.recordID {
+                    currentUser.completedChallenges.append(challenge)
+                }
+            }
+        }
+    }
     
+    func convertRecordToCreatedChallenges() {
+        guard let currentUser = currentUser else { return }
+        for createdChallengeReference in currentUser.createdChallengesReferences {
+            for challenge in ChallengeController.shared.challenges {
+                if createdChallengeReference.recordID == challenge.recordID {
+                    currentUser.createdChallenges.append(challenge)
+                }
+            }
+        }
+    }
 }
