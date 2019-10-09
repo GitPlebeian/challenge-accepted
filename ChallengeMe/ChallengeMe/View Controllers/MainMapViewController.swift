@@ -18,6 +18,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var centerOnUserButton: UIButton!
     @IBOutlet weak var searchThisAreaButton: UIButton!
     @IBOutlet weak var createChallengeButton: UIButton!
+    @IBOutlet weak var mainMapGestureRecognizer: MKMapView!
     
     // MARK: - Properties
     
@@ -34,9 +35,20 @@ class MainMapViewController: UIViewController {
         map.delegate = self
         checkLocationServices()
         updateViews()
+        mainMapGestureRecognizer.delegate = self
     }
     
     // MARK: - Actions
+    
+    @IBAction func tappedOnMap(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: map)
+        let coordinate = map.convert(location, toCoordinateFrom: map)
+        
+        let longdon = MKPointAnnotation()
+        longdon.title = "Bois"
+        longdon.coordinate = coordinate
+        map.addAnnotation(longdon)
+    }
     
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         let createChallengeStoryboard = UIStoryboard(name: "CreateChallenge", bundle: nil)
@@ -58,15 +70,15 @@ class MainMapViewController: UIViewController {
         var cordinateArray: [CLLocationCoordinate2D] = []
         let latitude = map.centerCoordinate.latitude
         let longitude = map.centerCoordinate.longitude
-        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
             
-        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude + ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: longitude + ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
             
-        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude - ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude + ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude - ChallengeController.shared.searchAreaMeasurement, longitude: longitude + ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
             
-        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude - ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude - ChallengeController.shared.searchAreaMeasurement, longitude: longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
             
-        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: map.centerCoordinate.longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
+        cordinateArray.append(CLLocationCoordinate2D(latitude: latitude + ChallengeController.shared.searchAreaMeasurement, longitude: longitude - ChallengeController.shared.getLongitudeMeasurementForLatitude(latitude: latitude)))
         
         let line = MKPolyline(coordinates: cordinateArray, count: 5)
         currentSearchArea = line
@@ -82,11 +94,14 @@ class MainMapViewController: UIViewController {
                     self.enableSearchThisAreaButton()
                     self.currentAnnotations.removeAll(keepingCapacity: false)
                     for challenge in ChallengeController.shared.challenges {
-                        let annotation = MKPointAnnotation()
-                        annotation.title = challenge.title
                         let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
-                        annotation.coordinate = coordinate
-                        self.currentAnnotations.append(annotation)
+                        let longdon = MKPointAnnotation()
+                        longdon.title = challenge.title
+                        longdon.coordinate = coordinate
+                        longdon.subtitle = "Cheese, Climbing"
+                        self.currentAnnotations.append(longdon)
+                        
+//                        self.map.addAnnotation(longdon)
                     }
                     self.map.addAnnotations(self.currentAnnotations)
                 } else {
@@ -170,7 +185,6 @@ class MainMapViewController: UIViewController {
         map.removeAnnotations(self.currentAnnotations)
         ChallengeController.shared.fetchChallenges(longitude: locationToLoad.longitude, latitude: locationToLoad.latitude) { (success) in
             DispatchQueue.main.async {
-                print("\(ChallengeController.shared.challenges.count)")
                 if success {
                     self.waitingForSearch = false
                     self.enableSearchThisAreaButton()
@@ -178,6 +192,7 @@ class MainMapViewController: UIViewController {
                     for challenge in ChallengeController.shared.challenges {
                         let annotation = MKPointAnnotation()
                         annotation.title = challenge.title
+                        annotation.subtitle = "Cheese, dick"
                         let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
                         annotation.coordinate = coordinate
                         self.currentAnnotations.append(annotation)
@@ -224,18 +239,18 @@ extension MainMapViewController: MKMapViewDelegate {
             return nil
         }
 
-        let identifier = "marker"
         var view: MKAnnotationView
-
+        let identifier = "marker"
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+            print(annotation.coordinate)
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint(x: 0, y: 3)
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
+        view.canShowCallout = true
+        view.calloutOffset = CGPoint(x: 0, y: -3)
+        view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         return view
     }
     
@@ -256,6 +271,14 @@ extension MainMapViewController: MKMapViewDelegate {
         polyLineRender.strokeColor = .blue
         polyLineRender.lineWidth = 1
         return polyLineRender
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+//        map.deselectAnnotation(view.annotation, animated: false)
+//        let challengeDetailStoryboard = UIStoryboard(name: "ChallengeDetail", bundle: nil)
+//        let viewController = challengeDetailStoryboard.instantiateViewController(withIdentifier: "challengeDetail")
+//        viewController.modalPresentationStyle = .fullScreen
+//        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

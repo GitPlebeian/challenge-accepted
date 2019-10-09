@@ -80,6 +80,7 @@
                     <connections>
                         <outlet property="centerOnUserButton" destination="Hwx-Cv-uIB" id="gNo-ZS-QdE"/>
                         <outlet property="createChallengeButton" destination="AeF-Hg-imL" id="eV2-zZ-5r2"/>
+                        <outlet property="mainMapGestureRecognizer" destination="ynS-gZ-CEX" id="0vh-9G-bBD"/>
                         <outlet property="map" destination="ynS-gZ-CEX" id="j74-IA-rhZ"/>
                         <outlet property="searchThisAreaButton" destination="xJ3-kN-MLC" id="R1h-nY-Lyd"/>
                     </connections>

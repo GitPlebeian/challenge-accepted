@@ -76,7 +76,7 @@ class CreateChallengeViewController: UIViewController {
         
         if challengeLocation == nil {
             guard let currentLocation = locationManager.location?.coordinate else { return }
-            ChallengeController.shared.createChallenge(title: title, description: description, longitude: currentLocation.longitude, latitude: currentLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
+            ChallengeController.shared.createChallenge(title: "Sugma", description: description, longitude: currentLocation.longitude, latitude: currentLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
                 if success {
                     print("A challenge was saved")
                 } else {
