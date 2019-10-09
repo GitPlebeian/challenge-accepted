@@ -25,7 +25,7 @@ class MessagesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? SavedChallengesTableViewCell else { return UITableViewCell() }
         let message = MessageController.shared.messages[indexPath.row]
 //        cell.fromUserImage = need parsed messages from CKReference
 //        cell.fromUserNameLabel =

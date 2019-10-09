@@ -9,7 +9,12 @@
 import UIKit
 
 class SavedChallengesTableViewCell: UITableViewCell {
-        
+        @IBOutlet weak var challengeImageView: UIImageView!
+        @IBOutlet weak var challengeTitleLabel: UILabel!
+        @IBOutlet weak var challengeDescriptionLabel: UILabel!
+        @IBOutlet weak var challengeTagsLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

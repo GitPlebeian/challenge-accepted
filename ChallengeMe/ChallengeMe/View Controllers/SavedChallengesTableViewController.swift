@@ -8,23 +8,56 @@
 
 import UIKit
 
-class SavedChallengesTableViewController: UIViewController {
+class SavedChallengesTableViewController: UITableViewController {
 
+    
+    var challenge: Challenge?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        title = "Accepted Challenges"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return UserController.shared.currentUser?.completedChallenges.count ?? 0
     }
-    */
+    
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? SavedChallengesTableViewCell,
+                let challenge = UserController.shared.currentUser?.completedChallenges[indexPath.row] else { return UITableViewCell() }
+            cell.challengeImageView.image = challenge.photo
+            cell.challengeTitleLabel.text = challenge.title
+            cell.challengeDescriptionLabel.text = challenge.description
+            cell.challengeTagsLabel.text = challenge.tags.joined(separator: " ")
 
+            return cell
+        }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let currentUser = UserController.shared.currentUser else { return }
+            let challenge = currentUser.completedChallenges[indexPath.row]
+            ChallengeController.shared.deleteChallenges(user: currentUser, challenge: challenge) { (success) in
+                if success {
+                    print("Deleted completed challenge")
+                } else {
+                    print("Was unable to delete completed challenge")
+                }
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toChallengeDetailVC" {
+            guard let indexPath = tableView.indexPathForSelectedRow,
+            let destinationVC = segue.destination as? ChallengeDetailViewController else { return }
+            let challenge = UserController.shared.currentUser?.completedChallenges[indexPath.row]
+            destinationVC.challenge = challenge
+        }
+    }
 }
