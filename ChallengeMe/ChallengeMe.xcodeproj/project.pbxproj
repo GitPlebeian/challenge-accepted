@@ -35,6 +35,7 @@
 		86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */; };
 		86E210E8234BAA14001AE931 /* SavedChallengesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */; };
 		86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */; };
+		A5084220234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */; };
 		A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */; };
 		A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9E6234BD7DB0015894B /* Message.swift */; };
 		A5F1F9E9234BDEE30015894B /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9E8234BDEE30015894B /* MessageController.swift */; };
@@ -75,6 +76,7 @@
 		86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesViewController.swift; sourceTree = "<group>"; };
 		86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChallengesTableViewController.swift; sourceTree = "<group>"; };
 		86E210EA234BCE51001AE931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/ChallengeMe/Storyboards/Base.lproj/ChallengeDetail.storyboard; sourceTree = "<group>"; };
+		A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesTableViewCell.swift; sourceTree = "<group>"; };
 		A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeMapViewController.swift; sourceTree = "<group>"; };
 		A5F1F9E6234BD7DB0015894B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A5F1F9E8234BDEE30015894B /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */,
 				A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */,
 				869AD6AC23454F70003E2C42 /* ProfileViewController.swift */,
+				A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */,
 				865A78662347ABFD00FEC8EA /* MessagesTableViewController.swift */,
 				A5FD5209234CEBAC006E171D /* MessageDetailViewController.swift */,
 				A5F1F9EA234BE9D50015894B /* SavedChallengesTableViewCell.swift */,
@@ -314,6 +317,7 @@
 				86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */,
 				A5FD520C234CF7E6006E171D /* ChallengeDetailViewController.swift in Sources */,
 				8699DB85234CE5F700CE3E27 /* SetupViewController.swift in Sources */,
+				A5084220234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift in Sources */,
 				868D14152343B25800B7691B /* SceneDelegate.swift in Sources */,
 				A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */,
 				86E210E8234BAA14001AE931 /* SavedChallengesTableViewController.swift in Sources */,

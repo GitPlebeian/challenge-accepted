@@ -24,7 +24,7 @@ class SavedChallengesTableViewController: UITableViewController {
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? SavedChallengesTableViewCell,
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? SavedChallengesTableViewCell,
                 let challenge = UserController.shared.currentUser?.completedChallenges[indexPath.row] else { return UITableViewCell() }
             cell.challengeImageView.image = challenge.photo
             cell.challengeTitleLabel.text = challenge.title
