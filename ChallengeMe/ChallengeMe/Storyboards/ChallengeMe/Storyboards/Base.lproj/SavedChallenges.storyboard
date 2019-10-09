@@ -9,13 +9,13 @@
         <!--Root View Controller-->
         <scene sceneID="6oR-cT-0tv">
             <objects>
-                <tableViewController id="uSc-dR-cW4" customClass="MessagesTableViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="uSc-dR-cW4" customClass="SavedChallengesTableViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WIh-cX-hcX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" rowHeight="134" id="c4F-G5-Hoh" customClass="MessageTableViewCell" customModule="ChallengeMe" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="challengeCell" rowHeight="134" id="c4F-G5-Hoh" customClass="SavedChallengesTableViewCell" customModule="ChallengeMe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="134"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c4F-G5-Hoh" id="8hv-Ie-UHH">
@@ -25,31 +25,33 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UAa-FF-s3t">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="134"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="olt-zx-1mI">
-                                                    <rect key="frame" x="8" y="8" width="125" height="118"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="olt-zx-1mI" secondAttribute="height" multiplier="1:1" id="6Ps-jF-htK"/>
-                                                        <constraint firstAttribute="width" constant="125" id="78r-gh-dz2"/>
-                                                        <constraint firstAttribute="height" constant="125" id="b66-u0-8fJ"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(challenge title)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82w-5f-3u5">
+                                                    <rect key="frame" x="157" y="19" width="119" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(challenge description)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4o-kS-NSy">
+                                                    <rect key="frame" x="157" y="48" width="176" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h6b-P1-ysG">
+                                                    <rect key="frame" x="8" y="6" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(name)" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8N-sO-7qX">
-                                                    <rect key="frame" x="157" y="57" width="249" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(tags)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOc-bo-0Ox">
+                                                    <rect key="frame" x="157" y="105" width="46" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <constraints>
-                                                <constraint firstItem="olt-zx-1mI" firstAttribute="top" secondItem="UAa-FF-s3t" secondAttribute="top" constant="8" id="PkE-3v-kpf"/>
-                                                <constraint firstAttribute="bottom" secondItem="olt-zx-1mI" secondAttribute="bottom" constant="8" id="Qbp-yg-E39"/>
-                                                <constraint firstItem="I8N-sO-7qX" firstAttribute="centerY" secondItem="UAa-FF-s3t" secondAttribute="centerY" id="nnf-GC-r5y"/>
-                                                <constraint firstAttribute="trailing" secondItem="I8N-sO-7qX" secondAttribute="trailing" constant="8" id="pGN-8y-Hk8"/>
-                                                <constraint firstItem="I8N-sO-7qX" firstAttribute="leading" secondItem="olt-zx-1mI" secondAttribute="trailing" constant="24" id="rFG-Cd-d7I"/>
-                                                <constraint firstItem="olt-zx-1mI" firstAttribute="leading" secondItem="UAa-FF-s3t" secondAttribute="leading" constant="8" id="rhI-5s-4Mj"/>
-                                                <constraint firstItem="olt-zx-1mI" firstAttribute="centerY" secondItem="UAa-FF-s3t" secondAttribute="centerY" id="scW-Tr-t7c"/>
-                                            </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -60,8 +62,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="fromUserImage" destination="UAa-FF-s3t" id="wgM-tW-wIL"/>
-                                    <outlet property="fromUserNameLabel" destination="I8N-sO-7qX" id="Z7Q-dO-oOA"/>
+                                    <outlet property="challengeDescriptionLabel" destination="w4o-kS-NSy" id="tvy-2G-VCK"/>
+                                    <outlet property="challengeImageView" destination="h6b-P1-ysG" id="Jtg-XU-gMb"/>
+                                    <outlet property="challengeTagsLabel" destination="VOc-bo-0Ox" id="FJI-Lt-xiJ"/>
+                                    <outlet property="challengeTitleLabel" destination="82w-5f-3u5" id="7OJ-eK-YiJ"/>
+                                    <segue destination="Ga8-gw-e26" kind="show" identifier="toChallengeDetailVC" id="v1T-3i-2Pm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -76,7 +81,17 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Pe-LV-XRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1378.2608695652175" y="51.5625"/>
+            <point key="canvasLocation" x="1376.8115942028987" y="45.535714285714285"/>
+        </scene>
+        <!--ChallengeDetail-->
+        <scene sceneID="uck-fO-fGw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ChallengeDetail" id="Ga8-gw-e26" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gdP-60-8HN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L0Y-hT-2lx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2057" y="46"/>
         </scene>
         <!--Item-->
         <scene sceneID="RIt-8y-anA">
@@ -94,7 +109,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hjM-zp-kho" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="462" y="52"/>
+            <point key="canvasLocation" x="461" y="46"/>
         </scene>
     </scenes>
 </document>

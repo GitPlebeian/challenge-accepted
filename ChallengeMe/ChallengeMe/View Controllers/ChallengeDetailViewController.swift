@@ -25,6 +25,9 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     @IBAction func acceptChallengeButtonTapped(_ sender: Any) {
+        guard let challenge = challenge,
+            let currentUser = UserController.shared.currentUser else { return }
+        currentUser.completedChallenges.append(challenge)
         navigationController?.popViewController(animated: true)
     }
 
