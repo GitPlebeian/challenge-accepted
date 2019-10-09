@@ -100,21 +100,18 @@ class ChallengeController {
     }
     
     // Delete Challenges
-    func deleteChallenges(user: User, challenge: Challenge, completion: @escaping (Bool) -> Void) {
-        guard let indexOfChallengeToDeleteUser = user.completedChallenges.firstIndex(of: challenge) else {
-            completion(false)
-            return
-        }
+    func deleteChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
         let challengeRecordID = challenge.recordID
         publicDB.delete(withRecordID: challengeRecordID) { (_, error) in
             if let error = error {
                 print("Error at: \(#function) Error: \(error)\nLocalized Error: \(error.localizedDescription)")
                 completion(false)
                 return
-            }
-            user.createdChallenges.remove(at: indexOfChallengeToDeleteUser)
-            if let indexOfChallengeToDeleteFromSourceOfTruth = self.challenges.firstIndex(of: challenge) {
-                self.challenges.remove(at: indexOfChallengeToDeleteFromSourceOfTruth)
+            } else {
+                if let challengeIndex = self.challenges.firstIndex(of: challenge) {
+                    self.challenges.remove(at: challengeIndex)
+                }
+                completion(true)
             }
         }
     }
