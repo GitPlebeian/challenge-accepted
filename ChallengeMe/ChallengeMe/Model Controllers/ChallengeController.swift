@@ -16,7 +16,7 @@ class ChallengeController {
     
     var challenges: [Challenge] = []
     let publicDB = CKContainer.default().publicCloudDatabase
-    let searchAreaMeasurement = 0.2
+    let searchAreaMeasurement = 1.0
     
     // MARK: - Helper
     
