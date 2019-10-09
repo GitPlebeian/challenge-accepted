@@ -9,7 +9,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
     // MARK: - Outlets
     @IBOutlet weak var createdChallengesTableView: UITableView!
     @IBOutlet weak var profileImageVIew: UIImageView!
@@ -18,53 +18,32 @@ class ProfileViewController: UIViewController {
     // MARK: - Properties
     
     // MARK: - Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
         createdChallengesTableView.delegate = self
         createdChallengesTableView.dataSource = self
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createdChallengesTableView.reloadData()
     }
     
-    // MARK: - Actions
-    
-    @IBAction func challengeHistoryButtonTapped(_ sender: Any) {
-        let challengeHistoryStoryboard = UIStoryboard(name: "ChallengeHistory", bundle: nil)
-        let viewController = challengeHistoryStoryboard.instantiateViewController(withIdentifier: "challengeHistory")
-        viewController.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    @IBAction func createdChallengesButtonTapped(_ sender: Any) {
-        let createdChallengesStoryboard = UIStoryboard(name: "CreatedChallenges", bundle: nil)
-        let viewController = createdChallengesStoryboard.instantiateViewController(withIdentifier: "createdChallenges")
-        viewController.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
     // MARK: - Custom Functions
-    
     func updateViews() {
         profileImageVIew.layer.cornerRadius = profileImageVIew.frame.height / 2
         nameLabel.text = UserController.shared.currentUser?.username
-        
     }
-
+    
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toChallengeDetailVC" {
             guard let indexPath = createdChallengesTableView.indexPathForSelectedRow,
-            let destinationVC = segue.destination as? ChallengeDetailViewController else { return }
+                let destinationVC = segue.destination as? ChallengeDetailViewController else { return }
             let challenge = UserController.shared.currentUser?.createdChallenges[indexPath.row]
             destinationVC.challenge = challenge
         }
     }
-
 }
 
 // MARK: - TableView Delegate and DataSource
@@ -74,21 +53,21 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? CreatedChallengesTableViewCell,
-                let challenge = UserController.shared.currentUser?.createdChallenges[indexPath.row] else { return UITableViewCell() }
-            cell.challengeImageView.image = challenge.photo
-            cell.challengeTitleLabel.text = challenge.title
-            cell.challengeDescriptionLabel.text = challenge.description
-            cell.challengeTagsLabel.text = challenge.tags.joined(separator: " ")
-
-            return cell
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? CreatedChallengesTableViewCell,
+            let challenge = UserController.shared.currentUser?.createdChallenges[indexPath.row] else { return UITableViewCell() }
+        cell.challengeImageView.image = challenge.photo
+        cell.challengeTitleLabel.text = challenge.title
+        cell.challengeDescriptionLabel.text = challenge.description
+        cell.challengeTagsLabel.text = challenge.tags.joined(separator: " ")
+        
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let currentUser = UserController.shared.currentUser else { return }
             let challenge = currentUser.createdChallenges[indexPath.row]
-            ChallengeController.shared.deleteChallenges(user: currentUser, challenge: challenge) { (success) in
+            ChallengeController.shared.deleteChallenge(challenge: challenge) { (success) in
                 if success {
                     print("Deleted completed challenge")
                 } else {
