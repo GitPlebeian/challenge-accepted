@@ -1,5 +1,5 @@
 //
-//  ChallengeHistoryViewController.swift
+//  SavedChallengesTableViewController.swift
 //  ChallengeMe
 //
 //  Created by Jackson Tubbs on 10/7/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChallengeHistoryViewController: UIViewController {
+class SavedChallengesTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

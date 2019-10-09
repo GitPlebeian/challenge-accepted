@@ -1,5 +1,5 @@
 //
-//  MessageTableViewCell.swift
+//  SavedChallengesTableViewCell.swift
 //  ChallengeMe
 //
 //  Created by Michael Moore on 10/7/19.
@@ -8,9 +8,7 @@
 
 import UIKit
 
-class MessageTableViewCell: UITableViewCell {
-    @IBOutlet weak var fromUserImage: UIView!
-    @IBOutlet weak var fromUserNameLabel: UILabel!
+class SavedChallengesTableViewCell: UITableViewCell {
         
     override func awakeFromNib() {
         super.awakeFromNib()
