@@ -28,6 +28,7 @@ class MainMapViewController: UIViewController {
     var waitingForSearch = true
     var currentSearchArea: MKPolyline?
     
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -95,13 +96,19 @@ class MainMapViewController: UIViewController {
                     self.currentAnnotations.removeAll(keepingCapacity: false)
                     for challenge in ChallengeController.shared.challenges {
                         let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
-                        let longdon = MKPointAnnotation()
-                        longdon.title = challenge.title
-                        longdon.coordinate = coordinate
-                        longdon.subtitle = "Cheese, Climbing"
-                        self.currentAnnotations.append(longdon)
-                        
-//                        self.map.addAnnotation(longdon)
+                        let annotation = MKPointAnnotation()
+                        annotation.title = challenge.title
+                        annotation.coordinate = coordinate
+                        var subtitle = ""
+                        for tag in challenge.tags {
+                            if tag == challenge.tags.last! {
+                                subtitle += tag
+                            } else {
+                                subtitle += tag + " "
+                            }
+                        }
+                        annotation.subtitle = subtitle
+                        self.currentAnnotations.append(annotation)
                     }
                     self.map.addAnnotations(self.currentAnnotations)
                 } else {
@@ -151,6 +158,7 @@ class MainMapViewController: UIViewController {
         centerOnUserButton.layer.cornerRadius = centerOnUserButton.frame.height / 2
         searchThisAreaButton.layer.cornerRadius = searchThisAreaButton.frame.height / 2
         createChallengeButton.layer.cornerRadius = createChallengeButton.frame.height / 2
+        map.mapType = .standard
     }
     
     func setupLocationManager() {
@@ -271,14 +279,6 @@ extension MainMapViewController: MKMapViewDelegate {
         polyLineRender.strokeColor = .blue
         polyLineRender.lineWidth = 1
         return polyLineRender
-    }
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        map.deselectAnnotation(view.annotation, animated: false)
-//        let challengeDetailStoryboard = UIStoryboard(name: "ChallengeDetail", bundle: nil)
-//        let viewController = challengeDetailStoryboard.instantiateViewController(withIdentifier: "challengeDetail")
-//        viewController.modalPresentationStyle = .fullScreen
-//        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

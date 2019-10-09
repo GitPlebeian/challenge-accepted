@@ -22,10 +22,15 @@ class CreateChallengeViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var tagsTextField: UITextField!
+    
     @IBOutlet weak var currentLocationButton: UIButton!
     @IBOutlet weak var selectLocationButton: UIButton!
-    @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var createChallengeButton: UIButton!
+    
+    @IBOutlet weak var takePictureButton: UIButton!
+    @IBOutlet weak var uploadImageButton: UIButton!
+    
+    @IBOutlet weak var selectedImage: UIImageView!
     
     let locationManager = CLLocationManager()
     var timer = false
@@ -37,7 +42,7 @@ class CreateChallengeViewController: UIViewController {
     // MARK: - Lifecycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadViews()
+        updateViews()
     }
     
     // MARK: - Actions
@@ -63,44 +68,78 @@ class CreateChallengeViewController: UIViewController {
         }
     }
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
+        let feedback = UINotificationFeedbackGenerator()
         guard let title = titleTextField.text,
+            title.isEmpty == false,
             let description = descriptionTextView.text,
+        description.isEmpty == false,
             let challengeImage = selectedImage.image,
-            let tagString = tagsTextField.text else { return }
+            let tagString = tagsTextField.text,
+            tagString.isEmpty == false else {
+                feedback.notificationOccurred(.error)
+                return
+        }
         var hashtags: [String] {
                    return tagString
                        .split(separator: " ") // divide into 'substrings'
                        .map { String($0) } // turn back into 'strings'
-                       .filter { $0.hasPrefix("#") } // only keep #strings
+//                       .filter { $0.hasPrefix("#") } // only keep #strings
                }
         
         if challengeLocation == nil {
             guard let currentLocation = locationManager.location?.coordinate else { return }
-            ChallengeController.shared.createChallenge(title: "Sugma", description: description, longitude: currentLocation.longitude, latitude: currentLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
-                if success {
-                    print("A challenge was saved")
-                } else {
-                    print("There was an error saving challenge")
+            ChallengeController.shared.createChallenge(title: title, description: description, longitude: currentLocation.longitude, latitude: currentLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
+                DispatchQueue.main.async {
+                    if success {
+                        feedback.notificationOccurred(.success)
+                        print("A challenge was saved")
+                    } else {
+                        print("There was an error saving challenge")
+                        feedback.notificationOccurred(.error)
+                    }
                 }
             }
         } else {
             guard let selectedLocation = challengeLocation else { return }
             ChallengeController.shared.createChallenge(title: title, description: description, longitude: selectedLocation.longitude, latitude: selectedLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
-                if success {
-                    print("A challenge was saved")
-                } else {
-                    print("There was an error saving challenge")
+                DispatchQueue.main.async {
+                    if success {
+                        feedback.notificationOccurred(.success)
+                        print("A challenge was saved")
+                    } else {
+                        print("There was an error saving challenge")
+                        feedback.notificationOccurred(.error)
+                    }
                 }
             }
         }
     }
     
     // MARK: - Custom Methods
-    func loadViews() {
+    func updateViews() {
+        self.title = "Create Challenge"
         selectedImage.isHidden = false
+        currentLocationButton.layer.cornerRadius = currentLocationButton.frame.height / 2
+        selectLocationButton.layer.cornerRadius = selectLocationButton.frame.height / 2
+        createChallengeButton.layer.cornerRadius = createChallengeButton.frame.height / 2
+        
+        uploadImageButton.layer.cornerRadius = 16
+        takePictureButton.layer.cornerRadius = 16
+        titleTextField.layer.cornerRadius = 6
+        descriptionTextView.layer.cornerRadius = 6
+        tagsTextField.layer.cornerRadius = 6
+        
+        titleTextField.layer.borderColor = UIColor.black.cgColor
+        titleTextField.layer.borderWidth = 1
+        descriptionTextView.layer.borderColor = UIColor.black.cgColor
+        descriptionTextView.layer.borderWidth = 1
+        tagsTextField.layer.borderColor = UIColor.black.cgColor
+        tagsTextField.layer.borderWidth = 1
+        
+        descriptionTextView.backgroundColor = .white
+        titleTextField.attributedPlaceholder = NSAttributedString(string: "Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        tagsTextField.attributedPlaceholder = NSAttributedString(string: "Tags: Seperate With Spaces", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
-    
-    
     
     fileprivate func presentPhotoPickerController() {
         DispatchQueue.main.async {

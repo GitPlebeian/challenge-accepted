@@ -14,6 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="ctV-M3-MZT" kind="relationship" relationship="viewControllers" id="Y7E-Nc-vpX"/>
@@ -45,10 +46,10 @@
             </objects>
             <point key="canvasLocation" x="768" y="-133"/>
         </scene>
-        <!--Notifications-->
+        <!--SavedChallenges-->
         <scene sceneID="4zf-Oa-3Ag">
             <objects>
-                <viewControllerPlaceholder storyboardName="Notifications" id="jOa-wu-1yf" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="SavedChallenges" id="jOa-wu-1yf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="gws-pK-H5U"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="phN-tx-YCC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

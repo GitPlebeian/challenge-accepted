@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		860629AE234E24BB005DA674 /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860629AD234E24BB005DA674 /* MapNavigationController.swift */; };
 		865A7862234790FD00FEC8EA /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A7861234790FD00FEC8EA /* MainTabBarViewController.swift */; };
-		865A78652347ABAA00FEC8EA /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865A78632347ABAA00FEC8EA /* Notifications.storyboard */; };
+		865A78652347ABAA00FEC8EA /* SavedChallenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865A78632347ABAA00FEC8EA /* SavedChallenges.storyboard */; };
 		865A78672347ABFD00FEC8EA /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A78662347ABFD00FEC8EA /* MessagesTableViewController.swift */; };
 		868D14132343B25800B7691B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14122343B25800B7691B /* AppDelegate.swift */; };
 		868D14152343B25800B7691B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14142343B25800B7691B /* SceneDelegate.swift */; };
@@ -43,8 +44,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		860629AD234E24BB005DA674 /* MapNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
 		865A7861234790FD00FEC8EA /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
-		865A78642347ABAA00FEC8EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/Base.lproj/Notifications.storyboard; sourceTree = "<group>"; };
+		865A78642347ABAA00FEC8EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/Base.lproj/SavedChallenges.storyboard; sourceTree = "<group>"; };
 		865A78662347ABFD00FEC8EA /* MessagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
 		868D140F2343B25800B7691B /* ChallengeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChallengeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868D14122343B25800B7691B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				865A7861234790FD00FEC8EA /* MainTabBarViewController.swift */,
+				860629AD234E24BB005DA674 /* MapNavigationController.swift */,
 			);
 			path = "Navigation View Controllers";
 			sourceTree = "<group>";
@@ -201,7 +204,7 @@
 				86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */,
 				86E210E1234BA881001AE931 /* ChallengeHistory.storyboard */,
 				869AD6A0234548ED003E2C42 /* Map.storyboard */,
-				865A78632347ABAA00FEC8EA /* Notifications.storyboard */,
+				865A78632347ABAA00FEC8EA /* SavedChallenges.storyboard */,
 				868D14202343B25800B7691B /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -278,7 +281,7 @@
 				869AD6A423454917003E2C42 /* Profile.storyboard in Resources */,
 				8699DB88234CE97700CE3E27 /* TabBar.storyboard in Resources */,
 				868D141F2343B25800B7691B /* Assets.xcassets in Resources */,
-				865A78652347ABAA00FEC8EA /* Notifications.storyboard in Resources */,
+				865A78652347ABAA00FEC8EA /* SavedChallenges.storyboard in Resources */,
 				86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */,
 				86E210E4234BA890001AE931 /* CreatedChallenges.storyboard in Resources */,
 				868D141A2343B25800B7691B /* Main.storyboard in Resources */,
@@ -315,18 +318,19 @@
 				A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */,
 				86E210E8234BAA14001AE931 /* ChallengeHistoryViewController.swift in Sources */,
 				868D14312343B2FD00B7691B /* Challenge.swift in Sources */,
+				860629AE234E24BB005DA674 /* MapNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		865A78632347ABAA00FEC8EA /* Notifications.storyboard */ = {
+		865A78632347ABAA00FEC8EA /* SavedChallenges.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				865A78642347ABAA00FEC8EA /* Base */,
 			);
-			name = Notifications.storyboard;
+			name = SavedChallenges.storyboard;
 			sourceTree = "<group>";
 		};
 		868D14182343B25800B7691B /* Main.storyboard */ = {
