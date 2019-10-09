@@ -113,6 +113,92 @@ class UserController {
         }
     }
     
+    // Delete Created Challenge - Removes from all users.
+    
+    func deleteCreatedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
+        var completedOneOperation = false
+        var errorOccurred = false
+        var savedChallengeReferenceOptional: CKRecord.Reference?
+        var createdChallengeReferenceOptional: CKRecord.Reference?
+        
+        guard let currentUser = currentUser,
+              let createdChallengeIndexToDelete = currentUser.createdChallenges.firstIndex(of: challenge)
+        else {
+            completion(false)
+            return
+        }
+        
+        var index = 0
+        for reference in currentUser.completedChallengesReferences {
+            if reference.recordID == challenge.recordID {
+                currentUser.completedChallengesReferences.remove(at: index)
+                createdChallengeReferenceOptional = reference
+            }
+            index += 1
+        }
+        
+        index = 0
+        for reference in currentUser.createdChallengesReferences {
+            if reference.recordID == challenge.recordID {
+                currentUser.createdChallengesReferences.remove(at: index)
+                createdChallengeReferenceOptional = reference
+            }
+            index += 1
+        }
+        guard let createdChallengeReference = createdChallengeReferenceOptional else {
+            completion(false)
+            return
+        }
+        
+//        currentUser.createdChallenges.remove(at: indexOfChallengeToDeleteInCreatedChallenges)
+//        if let indexOfChallengeToDeleteInSavedChallenges = currentUser.completedChallenges.firstIndex(of: challenge) {
+//            currentUser.completedChallenges.remove(at: indexOfChallengeToDeleteInSavedChallenges)
+//            challengeInSavedChallenges = true
+//        }
+        let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(user: currentUser)], recordIDsToDelete: nil)
+        modificationOp.savePolicy = .changedKeys
+        modificationOp.queuePriority = .veryHigh
+        modificationOp.qualityOfService = .default
+        modificationOp.modifyRecordsCompletionBlock = { (_, _, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                if errorOccurred == false {
+                    errorOccurred = true
+//                    currentUser.re
+                    if challengeInSavedChallenges == true {
+                        currentUser.completedChallenges.append(challenge)
+                    }
+                    completion(false)
+                } else {
+                    
+                }
+            }
+            if completedOneOperation == true {
+                completion(true)
+                return
+            } else {
+                completedOneOperation = true
+            }
+        }
+        publicDB.add(modificationOp)
+        
+        ChallengeController.shared.deleteChallenge(challenge: challenge) { (success) in
+            if success {
+                if completedOneOperation == true {
+                    completion(true)
+                    return
+                } else {
+                    completedOneOperation = true
+                }
+            } else {
+                completion(false)
+                return
+            }
+        }
+    }
+    
+    // Delete Saved Challenge
+    
     func convertRecordToCompletedChallenges() {
         guard let currentUser = currentUser else { return }
         for completedChallengeReference in currentUser.completedChallengesReferences {
