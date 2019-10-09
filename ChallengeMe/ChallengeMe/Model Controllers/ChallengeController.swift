@@ -66,11 +66,28 @@ class ChallengeController {
                 completion(false)
                 return
             }
-            guard let record = record,let challenge = Challenge(record: record) else {
+            guard let record = record, let challenge = Challenge(record: record) else {
                 completion(false)
                 return
             }
+            guard let currentUser = UserController.shared.currentUser else {return}
             self.challenges.append(challenge)
+            currentUser.createdChallenges.append(challenge)
+            let challengeReference = CKRecord.Reference(recordID: challenge.recordID, action: .none)
+            UserController.shared.updateUser { (success) in
+                DispatchQueue.main.async {
+                    let feedback = UINotificationFeedbackGenerator()
+                    if success {
+                        feedback.notificationOccurred(.success)
+                        currentUser.createdChallengesReferences.append(challengeReference)
+                    } else {
+                        feedback.notificationOccurred(.error)
+                        if let indexToRemove = currentUser.createdChallengesReferences.firstIndex(of: challengeReference) {
+                            currentUser.createdChallengesReferences.remove(at: indexToRemove)
+                        }
+                    }
+                }
+            }
             completion(true)
         }
     }

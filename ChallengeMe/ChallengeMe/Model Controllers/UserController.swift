@@ -81,10 +81,9 @@ class UserController {
     }
     
     // update
-    func updateUser(user: User, profilePhoto: UIImage, completion: @escaping (Bool) -> Void) {
-        user.profilePhoto = profilePhoto
-        
-        let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(user: user)], recordIDsToDelete: nil)
+    func updateUser(completion: @escaping (Bool) -> Void) {
+        guard let currentUser = currentUser else {return}
+        let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(user: currentUser)], recordIDsToDelete: nil)
         modificationOp.savePolicy = .changedKeys
         modificationOp.queuePriority = .veryHigh
         modificationOp.qualityOfService = .default
@@ -164,10 +163,10 @@ class UserController {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 if errorOccurred == false {
                     errorOccurred = true
-//                    currentUser.re
-                    if challengeInSavedChallenges == true {
-                        currentUser.completedChallenges.append(challenge)
-                    }
+                    currentUser.createdChallengesReferences.append(createdChallengeReference)
+//                    if challengeInSavedChallenges == true {
+//                        currentUser.completedChallenges.append(challenge)
+//                    }
                     completion(false)
                 } else {
                     

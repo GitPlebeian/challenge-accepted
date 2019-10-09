@@ -105,10 +105,9 @@ class CreateChallengeViewController: UIViewController {
                 DispatchQueue.main.async {
                     if success {
                         feedback.notificationOccurred(.success)
-                        print("A challenge was saved")
                     } else {
-                        print("There was an error saving challenge")
                         feedback.notificationOccurred(.error)
+//
                     }
                 }
             }
