@@ -120,23 +120,12 @@ class UserController {
         var savedChallengeReferenceOptional: CKRecord.Reference?
         var createdChallengeReferenceOptional: CKRecord.Reference?
         
-        guard let currentUser = currentUser,
-              let createdChallengeIndexToDelete = currentUser.createdChallenges.firstIndex(of: challenge)
+        guard let currentUser = currentUser
         else {
             completion(false)
             return
         }
-        
         var index = 0
-        for reference in currentUser.completedChallengesReferences {
-            if reference.recordID == challenge.recordID {
-                currentUser.completedChallengesReferences.remove(at: index)
-                createdChallengeReferenceOptional = reference
-            }
-            index += 1
-        }
-        
-        index = 0
         for reference in currentUser.createdChallengesReferences {
             if reference.recordID == challenge.recordID {
                 currentUser.createdChallengesReferences.remove(at: index)
@@ -144,16 +133,19 @@ class UserController {
             }
             index += 1
         }
+        
+        index = 0
+        for reference in currentUser.completedChallengesReferences {
+            if reference.recordID == challenge.recordID {
+                currentUser.completedChallengesReferences.remove(at: index)
+                savedChallengeReferenceOptional = reference
+            }
+            index += 1
+        }
         guard let createdChallengeReference = createdChallengeReferenceOptional else {
             completion(false)
             return
         }
-        
-//        currentUser.createdChallenges.remove(at: indexOfChallengeToDeleteInCreatedChallenges)
-//        if let indexOfChallengeToDeleteInSavedChallenges = currentUser.completedChallenges.firstIndex(of: challenge) {
-//            currentUser.completedChallenges.remove(at: indexOfChallengeToDeleteInSavedChallenges)
-//            challengeInSavedChallenges = true
-//        }
         let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(user: currentUser)], recordIDsToDelete: nil)
         modificationOp.savePolicy = .changedKeys
         modificationOp.queuePriority = .veryHigh
@@ -164,15 +156,22 @@ class UserController {
                 if errorOccurred == false {
                     errorOccurred = true
                     currentUser.createdChallengesReferences.append(createdChallengeReference)
-//                    if challengeInSavedChallenges == true {
-//                        currentUser.completedChallenges.append(challenge)
-//                    }
+                    if let savedChallengeReference = savedChallengeReferenceOptional {
+                        currentUser.completedChallengesReferences.append(savedChallengeReference)
+                    }
                     completion(false)
+                    return
                 } else {
-                    
+                    print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }
             }
             if completedOneOperation == true {
+                if let indexToDeleteCreatedChallenge = currentUser.createdChallenges.firstIndex(of: challenge) {
+                    currentUser.createdChallenges.remove(at: indexToDeleteCreatedChallenge)
+                }
+                if let indexToDeleteSavedChallenge = currentUser.completedChallenges.firstIndex(of: challenge) {
+                    currentUser.completedChallenges.remove(at: indexToDeleteSavedChallenge)
+                }
                 completion(true)
                 return
             } else {
@@ -184,14 +183,27 @@ class UserController {
         ChallengeController.shared.deleteChallenge(challenge: challenge) { (success) in
             if success {
                 if completedOneOperation == true {
+                    if let indexToDeleteCreatedChallenge = currentUser.createdChallenges.firstIndex(of: challenge) {
+                        currentUser.createdChallenges.remove(at: indexToDeleteCreatedChallenge)
+                    }
+                    if let indexToDeleteSavedChallenge = currentUser.completedChallenges.firstIndex(of: challenge) {
+                        currentUser.completedChallenges.remove(at: indexToDeleteSavedChallenge)
+                    }
                     completion(true)
                     return
                 } else {
                     completedOneOperation = true
                 }
             } else {
-                completion(false)
-                return
+                if errorOccurred == false {
+                    errorOccurred = true
+                    currentUser.createdChallengesReferences.append(createdChallengeReference)
+                    if let savedChallengeReference = savedChallengeReferenceOptional {
+                        currentUser.completedChallengesReferences.append(savedChallengeReference)
+                    }
+                    completion(false)
+                    return
+                }
             }
         }
     }
