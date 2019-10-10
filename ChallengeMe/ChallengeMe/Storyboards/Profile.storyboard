@@ -82,7 +82,7 @@
                                             <outlet property="challengeImageView" destination="O1b-Mo-dN0" id="6kj-rO-afn"/>
                                             <outlet property="challengeTagsLabel" destination="DgJ-la-yXa" id="vEk-KU-laD"/>
                                             <outlet property="challengeTitleLabel" destination="aoO-ex-smV" id="7RI-qM-YfG"/>
-                                            <segue destination="Awc-eN-Zxi" kind="show" id="LcN-yq-1IR"/>
+                                            <segue destination="Awc-eN-Zxi" kind="show" identifier="toChallengeDetailVC" id="LcN-yq-1IR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
