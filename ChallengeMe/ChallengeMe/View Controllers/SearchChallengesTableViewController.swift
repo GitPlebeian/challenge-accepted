@@ -27,7 +27,7 @@ class SearchChallengesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as? SearchChallengesTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? SearchChallengesTableViewCell else { return UITableViewCell() }
         let challenge = searchResults[indexPath.row]
         cell.challengeImageView.image = challenge.photo
         cell.challengeTitleLabel.text = challenge.title
@@ -46,7 +46,6 @@ class SearchChallengesTableViewController: UITableViewController {
             destinationVC.challenge = challenge
         }
     }
-
 }
 
 // MARK: - SearchBar Delegate
@@ -69,8 +68,8 @@ extension SearchChallengesTableViewController: UISearchBarDelegate {
         searchResults = results
         tableView.reloadData()
     }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchResults = []

@@ -15,6 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ynS-gZ-CEX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwx-Cv-uIB">
                                 <rect key="frame" x="20" y="753" width="40" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -53,16 +58,19 @@
                                     <action selector="createChallengeButtonTapped:" destination="3A4-wH-37b" eventType="touchUpInside" id="Bii-Uv-1Hp"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ynS-gZ-CEX">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naY-v1-Y6J">
+                                <rect key="frame" x="330" y="614" width="48" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <segue destination="RZM-t2-3Zd" kind="show" identifier="toSearchVC" id="g0A-BI-Md1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" id="A0Y-sI-j2U"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="trailing" secondItem="AeF-Hg-imL" secondAttribute="trailing" constant="40" id="BUa-eX-6c5"/>
+                            <constraint firstItem="naY-v1-Y6J" firstAttribute="leading" secondItem="ynS-gZ-CEX" secondAttribute="trailing" constant="-84" id="KSk-AT-7Je"/>
                             <constraint firstItem="Hwx-Cv-uIB" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" constant="20" id="MWk-6Q-HcV"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="trailing" secondItem="xJ3-kN-MLC" secondAttribute="trailing" constant="20" id="Npp-WO-mPU"/>
                             <constraint firstItem="xJ3-kN-MLC" firstAttribute="top" secondItem="AeF-Hg-imL" secondAttribute="bottom" constant="40" id="Nq8-j1-s8R"/>
@@ -71,6 +79,7 @@
                             <constraint firstAttribute="bottom" secondItem="ynS-gZ-CEX" secondAttribute="bottom" id="meQ-8e-Ud2"/>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="top" secondItem="Igf-Pq-84R" secondAttribute="top" id="pWN-0W-chc"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="bottom" secondItem="Hwx-Cv-uIB" secondAttribute="bottom" constant="20" id="vNA-zJ-Stk"/>
+                            <constraint firstItem="AeF-Hg-imL" firstAttribute="top" secondItem="naY-v1-Y6J" secondAttribute="bottom" constant="29" id="yQj-2e-2zG"/>
                             <constraint firstItem="xJ3-kN-MLC" firstAttribute="leading" secondItem="Hwx-Cv-uIB" secondAttribute="trailing" constant="20" id="yZd-Fb-odm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YFe-xm-WZz"/>
@@ -103,15 +112,15 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="133" id="1RI-cs-Grr" customClass="SearchChallengesTableViewCell" customModule="ChallengeMe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="414" height="133"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="challengeCell" rowHeight="150" id="1RI-cs-Grr" customClass="SearchChallengesTableViewCell" customModule="ChallengeMe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1RI-cs-Grr" id="yv9-zB-jll">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="133"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3d5-wh-RDx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="133"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2pb-ce-J0O">
                                                     <rect key="frame" x="8" y="5" width="141" height="128"/>
@@ -163,13 +172,14 @@
                             <outlet property="delegate" destination="RZM-t2-3Zd" id="tHR-6V-ELI"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="yql-Li-BPh"/>
                     <connections>
                         <outlet property="searchBar" destination="YIq-8l-M2t" id="oMk-CZ-a4F"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="utS-mw-68x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3851" y="294"/>
+            <point key="canvasLocation" x="3850.7246376811595" y="293.97321428571428"/>
         </scene>
         <!--ChallengeDetail-->
         <scene sceneID="cxB-vr-rfM">
@@ -179,7 +189,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jeg-HS-Z9M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4619" y="294"/>
+            <point key="canvasLocation" x="4491" y="294"/>
         </scene>
         <!--Item-->
         <scene sceneID="jam-sC-pu2">
