@@ -263,10 +263,16 @@ extension MainMapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let challengeDetailStoryboard = UIStoryboard(name: "ChallengeDetail", bundle: nil)
-        let viewController = challengeDetailStoryboard.instantiateViewController(withIdentifier: "challengeDetail")
-        viewController.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(viewController, animated: true)
+        guard let challengeDetailVC = UIStoryboard(name: "ChallengeDetail", bundle: nil).instantiateViewController(withIdentifier: "challengeDetail") as? ChallengeDetailViewController else { return }
+        
+        for challenge in ChallengeController.shared.challenges {
+            if challenge.latitude == view.annotation?.coordinate.latitude && challenge.longitude == view.annotation?.coordinate.longitude {
+                challengeDetailVC.challenge = challenge
+            }
+        }
+        
+        challengeDetailVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(challengeDetailVC, animated: true)
 //        let placemark = MKPlacemark(coordinate: view.annotation!.coordinate)
 //        let mapItem = MKMapItem(placemark: placemark)
 //        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
