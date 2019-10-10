@@ -13,8 +13,9 @@ import UIKit
 struct ChallengeConstants {
     static let recordTypeKey = "Challenge"
     fileprivate static let titleKey = "title"
-    fileprivate static let descriptionKey = "descriptionKey"
+    fileprivate static let descriptionKey = "description"
     fileprivate static let timestampKey = "timestamp"
+    static let authorReferenceKey = "authorReference"
     static let longitudeKey = "logitude"
     static let latitudeKey = "latitude"
     static let tagsKey = "tags"
@@ -30,6 +31,7 @@ class Challenge {
     let longitude: Double
     let tags: [String]
     let recordID: CKRecord.ID
+    let authorReference: CKRecord.Reference
     var photoData: Data?
     var photo: UIImage? {
         get {
@@ -54,7 +56,7 @@ class Challenge {
         }
     }
     
-    init(title: String, description: String, timestamp: Date = Date(), latitude: Double, longitude: Double, tags: [String], recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), photo: UIImage) {
+    init(title: String, description: String, timestamp: Date = Date(), latitude: Double, longitude: Double, tags: [String], authorReference: CKRecord.Reference, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), photo: UIImage) {
         self.title = title
         self.description = description
         self.timestamp = timestamp
@@ -62,6 +64,7 @@ class Challenge {
         self.longitude = longitude
         self.tags = tags
         self.recordID = recordID
+        self.authorReference = authorReference
         self.photo = photo
     }
 }
@@ -75,12 +78,13 @@ extension Challenge {
             let latitude = record[ChallengeConstants.latitudeKey] as? Double,
             let longitude = record[ChallengeConstants.longitudeKey] as? Double,
             let tags = record[ChallengeConstants.tagsKey] as? [String],
+            let authorReference = record[ChallengeConstants.authorReferenceKey] as? CKRecord.Reference,
             let imageAsset = record[ChallengeConstants.photoKey] as? CKAsset,
             let imageFileURL = imageAsset.fileURL else {return nil}
         do {
             let data = try Data(contentsOf: imageFileURL)
             guard let image = UIImage(data: data) else {return nil}
-            self.init(title: title, description: description, timestamp: timestamp, latitude: latitude, longitude: longitude, tags: tags, recordID: record.recordID, photo: image)
+            self.init(title: title, description: description, timestamp: timestamp, latitude: latitude, longitude: longitude, tags: tags,authorReference, authorReference recordID: record.recordID, photo: image)
         } catch {
             print("Error at \(#function) \(error) \(error.localizedDescription)")
             return nil
@@ -97,6 +101,7 @@ extension CKRecord {
         self.setValue(challenge.longitude, forKey: ChallengeConstants.longitudeKey)
         self.setValue(challenge.latitude, forKey: ChallengeConstants.latitudeKey)
         self.setValue(challenge.tags, forKey: ChallengeConstants.tagsKey)
+        self.setValue(challenge.authorReference, forKey: ChallengeConstants.authorReferenceKey)
         self.setValue(challenge.timestamp, forKey: ChallengeConstants.timestampKey)
         self.setValue(challenge.imageAsset, forKey: ChallengeConstants.photoKey)
     }

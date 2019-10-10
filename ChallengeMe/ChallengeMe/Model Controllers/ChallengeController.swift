@@ -58,7 +58,9 @@ class ChallengeController {
     
     // Create Challenge
     func createChallenge(title: String, description: String, longitude: Double, latitude: Double, tags: [String], photo: UIImage, completion: @escaping (Bool) -> Void) {
-        let challenge = Challenge(title: title, description: description, latitude: latitude, longitude: longitude, tags: tags, photo: photo)
+        guard let currentUser = UserController.shared.currentUser else {return}
+        let authorReference = CKRecord.Reference(recordID: currentUser.recordID, action: .none)
+        let challenge = Challenge(title: title, description: description, latitude: latitude, longitude: longitude, tags: tags, authorReference: authorReference, photo: photo)
         let challengeRecord = CKRecord(challenge: challenge)
         publicDB.save(challengeRecord) { (record, error) in
             if let error = error {
@@ -70,25 +72,24 @@ class ChallengeController {
                 completion(false)
                 return
             }
-            guard let currentUser = UserController.shared.currentUser else {return}
             self.challenges.append(challenge)
-            currentUser.createdChallenges.append(challenge)
-            let challengeReference = CKRecord.Reference(recordID: challenge.recordID, action: .none)
+            let challengeReference = CKRecord.Reference(recordID: challenge.recordID, action: .deleteSelf)
+            currentUser.createdChallengesReferences.append(challengeReference)
             UserController.shared.updateUser { (success) in
                 DispatchQueue.main.async {
-                    let feedback = UINotificationFeedbackGenerator()
                     if success {
-                        feedback.notificationOccurred(.success)
-                        currentUser.createdChallengesReferences.append(challengeReference)
+                        currentUser.createdChallenges.append(challenge)
+                        completion(true)
+                        return
                     } else {
-                        feedback.notificationOccurred(.error)
                         if let indexToRemove = currentUser.createdChallengesReferences.firstIndex(of: challengeReference) {
                             currentUser.createdChallengesReferences.remove(at: indexToRemove)
                         }
+                        completion(false)
+                        return
                     }
                 }
             }
-            completion(true)
         }
     }
     

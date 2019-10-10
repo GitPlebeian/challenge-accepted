@@ -41,6 +41,7 @@ class UserController {
                 if let record = record {
                     let savedUser = User(record: record)
                     self.currentUser = savedUser
+                    self.getCreatedChallenges()
                     completion(true)
                 }
             })
@@ -113,6 +114,10 @@ class UserController {
     }
     
     // Delete Created Challenge - Removes from all users.
+    
+    func getCreatedChallenges() {
+//        guard let current
+    }
     
     func deleteCreatedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
         var completedOneOperation = false
@@ -210,25 +215,25 @@ class UserController {
     
     // Delete Saved Challenge
     
-    func convertRecordToCompletedChallenges() {
-        guard let currentUser = currentUser else { return }
-        for completedChallengeReference in currentUser.completedChallengesReferences {
-            for challenge in ChallengeController.shared.challenges {
-                if completedChallengeReference.recordID == challenge.recordID {
-                    currentUser.completedChallenges.append(challenge)
-                }
-            }
-        }
-    }
-    
-    func convertRecordToCreatedChallenges() {
-        guard let currentUser = currentUser else { return }
-        for createdChallengeReference in currentUser.createdChallengesReferences {
-            for challenge in ChallengeController.shared.challenges {
-                if createdChallengeReference.recordID == challenge.recordID {
-                    currentUser.createdChallenges.append(challenge)
-                }
-            }
-        }
-    }
+//    func convertRecordToCompletedChallenges() {
+//        guard let currentUser = currentUser else { return }
+//        for completedChallengeReference in currentUser.completedChallengesReferences {
+//            for challenge in ChallengeController.shared.challenges {
+//                if completedChallengeReference.recordID == challenge.recordID {
+//                    currentUser.completedChallenges.append(challenge)
+//                }
+//            }
+//        }
+//    }
+//
+//    func convertRecordToCreatedChallenges() {
+//        guard let currentUser = currentUser else { return }
+//        for createdChallengeReference in currentUser.createdChallengesReferences {
+//            for challenge in ChallengeController.shared.challenges {
+//                if createdChallengeReference.recordID == challenge.recordID {
+//                    currentUser.createdChallenges.append(challenge)
+//                }
+//            }
+//        }
+//    }
 }
