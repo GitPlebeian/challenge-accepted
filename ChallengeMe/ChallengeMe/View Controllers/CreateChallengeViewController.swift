@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import CoreLocation
 import AVFoundation
+import MapKit
 
 protocol PhotoSelectedDelegate: class {
     // needed to get back the image from photo library or camera
@@ -18,7 +19,7 @@ protocol PhotoSelectedDelegate: class {
 
 class CreateChallengeViewController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: - Outlets
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var tagsTextField: UITextField!
@@ -32,6 +33,7 @@ class CreateChallengeViewController: UIViewController {
     
     @IBOutlet weak var selectedImage: UIImageView!
     
+    // MARK: - Properties
     let locationManager = CLLocationManager()
     var timer = false
     var countDown = false
@@ -39,7 +41,7 @@ class CreateChallengeViewController: UIViewController {
     
     weak var delegate: PhotoSelectedDelegate?
     
-    // MARK: - Lifecycle Functions
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
@@ -53,6 +55,9 @@ class CreateChallengeViewController: UIViewController {
     @IBAction func selectLocationButtonTapped(_ sender: Any) {
         guard let mapVC = UIStoryboard(name: "CreateChallenge", bundle: nil).instantiateViewController(identifier: "CreateChallengeMap") as? CreateChallengeMapViewController else { return }
         mapVC.delegate = self
+        if let title = titleTextField.text {
+            mapVC.challengeTitle = title
+        }
         mapVC.modalPresentationStyle = .fullScreen
         present(mapVC, animated: true)
     }
