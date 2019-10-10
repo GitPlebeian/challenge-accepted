@@ -59,7 +59,7 @@ class ChallengeController {
     // Create Challenge
     func createChallenge(title: String, description: String, longitude: Double, latitude: Double, tags: [String], photo: UIImage, completion: @escaping (Bool) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
-        let authorReference = CKRecord.Reference(recordID: currentUser.recordID, action: .none)
+        let authorReference = CKRecord.Reference(recordID: currentUser.recordID, action: .deleteSelf)
         let challenge = Challenge(title: title, description: description, latitude: latitude, longitude: longitude, tags: tags, authorReference: authorReference, photo: photo)
         let challengeRecord = CKRecord(challenge: challenge)
         publicDB.save(challengeRecord) { (record, error) in
@@ -73,7 +73,7 @@ class ChallengeController {
                 return
             }
             self.challenges.append(challenge)
-            let challengeReference = CKRecord.Reference(recordID: challenge.recordID, action: .deleteSelf)
+            let challengeReference = CKRecord.Reference(recordID: challenge.recordID, action: .none)
             currentUser.createdChallengesReferences.append(challengeReference)
             UserController.shared.updateUser { (success) in
                 DispatchQueue.main.async {
