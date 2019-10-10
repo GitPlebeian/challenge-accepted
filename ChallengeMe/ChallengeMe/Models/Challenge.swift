@@ -84,7 +84,7 @@ extension Challenge {
         do {
             let data = try Data(contentsOf: imageFileURL)
             guard let image = UIImage(data: data) else {return nil}
-            self.init(title: title, description: description, timestamp: timestamp, latitude: latitude, longitude: longitude, tags: tags,authorReference, authorReference recordID: record.recordID, photo: image)
+            self.init(title: title, description: description, timestamp: timestamp, latitude: latitude, longitude: longitude, tags: tags, authorReference: authorReference, recordID: record.recordID, photo: image)
         } catch {
             print("Error at \(#function) \(error) \(error.localizedDescription)")
             return nil
