@@ -19,7 +19,11 @@ class ChallengeDetailViewController: UIViewController {
     @IBOutlet weak var challengeDescription: UILabel!
     
     // MARK: - Properties
-    var challenge: Challenge?
+    var challenge: Challenge? {
+        didSet {
+            print("set")
+        }
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
