@@ -49,8 +49,8 @@ class ProfileViewController: UIViewController {
         let composer = MFMailComposeViewController()
         composer.mailComposeDelegate = self
         composer.setToRecipients(["email"])
-        composer.setSubject("Support")
-        composer.setMessageBody("Thank you for reaching out. Please let us know how we can help", isHTML: false)
+        composer.setSubject("Support/Feedback")
+        composer.setMessageBody("Thank you for reaching out. We welcome any feedback to help make our app better, and offer support with any issues you may run into!", isHTML: false)
         present(composer, animated: true)
     }
     
