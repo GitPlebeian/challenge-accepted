@@ -28,7 +28,7 @@ class Challenge {
     var timestamp: Date
     let latitude: Double
     let longitude: Double
-    let tags: [String] 
+    let tags: [String]
     let recordID: CKRecord.ID
     var photoData: Data?
     var photo: UIImage? {

@@ -107,11 +107,11 @@ class CreateChallengeViewController: UIViewController {
                         feedback.notificationOccurred(.success)
                     } else {
                         feedback.notificationOccurred(.error)
-//
                     }
                 }
             }
         }
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Custom Methods

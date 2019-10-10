@@ -52,6 +52,7 @@ class SearchChallengesTableViewController: UITableViewController {
 // MARK: - SearchBar Delegate
 extension SearchChallengesTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
         let searchTerm = searchText.lowercased()
         guard !searchTerm.isEmpty else { return }
         var results = [Challenge]()
@@ -69,12 +70,12 @@ extension SearchChallengesTableViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
+        searchResults = []
         searchBar.resignFirstResponder()
         tableView.reloadData()
     }
-
 }
 
