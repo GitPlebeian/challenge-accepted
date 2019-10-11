@@ -56,10 +56,72 @@ class ChallengeController {
     
     // MARK: - CRUD
     
+    // Add User Who Saved
+    func userSavedChallenge(challenge: Challenge,completion: @escaping (Bool) -> Void) {
+        guard let currentUser = UserController.shared.currentUser else {return}
+        let reference = CKRecord.Reference(recordID: currentUser.recordID, action: .none)
+        challenge.usersWhoSavedReferences.append(reference)
+        let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(challenge: challenge)], recordIDsToDelete: nil)
+        modificationOp.savePolicy = .changedKeys
+        modificationOp.queuePriority = .veryHigh
+        modificationOp.qualityOfService = .default
+        modificationOp.modifyRecordsCompletionBlock = { (_, _, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                if let indexOfUsersWhoSavedReferenceToRemove = challenge.usersWhoSavedReferences.firstIndex(of: reference) {
+                    challenge.usersWhoSavedReferences.remove(at: indexOfUsersWhoSavedReferenceToRemove)
+                }
+                completion(false)
+                return
+            } else {
+                currentUser.completedChallenges.append(challenge)
+                completion(true)
+                return
+            }
+        }
+        publicDB.add(modificationOp)
+    }
+    
+    // Remove user who saved
+    func userUnSavedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
+        guard let currentUser = UserController.shared.currentUser else {return}
+        var userWhoSavedReferenceToRemoveOptional: CKRecord.Reference?
+        
+        var index = 0
+        for reference in challenge.usersWhoSavedReferences {
+            if reference.recordID == currentUser.recordID {
+                userWhoSavedReferenceToRemoveOptional = reference
+                challenge.usersWhoSavedReferences.remove(at: index)
+            }
+            index += 1
+        }
+        guard let userWhoSavedReferenceToRemove = userWhoSavedReferenceToRemoveOptional else {return}
+        let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(challenge: challenge)], recordIDsToDelete: nil)
+        modificationOp.savePolicy = .changedKeys
+        modificationOp.queuePriority = .veryHigh
+        modificationOp.qualityOfService = .default
+        modificationOp.modifyRecordsCompletionBlock = { (_, _, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                challenge.usersWhoSavedReferences.append(userWhoSavedReferenceToRemove)
+                completion(false)
+                return
+            } else {
+                if let indexToRemoveChallengeFromUser = currentUser.completedChallenges.firstIndex(of: challenge) {
+                    currentUser.completedChallenges.remove(at: indexToRemoveChallengeFromUser)
+                }
+                completion(true)
+                return
+            }
+        }
+        publicDB.add(modificationOp)
+    }
+    
     // Create Challenge
     func createChallenge(title: String, description: String, longitude: Double, latitude: Double, tags: [String], photo: UIImage, completion: @escaping (Bool) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
         let authorReference = CKRecord.Reference(recordID: currentUser.recordID, action: .deleteSelf)
+        
         let challenge = Challenge(title: title, description: description, latitude: latitude, longitude: longitude, tags: tags, authorReference: authorReference, photo: photo)
         let challengeRecord = CKRecord(challenge: challenge)
         publicDB.save(challengeRecord) { (record, error) in

@@ -18,6 +18,19 @@ class SavedChallengesTableViewController: UITableViewController {
         title = "Accepted Challenges"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserController.shared.fetchSavedChallenge { (success) in
+            DispatchQueue.main.async {
+                if success {
+                    self.tableView.reloadData()
+                } else {
+                    
+                }
+            }
+        }
+    }
+    
     // MARK: - TableView Delegate and DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserController.shared.currentUser?.completedChallenges.count ?? 0
@@ -38,14 +51,18 @@ class SavedChallengesTableViewController: UITableViewController {
         if editingStyle == .delete {
             guard let currentUser = UserController.shared.currentUser else { return }
             let challenge = currentUser.completedChallenges[indexPath.row]
-            ChallengeController.shared.deleteChallenge(challenge: challenge) { (success) in
-                if success {
-                    print("Deleted completed challenge")
-                } else {
-                    print("Was unable to delete completed challenge")
+            let feedback = UINotificationFeedbackGenerator()
+            feedback.prepare()
+            ChallengeController.shared.userUnSavedChallenge(challenge: challenge) { (success) in
+                DispatchQueue.main.async {
+                    if success {
+                        feedback.notificationOccurred(.success)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    } else {
+                        feedback.notificationOccurred(.error)
+                    }
                 }
             }
-            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     

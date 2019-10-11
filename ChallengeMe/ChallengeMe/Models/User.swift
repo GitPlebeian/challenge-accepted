@@ -13,7 +13,6 @@ import CloudKit
 struct UserKeys {
     static let usernameKey = "Username"
     static let messagesReferencesKey = "MessagesReferences"
-    static let completedChallengesReferencesKey = "CompletedChallengesReferences"
     static let createdChallengesReferencesKey = "CreatedChallengesReferences"
     static let friendsReferencesKey = "FriendsReferences"
     static let photoAssetKey = "PhotoAsset"
@@ -23,11 +22,10 @@ struct UserKeys {
 
 class User {
     
-    let username: String
+    var username: String
     var messages: [Message]
     var messagesReferences: [CKRecord.Reference]
     var completedChallenges: [Challenge]
-    var completedChallengesReferences: [CKRecord.Reference]
     var createdChallenges: [Challenge]
     var createdChallengesReferences: [CKRecord.Reference]
     var friends: [User]
@@ -62,7 +60,7 @@ class User {
     }
    
     init(username: String, messages: [Message] = [], messagesReferences: [CKRecord.Reference] = [],
-         completedChallenges: [Challenge] = [], completedChallengesReferences: [CKRecord.Reference] = [],
+         completedChallenges: [Challenge] = [],
          createdChallenges: [Challenge] = [], createdChallengesReferences: [CKRecord.Reference] = [],
          friends: [User] = [], friendsReferences: [CKRecord.Reference] = [],
          appleUserReference: CKRecord.Reference,
@@ -72,7 +70,6 @@ class User {
         self.messages = messages
         self.messagesReferences = messagesReferences
         self.completedChallenges = completedChallenges
-        self.completedChallengesReferences = completedChallengesReferences
         self.createdChallenges = createdChallenges
         self.createdChallengesReferences = createdChallengesReferences
         self.friends = friends
@@ -88,7 +85,6 @@ extension User {
     convenience init?(record: CKRecord) {
         guard let username = record[UserKeys.usernameKey] as? String,
             let messagesReferences = record[UserKeys.messagesReferencesKey] as? [CKRecord.Reference],
-            let completedChallengesReferences = record[UserKeys.completedChallengesReferencesKey] as? [CKRecord.Reference],
             let createdChallengesReferences = record[UserKeys.createdChallengesReferencesKey] as? [CKRecord.Reference],
             let friendsReferences = record[UserKeys.friendsReferencesKey] as? [CKRecord.Reference],
             let appleUserReference = record[UserKeys.appleUserReferenceKey] as? CKRecord.Reference,
@@ -99,7 +95,6 @@ extension User {
             guard let image = UIImage(data: data) else { return nil }
             self.init(username: username, messages: [],
             messagesReferences: messagesReferences, completedChallenges: [],
-            completedChallengesReferences: completedChallengesReferences,
             createdChallenges: [], createdChallengesReferences: createdChallengesReferences,
             friends: [], friendsReferences: friendsReferences,
             appleUserReference: appleUserReference,
@@ -123,7 +118,6 @@ extension CKRecord {
         self.init(recordType: UserKeys.typeKey, recordID: user.recordID)
         self.setValue(user.username, forKey: UserKeys.usernameKey)
         self.setValue(user.messagesReferences, forKey: UserKeys.messagesReferencesKey)
-        self.setValue(user.completedChallengesReferences, forKey: UserKeys.completedChallengesReferencesKey)
         self.setValue(user.createdChallengesReferences, forKey: UserKeys.createdChallengesReferencesKey)
         self.setValue(user.friendsReferences, forKey: UserKeys.friendsReferencesKey)
         self.setValue(user.appleUserReference, forKey: UserKeys.appleUserReferenceKey)

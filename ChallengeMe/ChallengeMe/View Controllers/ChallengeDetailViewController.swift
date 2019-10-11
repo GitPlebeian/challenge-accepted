@@ -32,11 +32,28 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func acceptChallengeButtonTapped(_ sender: Any) {
-        guard let challenge = challenge,
-            let currentUser = UserController.shared.currentUser else { return }
-        currentUser.completedChallenges.append(challenge)
-        navigationController?.popViewController(animated: true)
+    @IBAction func saveChallengeButtonTapped(_ sender: Any) {
+        guard let challenge = challenge else {return}
+        let feedback = UINotificationFeedbackGenerator()
+        feedback.prepare()
+        ChallengeController.shared.userSavedChallenge(challenge: challenge) { (success) in
+            DispatchQueue.main.async {
+                if success {
+                    feedback.notificationOccurred(.success)
+                } else {
+                    feedback.notificationOccurred(.error)
+                }
+            }
+        }
+//        UserController.shared.addSavedChallenge(challenge: challenge) { (success) in
+//            DispatchQueue.main.async {
+//                if success {
+//                    feedback.notificationOccurred(.success)
+//                } else {
+//                    feedback.notificationOccurred(.error)
+//                }
+//            }
+//        }
     }
     
     @IBAction func reportingButtonTapped(_ sender: Any) {

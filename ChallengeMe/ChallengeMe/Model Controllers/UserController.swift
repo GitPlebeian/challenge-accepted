@@ -48,7 +48,7 @@ class UserController {
         }
     }
     
-    // read
+    // Read
     func fetchCurrentUser(completion: @escaping (Bool, Bool) -> Void) {
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
@@ -80,6 +80,25 @@ class UserController {
         }
     }
     
+    func fetchSavedChallenge(completion: @escaping (Bool) -> Void) {
+        guard let currentUser = currentUser else {return}
+        let reference = CKRecord.Reference(recordID: currentUser.recordID, action: .none)
+        let predicate = NSPredicate(format: "%K CONTAINS %@", argumentArray: [ChallengeConstants.usersWhoSavedReferencesKey, reference])
+        let query = CKQuery(recordType: ChallengeConstants.recordTypeKey, predicate: predicate)
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(false)
+                return
+            }
+            guard let records = records else {return}
+            let challenges = records.compactMap({Challenge(record: $0)})
+            currentUser.completedChallenges = challenges
+            completion(true)
+            return
+        }
+    }
+    
     // update
     func updateUser(completion: @escaping (Bool) -> Void) {
         guard let currentUser = currentUser else {return}
@@ -98,7 +117,7 @@ class UserController {
         publicDB.add(modificationOp)
     }
     
-    // delete
+    // Delete User
     func deleteUser(user: User, completion: @escaping (Bool) -> Void) {
         guard let currentUser = currentUser else { return }
         let recordID = currentUser.recordID
@@ -112,7 +131,68 @@ class UserController {
         }
     }
     
-    // Delete Created Challenge - Removes from all users.
+    // Adds saved Challenge
+//    func addSavedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
+//        guard let currentUser = currentUser else {return}
+//        let challengeReference = CKRecord.Reference(recordID: challenge.recordID, action: .none)
+//        currentUser.completedChallengesReferences.append(challengeReference)
+//
+//        let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(user: currentUser)], recordIDsToDelete: nil)
+//        modificationOp.savePolicy = .changedKeys
+//        modificationOp.queuePriority = .veryHigh
+//        modificationOp.qualityOfService = .default
+//        modificationOp.modifyRecordsCompletionBlock = { (_, _, error) in
+//            if let error = error {
+//                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+//                if let indexToRemoveChallengeReference = currentUser.completedChallengesReferences.firstIndex(of: challengeReference) {
+//                    currentUser.completedChallengesReferences.remove(at: indexToRemoveChallengeReference)
+//                }
+//                completion(false)
+//                return
+//            } else {
+//                currentUser.completedChallenges.append(challenge)
+//                completion(true)
+//                return
+//            }
+//        }
+//        publicDB.add(modificationOp)
+//    }
+    
+    // Deletes Saved Challenge
+//    func removeSavedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
+//        guard let currentUser = currentUser else {return}
+//        var savedChallengeReferenceToDelete: CKRecord.Reference?
+//
+//        var index = 0
+//        for savedChallengeReference in currentUser.completedChallengesReferences {
+//            if savedChallengeReference.recordID == challenge.recordID {
+//                savedChallengeReferenceToDelete = savedChallengeReference
+//                currentUser.completedChallengesReferences.remove(at: index)
+//            }
+//            index += 1
+//        }
+//        let modificationOp = CKModifyRecordsOperation(recordsToSave: [CKRecord(user: currentUser)], recordIDsToDelete: nil)
+//        modificationOp.savePolicy = .changedKeys
+//        modificationOp.queuePriority = .veryHigh
+//        modificationOp.qualityOfService = .default
+//        modificationOp.modifyRecordsCompletionBlock = { (_, _, error) in
+//            if let error = error {
+//                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+//                if let savedChallengeReference = savedChallengeReferenceToDelete {
+//                    currentUser.completedChallengesReferences.append(savedChallengeReference)
+//                }
+//                completion(false)
+//                return
+//            } else {
+//                if let indexOfSavedChallengeToDelete = currentUser.completedChallenges.firstIndex(of: challenge) {
+//                    currentUser.completedChallenges.remove(at: indexOfSavedChallengeToDelete)
+//                    completion(true)
+//                    return
+//                }
+//            }
+//        }
+//        publicDB.add(modificationOp)
+//    }
     
     func getCreatedChallenges() {
         guard let currentUser = currentUser else {return}
@@ -130,11 +210,11 @@ class UserController {
             currentUser.createdChallenges = challenges
         }
     }
+    // Delete Created Challenge - Removes from all users.
     
     func deleteCreatedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
         var completedOneOperation = false
         var errorOccurred = false
-        var savedChallengeReferenceOptional: CKRecord.Reference?
         var createdChallengeReferenceOptional: CKRecord.Reference?
         
         guard let currentUser = currentUser
@@ -151,14 +231,6 @@ class UserController {
             index += 1
         }
         
-        index = 0
-        for reference in currentUser.completedChallengesReferences {
-            if reference.recordID == challenge.recordID {
-                currentUser.completedChallengesReferences.remove(at: index)
-                savedChallengeReferenceOptional = reference
-            }
-            index += 1
-        }
         guard let createdChallengeReference = createdChallengeReferenceOptional else {
             completion(false)
             return
@@ -173,9 +245,6 @@ class UserController {
                 if errorOccurred == false {
                     errorOccurred = true
                     currentUser.createdChallengesReferences.append(createdChallengeReference)
-                    if let savedChallengeReference = savedChallengeReferenceOptional {
-                        currentUser.completedChallengesReferences.append(savedChallengeReference)
-                    }
                     completion(false)
                     return
                 } else {
@@ -215,37 +284,10 @@ class UserController {
                 if errorOccurred == false {
                     errorOccurred = true
                     currentUser.createdChallengesReferences.append(createdChallengeReference)
-                    if let savedChallengeReference = savedChallengeReferenceOptional {
-                        currentUser.completedChallengesReferences.append(savedChallengeReference)
-                    }
                     completion(false)
                     return
                 }
             }
         }
     }
-    
-    // Delete Saved Challenge
-    
-//    func convertRecordToCompletedChallenges() {
-//        guard let currentUser = currentUser else { return }
-//        for completedChallengeReference in currentUser.completedChallengesReferences {
-//            for challenge in ChallengeController.shared.challenges {
-//                if completedChallengeReference.recordID == challenge.recordID {
-//                    currentUser.completedChallenges.append(challenge)
-//                }
-//            }
-//        }
-//    }
-//
-//    func convertRecordToCreatedChallenges() {
-//        guard let currentUser = currentUser else { return }
-//        for createdChallengeReference in currentUser.createdChallengesReferences {
-//            for challenge in ChallengeController.shared.challenges {
-//                if createdChallengeReference.recordID == challenge.recordID {
-//                    currentUser.createdChallenges.append(challenge)
-//                }
-//            }
-//        }
-//    }
 }
