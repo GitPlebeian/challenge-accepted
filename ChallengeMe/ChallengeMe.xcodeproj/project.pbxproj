@@ -38,6 +38,8 @@
 		A5084220234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */; };
 		A5084222234E750500D5C4E9 /* SearchChallengesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5084221234E750500D5C4E9 /* SearchChallengesTableViewController.swift */; };
 		A5084224234E753000D5C4E9 /* SearchChallengesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5084223234E753000D5C4E9 /* SearchChallengesTableViewCell.swift */; };
+		A54628EA2350F56800D04BFE /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A54628E92350F56800D04BFE /* Colors.xcassets */; };
+		A54628EC2350F6C800D04BFE /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54628EB2350F6C800D04BFE /* StyleGuide.swift */; };
 		A58BABF42350D96C00A0AF9D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */; };
 		A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */; };
 		A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9E6234BD7DB0015894B /* Message.swift */; };
@@ -82,6 +84,8 @@
 		A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesTableViewCell.swift; sourceTree = "<group>"; };
 		A5084221234E750500D5C4E9 /* SearchChallengesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChallengesTableViewController.swift; sourceTree = "<group>"; };
 		A5084223234E753000D5C4E9 /* SearchChallengesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChallengesTableViewCell.swift; sourceTree = "<group>"; };
+		A54628E92350F56800D04BFE /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A54628EB2350F6C800D04BFE /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeMapViewController.swift; sourceTree = "<group>"; };
 		A5F1F9E6234BD7DB0015894B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				868D14292343B26200B7691B /* View Controllers */,
 				868D142A2343B26900B7691B /* Models */,
 				868D142B2343B27400B7691B /* Model Controllers */,
+				A54628E82350F54100D04BFE /* Custom UI */,
 				8610FE94234B8D5900AB009D /* Helper Methods */,
 				868D142C2343B28E00B7691B /* Resources */,
 				868D141B2343B25800B7691B /* ChallengeMe.xcdatamodeld */,
@@ -201,6 +206,7 @@
 				868D14122343B25800B7691B /* AppDelegate.swift */,
 				868D141E2343B25800B7691B /* Assets.xcassets */,
 				868D14232343B25800B7691B /* Info.plist */,
+				A54628E92350F56800D04BFE /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -228,6 +234,14 @@
 				868D14382343FF7700B7691B /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A54628E82350F54100D04BFE /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				A54628EB2350F6C800D04BFE /* StyleGuide.swift */,
+			);
+			path = "Custom UI";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +311,7 @@
 				86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */,
 				86E210E4234BA890001AE931 /* CreatedChallenges.storyboard in Resources */,
 				868D141A2343B25800B7691B /* Main.storyboard in Resources */,
+				A54628EA2350F56800D04BFE /* Colors.xcassets in Resources */,
 				869AD6A2234548ED003E2C42 /* Map.storyboard in Resources */,
 				86E210E2234BA881001AE931 /* ChallengeHistory.storyboard in Resources */,
 			);
@@ -317,6 +332,7 @@
 				A5F1F9E9234BDEE30015894B /* MessageController.swift in Sources */,
 				A5FD520A234CEBAC006E171D /* MessageDetailViewController.swift in Sources */,
 				A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */,
+				A54628EC2350F6C800D04BFE /* StyleGuide.swift in Sources */,
 				A5084222234E750500D5C4E9 /* SearchChallengesTableViewController.swift in Sources */,
 				865A7862234790FD00FEC8EA /* MainTabBarViewController.swift in Sources */,
 				868D142F2343B2F200B7691B /* User.swift in Sources */,
