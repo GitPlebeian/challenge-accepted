@@ -71,13 +71,12 @@ class UserController {
                 if let record = records?.first {
                     let foundUser = User(record: record)
                     self.currentUser = foundUser
+                    self.getCreatedChallenges()
                     completion(true, true)
                 } else {
                     completion(true, false)
                 }
             }
-//            NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
-//            ChallengeConstants.longitudeKey, longitude + getLo
         }
     }
     
@@ -116,7 +115,20 @@ class UserController {
     // Delete Created Challenge - Removes from all users.
     
     func getCreatedChallenges() {
-//        guard let current
+        guard let currentUser = currentUser else {return}
+        let predicate = NSPredicate(format: "%K == %@", argumentArray: [ChallengeConstants.authorReferenceKey, currentUser.recordID])
+        let query = CKQuery(recordType: ChallengeConstants.recordTypeKey, predicate: predicate)
+        publicDB.perform(query, inZoneWith: nil) { (challengeRecords, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            }
+            
+            guard let challengeRecords = challengeRecords else {
+                return
+            }
+            let challenges = challengeRecords.compactMap({Challenge(record: $0)})
+            currentUser.createdChallenges = challenges
+        }
     }
     
     func deleteCreatedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {

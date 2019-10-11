@@ -126,14 +126,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             guard let currentUser = UserController.shared.currentUser else { return }
             let challenge = currentUser.createdChallenges[indexPath.row]
-            ChallengeController.shared.deleteChallenge(challenge: challenge) { (success) in
-                if success {
-                    print("Deleted completed challenge")
-                } else {
-                    print("Was unable to delete completed challenge")
+            UserController.shared.deleteCreatedChallenge(challenge: challenge) { (success) in
+                DispatchQueue.main.async {
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    if success {
+                        print("Deleted completed challenge")
+                    } else {
+                        print("Was unable to delete completed challenge")
+                    }
                 }
             }
-            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
