@@ -34,15 +34,18 @@ class CreateChallengeMapViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func tappedOnMap(_ sender: UITapGestureRecognizer) {
+        
         let location = sender.location(in: selectLocationMapView)
         let coordinates = selectLocationMapView.convert(location, toCoordinateFrom: selectLocationMapView)
         delegate?.didTap(at: coordinates)
+        selectLocationMapView.removeAnnotations(selectLocationMapView.annotations)
         
         let newChallenge = MKPointAnnotation()
         newChallenge.title = challengeTitle ?? ""
         newChallenge.coordinate = coordinates
         selectLocationMapView.addAnnotation(newChallenge)
     }
+    
     @IBAction func confirmLocationButtonTapped(_ sender: Any) {
         dismiss(animated: true)
     }
