@@ -31,8 +31,10 @@ class ProfileViewController: UIViewController {
 
     // MARK: - Custom Functions
     func updateViews() {
+        guard let currentUser = UserController.shared.currentUser else { return }
         profileImageVIew.layer.cornerRadius = profileImageVIew.frame.height / 2
-        nameLabel.text = UserController.shared.currentUser?.username
+        nameLabel.text = currentUser.username
+        profileImageVIew.image = currentUser.profilePhoto
     }
     
     // MARK: - Navigation
@@ -55,10 +57,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? CreatedChallengesTableViewCell,
             let challenge = UserController.shared.currentUser?.createdChallenges[indexPath.row] else { return UITableViewCell() }
-        cell.challengeImageView.image = challenge.photo
-        cell.challengeTitleLabel.text = challenge.title
-        cell.challengeDescriptionLabel.text = challenge.description
-        cell.challengeTagsLabel.text = challenge.tags.joined(separator: " ")
+        cell.challenge = challenge
         return cell
     }
     

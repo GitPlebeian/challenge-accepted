@@ -25,6 +25,9 @@ class SettingsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadViews()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
 
     // MARK: - Actions
@@ -66,6 +69,18 @@ class SettingsViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
+    func loadViews() {
+        guard let currentUser = UserController.shared.currentUser else { return }
+        profilePhotoImageView.image = currentUser.profilePhoto
+        currentUserNameLabel.text = currentUser.username
+        saveButton.isHidden = true
+        nameTextField.isHidden = true
+    }
+    
+    @objc func dismissKeyboard() {
+           view.endEditing(true)
+       }
+    
     func showMailComposer() {
         guard MFMailComposeViewController.canSendMail() else { presentEmailAlert(); return }
         let composer = MFMailComposeViewController()
@@ -137,10 +152,14 @@ class SettingsViewController: UIViewController {
         PHPhotoLibrary.requestAuthorization { (status) in
             switch status {
             case .authorized:
-                self.present(imagePicker, animated: true)
+                DispatchQueue.main.async {
+                    self.present(imagePicker, animated: true)
+                }
             case .notDetermined:
                 if status == PHAuthorizationStatus.authorized {
-                    self.present(imagePicker, animated: true)
+                    DispatchQueue.main.async {
+                        self.present(imagePicker, animated: true)
+                    }
                 }
             case .restricted:
                 let alert = UIAlertController(title: "Photo Library Restricted", message: "Photo Library access is restricted and cannot be accessed", preferredStyle: .alert)
@@ -167,11 +186,15 @@ class SettingsViewController: UIViewController {
     fileprivate func requestCameraAuthorization(imagePicker: UIImagePickerController) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
-            self.present(imagePicker, animated: true)
+            DispatchQueue.main.async {
+                self.present(imagePicker, animated: true)
+            }
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { (granted) in
                 if granted {
-                    self.present(imagePicker, animated: true)
+                    DispatchQueue.main.async {
+                        self.present(imagePicker, animated: true)
+                    }
                 }
             }
         case .restricted:
