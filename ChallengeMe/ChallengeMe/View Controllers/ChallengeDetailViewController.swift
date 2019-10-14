@@ -32,7 +32,7 @@ class ChallengeDetailViewController: UIViewController {
         guard let challenge = challenge else {return}
         let feedback = UINotificationFeedbackGenerator()
         feedback.prepare()
-        ChallengeController.shared.userSavedChallenge(challenge: challenge) { (success) in
+        ChallengeController.shared.toggleSavedChallenge(challenge: challenge) { (success) in
             DispatchQueue.main.async {
                 if success {
                     feedback.notificationOccurred(.success)

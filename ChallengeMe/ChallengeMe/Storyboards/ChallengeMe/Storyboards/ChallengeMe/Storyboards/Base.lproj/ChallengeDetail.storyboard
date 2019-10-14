@@ -24,7 +24,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Challenge Accepted"/>
                                 <connections>
-                                    <action selector="acceptChallengeButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="sLz-cC-tnc"/>
+                                    <action selector="saveChallengeButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="GKR-9m-RFT"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Challenge Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMP-Cn-sq4">

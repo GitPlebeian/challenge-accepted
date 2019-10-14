@@ -68,9 +68,8 @@ class UserController {
                     completion(false, false)
                     return
                 }
-                if let record = records?.first {
-                    let foundUser = User(record: record)
-                    self.currentUser = foundUser
+                if let record = records?.first, let user = User(record: record) {
+                    self.currentUser = user
                     self.getCreatedChallenges()
                     completion(true, true)
                 } else {

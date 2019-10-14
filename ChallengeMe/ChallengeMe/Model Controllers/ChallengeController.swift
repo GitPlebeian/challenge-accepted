@@ -57,6 +57,38 @@ class ChallengeController {
     // MARK: - CRUD
     
     // Add User Who Saved
+    func toggleSavedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
+        guard let currentUser = UserController.shared.currentUser else {return}
+        
+        var userExists = false
+        for reference in challenge.usersWhoSavedReferences {
+            if reference.recordID == currentUser.recordID {
+                userExists = true
+            }
+        }
+        if userExists {
+            userUnSavedChallenge(challenge: challenge) { (success) in
+                if success {
+                    completion(true)
+                    return
+                } else {
+                    completion(false)
+                    return
+                }
+            }
+        } else {
+            userSavedChallenge(challenge: challenge) { (success) in
+                if success {
+                    completion(true)
+                    return
+                } else {
+                    completion(false)
+                    return
+                }
+            }
+        }
+    }
+    
     func userSavedChallenge(challenge: Challenge,completion: @escaping (Bool) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
         let reference = CKRecord.Reference(recordID: currentUser.recordID, action: .none)
