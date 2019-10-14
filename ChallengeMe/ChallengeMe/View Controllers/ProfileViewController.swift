@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MessageUI
 
 class ProfileViewController: UIViewController {
     
@@ -29,43 +28,11 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         createdChallengesTableView.reloadData()
     }
-    @IBAction func supportButtonTapped(_ sender: Any) {
-        showMailComposer()
-    }
-    @IBAction func privacyPolicyButtonTapped(_ sender: Any) {
-        if let url = URL(string: "website") {
-            UIApplication.shared.open(url)
-        }
-    }
-    
+
     // MARK: - Custom Functions
     func updateViews() {
         profileImageVIew.layer.cornerRadius = profileImageVIew.frame.height / 2
         nameLabel.text = UserController.shared.currentUser?.username
-    }
-    
-    func showMailComposer() {
-        guard MFMailComposeViewController.canSendMail() else { presentEmailAlert(); return }  // add alert if false
-        let composer = MFMailComposeViewController()
-        composer.mailComposeDelegate = self
-        composer.setToRecipients(["email"])
-        composer.setSubject("Support/Feedback")
-        composer.setMessageBody("Thank you for reaching out. We welcome any feedback to help make our app better, and offer support with any issues you may run into!", isHTML: false)
-        present(composer, animated: true)
-    }
-    
-    func presentEmailAlert() {
-           let alert = UIAlertController(title: "Error", message: "Unable to access Mail", preferredStyle: .alert)
-           let ok = UIAlertAction(title: "OK", style: .cancel)
-           alert.addAction(ok)
-           present(alert, animated: true)
-    }
-    
-    func presentErrorAlert(error: Error) {
-        let alert = UIAlertController(title: "Error", message: "There was an error sending your email. \(error.localizedDescription)", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel)
-        alert.addAction(ok)
-        present(alert, animated: true)
     }
     
     // MARK: - Navigation
@@ -78,33 +45,6 @@ class ProfileViewController: UIViewController {
         }
     }
 }
-
-// MARK: - Mail Delegate
-extension ProfileViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        if let error = error {
-            print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-            presentErrorAlert(error: error)
-            controller.dismiss(animated: true)
-            return
-        }
-        
-        switch result {
-        case .cancelled:
-            break
-        case .failed:
-            if let error = error {
-                presentErrorAlert(error: error)
-            }
-        case .saved:
-            break
-        case .sent:
-            break
-        }
-        controller.dismiss(animated: true)
-    }
-}
-
 
 // MARK: - TableView Delegate and DataSource
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {

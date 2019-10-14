@@ -58,10 +58,12 @@ extension SearchChallengesTableViewController: UISearchBarDelegate {
         for challenge in ChallengeController.shared.challenges {
             if challenge.title.lowercased().contains(searchTerm) {
                 results.append(challenge)
+                continue
             }
             for tag in challenge.tags {
                 if tag.contains(searchTerm) {
                     results.append(challenge)
+                    break
                 }
             }
         }
