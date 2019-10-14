@@ -8,8 +8,12 @@
 
 import UIKit
 
+
+
 struct FontKeys {
-    static let gothic = "Apple SD Gothic Neo"
+    static let header = "AppleSDGothicNeo-Bold"
+    static let subheader1 = "AppleSDGothicNeo-SemiBold"
+    static let subheader2 = "AppleSDGothicNeo-Regular"
     static let cochin = "Cochin"
 }
 
@@ -18,5 +22,18 @@ extension UIColor {
     static let highlightBlue = UIColor(named: "highlightBlue")
     static let tabBarGray = UIColor(named: "tabBarGray")
     static let navBarBlack = UIColor(named: "navBarBlack")
+}
+
+extension UIView {
+    func addCornerRadius(_ button: UIButton) {
+        layer.cornerRadius = button.frame.height / 2
+    }
+    
+    func addShadow(_ button: UIButton) {
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 2, height: 4)
+        button.layer.shadowRadius = 3
+    }
 }
 

@@ -40,6 +40,7 @@
 		A5084224234E753000D5C4E9 /* SearchChallengesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5084223234E753000D5C4E9 /* SearchChallengesTableViewCell.swift */; };
 		A54628EA2350F56800D04BFE /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A54628E92350F56800D04BFE /* Colors.xcassets */; };
 		A54628EC2350F6C800D04BFE /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54628EB2350F6C800D04BFE /* StyleGuide.swift */; };
+		A56CE8FD2354D88000192CE1 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56CE8FC2354D88000192CE1 /* ActionButton.swift */; };
 		A58BABF42350D96C00A0AF9D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */; };
 		A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */; };
 		A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9E6234BD7DB0015894B /* Message.swift */; };
@@ -86,6 +87,7 @@
 		A5084223234E753000D5C4E9 /* SearchChallengesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChallengesTableViewCell.swift; sourceTree = "<group>"; };
 		A54628E92350F56800D04BFE /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A54628EB2350F6C800D04BFE /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
+		A56CE8FC2354D88000192CE1 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeMapViewController.swift; sourceTree = "<group>"; };
 		A5F1F9E6234BD7DB0015894B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				A54628EB2350F6C800D04BFE /* StyleGuide.swift */,
+				A56CE8FC2354D88000192CE1 /* ActionButton.swift */,
 			);
 			path = "Custom UI";
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				A58BABF42350D96C00A0AF9D /* SettingsViewController.swift in Sources */,
 				868D14312343B2FD00B7691B /* Challenge.swift in Sources */,
 				860629AE234E24BB005DA674 /* MapNavigationController.swift in Sources */,
+				A56CE8FD2354D88000192CE1 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
