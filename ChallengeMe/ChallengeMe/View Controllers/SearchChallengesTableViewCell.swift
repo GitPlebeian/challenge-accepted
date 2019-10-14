@@ -14,15 +14,21 @@ class SearchChallengesTableViewCell: UITableViewCell {
     @IBOutlet weak var challengeDescriptionLabel: UILabel!
     @IBOutlet weak var challengeTagsLabel: UILabel!
     
+    var challenge: Challenge? {
+        didSet {
+            challengeImageView.image = challenge?.photo
+            challengeTitleLabel.text = challenge?.title
+            challengeDescriptionLabel.text = challenge?.description
+            challengeTagsLabel.text = challenge?.tags.joined(separator: " ")
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

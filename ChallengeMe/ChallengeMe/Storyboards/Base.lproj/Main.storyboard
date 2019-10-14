@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="i5W-6o-vCp">
-                                <rect key="frame" x="83" y="194" width="248" height="120"/>
+                                <rect key="frame" x="83" y="244" width="248" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-6E-mlA">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="34"/>
@@ -65,30 +65,52 @@
                                     <action selector="refreshButtonTapped:" destination="ur3-vt-XKn" eventType="touchUpInside" id="bG4-p3-gE0"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rMt-Rb-NWh">
+                                <rect key="frame" x="142" y="91" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rMt-Rb-NWh" secondAttribute="height" multiplier="1:1" id="QaN-99-Wi1"/>
+                                    <constraint firstAttribute="width" constant="130" id="sKA-ct-5fg"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mV8-sg-rWV">
+                                <rect key="frame" x="142" y="91" width="130" height="130"/>
+                                <state key="normal" title="Upload a Photo"/>
+                                <connections>
+                                    <action selector="uploadPhotoButtonTapped:" destination="ur3-vt-XKn" eventType="touchUpInside" id="dVF-PJ-oJ4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="X5N-T9-Oop" firstAttribute="centerX" secondItem="nXg-yb-K5l" secondAttribute="centerX" id="3Ug-im-w6f"/>
+                            <constraint firstItem="rMt-Rb-NWh" firstAttribute="centerX" secondItem="nXg-yb-K5l" secondAttribute="centerX" id="4k7-wB-GjS"/>
                             <constraint firstItem="X5N-T9-Oop" firstAttribute="centerY" secondItem="nXg-yb-K5l" secondAttribute="centerY" id="ASD-aG-VJb"/>
+                            <constraint firstItem="rMt-Rb-NWh" firstAttribute="top" secondItem="nXg-yb-K5l" secondAttribute="top" constant="47" id="Auv-BJ-B7X"/>
                             <constraint firstItem="i5W-6o-vCp" firstAttribute="width" secondItem="nXg-yb-K5l" secondAttribute="width" multiplier="0.6" id="C9A-dY-jEr"/>
                             <constraint firstItem="Dqx-pb-Ber" firstAttribute="centerX" secondItem="nXg-yb-K5l" secondAttribute="centerX" id="EKN-ve-Wu9"/>
-                            <constraint firstItem="i5W-6o-vCp" firstAttribute="top" secondItem="nXg-yb-K5l" secondAttribute="top" constant="150" id="QJl-dS-pwT"/>
+                            <constraint firstItem="mV8-sg-rWV" firstAttribute="centerX" secondItem="rMt-Rb-NWh" secondAttribute="centerX" id="Mff-cv-YMS"/>
+                            <constraint firstItem="i5W-6o-vCp" firstAttribute="top" secondItem="nXg-yb-K5l" secondAttribute="top" constant="200" id="QJl-dS-pwT"/>
+                            <constraint firstItem="mV8-sg-rWV" firstAttribute="height" secondItem="rMt-Rb-NWh" secondAttribute="height" id="Tvb-yq-ckA"/>
+                            <constraint firstItem="mV8-sg-rWV" firstAttribute="centerY" secondItem="rMt-Rb-NWh" secondAttribute="centerY" id="WPv-mu-UL2"/>
                             <constraint firstItem="i5W-6o-vCp" firstAttribute="centerX" secondItem="nXg-yb-K5l" secondAttribute="centerX" id="dE2-D1-JUa"/>
                             <constraint firstItem="Dqx-pb-Ber" firstAttribute="centerY" secondItem="nXg-yb-K5l" secondAttribute="centerY" id="nja-2c-deg"/>
+                            <constraint firstItem="mV8-sg-rWV" firstAttribute="width" secondItem="rMt-Rb-NWh" secondAttribute="width" id="r5v-Up-soj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nXg-yb-K5l"/>
                     </view>
                     <connections>
                         <outlet property="loadingDataActivityIndicator" destination="Dqx-pb-Ber" id="JKn-JA-asL"/>
+                        <outlet property="profilePhotoImageView" destination="rMt-Rb-NWh" id="vHT-0W-pPr"/>
                         <outlet property="refreshButton" destination="X5N-T9-Oop" id="NbL-bl-bPX"/>
                         <outlet property="saveUsernameButton" destination="bIa-ba-ZNE" id="w6w-eD-Gw1"/>
                         <outlet property="setUserStackView" destination="i5W-6o-vCp" id="FfK-2v-p8Y"/>
+                        <outlet property="uploadPhotoButton" destination="mV8-sg-rWV" id="TFg-H2-8Vz"/>
                         <outlet property="usernameTextField" destination="Xdl-jh-V4C" id="kot-iT-MJr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNB-WM-bld" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7" y="9"/>
+            <point key="canvasLocation" x="-7.2463768115942031" y="8.7053571428571423"/>
         </scene>
     </scenes>
 </document>

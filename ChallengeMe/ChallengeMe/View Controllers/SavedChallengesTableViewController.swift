@@ -24,8 +24,6 @@ class SavedChallengesTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 if success {
                     self.tableView.reloadData()
-                } else {
-                    
                 }
             }
         }

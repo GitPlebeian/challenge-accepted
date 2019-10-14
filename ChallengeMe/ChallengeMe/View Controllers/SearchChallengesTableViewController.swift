@@ -23,17 +23,23 @@ class SearchChallengesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchBar.text == "" {
+            return ChallengeController.shared.challenges.count
+        }
         return searchResults.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? SearchChallengesTableViewCell else { return UITableViewCell() }
-        let challenge = searchResults[indexPath.row]
-        cell.challengeImageView.image = challenge.photo
-        cell.challengeTitleLabel.text = challenge.title
-        cell.challengeDescriptionLabel.text = challenge.description
-        cell.challengeTagsLabel.text = challenge.tags.joined(separator: " ")
-        
+//        let challenge: Challenge
+        if searchBar.text == "" {
+            let challenge = ChallengeController.shared.challenges[indexPath.row]
+            cell.challenge = challenge
+        } else {
+            let challenge = searchResults[indexPath.row]
+            cell.challenge = challenge
+        }
+    
         return cell
     }
 
@@ -61,7 +67,7 @@ extension SearchChallengesTableViewController: UISearchBarDelegate {
                 continue
             }
             for tag in challenge.tags {
-                if tag.contains(searchTerm) {
+                if tag.lowercased().contains(searchTerm) {
                     results.append(challenge)
                     break
                 }

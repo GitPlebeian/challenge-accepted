@@ -41,15 +41,15 @@ class MainMapViewController: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction func tappedOnMap(_ sender: UITapGestureRecognizer) {
-        let location = sender.location(in: map)
-        let coordinate = map.convert(location, toCoordinateFrom: map)
-        
-        let longdon = MKPointAnnotation()
-        longdon.title = "Bois"
-        longdon.coordinate = coordinate
-        map.addAnnotation(longdon)
-    }
+//    @IBAction func tappedOnMap(_ sender: UITapGestureRecognizer) {
+//        let location = sender.location(in: map)
+//        let coordinate = map.convert(location, toCoordinateFrom: map)
+//
+//        let longdon = MKPointAnnotation()
+//        longdon.title = "Bois"
+//        longdon.coordinate = coordinate
+//        map.addAnnotation(longdon)
+//    }
     
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         let createChallengeStoryboard = UIStoryboard(name: "CreateChallenge", bundle: nil)
@@ -213,20 +213,20 @@ class MainMapViewController: UIViewController {
         }
     }
     
-    func checkLocationAuthorization() {
-        switch  CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse: break
-        case .notDetermined: locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            break
-        case .denied:
-            break
-        case .authorizedAlways:
-            break
-        @unknown default:
-            break
-        }
-    }
+//    func checkLocationAuthorization() {
+//        switch  CLLocationManager.authorizationStatus() {
+//        case .authorizedWhenInUse: break
+//        case .notDetermined: locationManager.requestWhenInUseAuthorization()
+//        case .restricted:
+//            break
+//        case .denied:
+//            break
+//        case .authorizedAlways:
+//            break
+//        @unknown default:
+//            break
+//        }
+//    }
 }
 
 extension MainMapViewController: CLLocationManagerDelegate {

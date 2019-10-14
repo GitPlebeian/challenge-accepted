@@ -68,11 +68,11 @@ class ChallengeDetailViewController: UIViewController {
     
     func presentReportAlert() {
         let alert = UIAlertController(title: "Report", message: "Would you like to report this challenge?", preferredStyle: .actionSheet)
-        let yes = UIAlertAction(title: "Yes", style: .destructive) { (sendEmail) in
+        let report = UIAlertAction(title: "Report", style: .destructive) { (sendEmail) in
             self.showMailComposer()
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(yes)
+        alert.addAction(report)
         alert.addAction(cancel)
         present(alert, animated: true)
     }
@@ -85,7 +85,7 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     func presentEmailAlert() {
-        let alert = UIAlertController(title: "Error", message: "Unable to access Mail", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "Unable to access Mail. Please email challengeacceptedhelp@gmail.com.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .cancel)
         alert.addAction(ok)
         present(alert, animated: true)
@@ -98,7 +98,7 @@ class ChallengeDetailViewController: UIViewController {
         guard MFMailComposeViewController.canSendMail() else { presentEmailAlert(); return }
         let composer = MFMailComposeViewController()
         composer.mailComposeDelegate = self
-        composer.setToRecipients(["email"])
+        composer.setToRecipients(["challengeacceptedhelp@gmail.com"])
         composer.setSubject("Report Challenge")
         composer.setMessageBody("Thank you for reporting inappropriate content. \n PLEASE DO NOT REMOVE: \(recordID) \n We'll look into this.", isHTML: false)
         present(composer, animated: true)

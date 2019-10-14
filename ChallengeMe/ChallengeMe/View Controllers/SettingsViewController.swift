@@ -63,7 +63,7 @@ class SettingsViewController: UIViewController {
         showMailComposer()
     }
     @IBAction func privacyPolicyButtonTapped(_ sender: Any) {
-        if let url = URL(string: "website") {
+        if let url = URL(string: "https://sites.google.com/view/challengeacceptedprivacypolicy/") {
             UIApplication.shared.open(url)
         }
     }
@@ -85,7 +85,7 @@ class SettingsViewController: UIViewController {
         guard MFMailComposeViewController.canSendMail() else { presentEmailAlert(); return }
         let composer = MFMailComposeViewController()
         composer.mailComposeDelegate = self
-        composer.setToRecipients(["email"])
+        composer.setToRecipients(["challengeacceptedhelp@gmail.com"])
         composer.setSubject("Support/Feedback")
         composer.setMessageBody("Thank you for reaching out. We welcome any feedback to help make our app better, and offer support with any issues you may run into!", isHTML: false)
         present(composer, animated: true)
@@ -110,7 +110,7 @@ class SettingsViewController: UIViewController {
     }
     
     func presentEmailAlert() {
-           let alert = UIAlertController(title: "Error", message: "Unable to access Mail. Please email ... with a description of the issue you experienced.", preferredStyle: .alert)
+           let alert = UIAlertController(title: "Error", message: "Unable to access Mail. Please email challengeacceptedhelp@gmail.com with a description of the issue you experienced.", preferredStyle: .alert)
            let ok = UIAlertAction(title: "OK", style: .cancel)
            alert.addAction(ok)
            present(alert, animated: true)
@@ -118,7 +118,7 @@ class SettingsViewController: UIViewController {
     
     func presentErrorAlert(error: Error?) {
         guard let error = error else { return }
-        let alert = UIAlertController(title: "Error", message: "There was an error, and we were unable to complete this action. If this continues to happen, please email ... . \(error.localizedDescription)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "There was an error, and we were unable to complete this action. If this continues to happen, please email challengeacceptedhelp@gmail.com . \(error.localizedDescription)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .cancel)
         alert.addAction(ok)
         present(alert, animated: true)
