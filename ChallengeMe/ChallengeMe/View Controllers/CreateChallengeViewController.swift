@@ -17,6 +17,10 @@ protocol PhotoSelectedDelegate: class {
     func photoSelected(image: UIImage)
 }
 
+protocol SaveChallengeSuccessDelegate: class {
+    func saveChallengeSuccess(challenge: Challenge?)
+}
+
 class CreateChallengeViewController: UIViewController {
     
     // MARK: - Outlets
@@ -40,6 +44,7 @@ class CreateChallengeViewController: UIViewController {
     var challengeLocation: CLLocationCoordinate2D?
     
     weak var delegate: PhotoSelectedDelegate?
+    weak var saveChallengeDelegate: SaveChallengeSuccessDelegate?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -88,38 +93,37 @@ class CreateChallengeViewController: UIViewController {
                    return tagString
                        .split(separator: " ") // divide into 'substrings'
                        .map { String($0) } // turn back into 'strings'
-//                       .filter { $0.hasPrefix("#") } // only keep #strings
                }
-        
+        feedback.prepare()
         if challengeLocation == nil {
             guard let currentLocation = locationManager.location?.coordinate else { return }
-            ChallengeController.shared.createChallenge(title: title, description: description, longitude: currentLocation.longitude, latitude: currentLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
-                DispatchQueue.main.async {
-                    if success {
-                        feedback.notificationOccurred(.success)
-                        print("A challenge was saved")
-                    } else {
-                        print("There was an error saving challenge")
-                        feedback.notificationOccurred(.error)
-                    }
-                }
+            ChallengeController.shared.createChallenge(title: title, description: description, longitude: currentLocation.longitude, latitude: currentLocation.latitude, tags: hashtags, photo: challengeImage) { (challenge) in
+                self.createChallengeCompletion(challenge: challenge, feedback: feedback)
             }
         } else {
             guard let selectedLocation = challengeLocation else { return }
-            ChallengeController.shared.createChallenge(title: title, description: description, longitude: selectedLocation.longitude, latitude: selectedLocation.latitude, tags: hashtags, photo: challengeImage) { (success) in
-                DispatchQueue.main.async {
-                    if success {
-                        feedback.notificationOccurred(.success)
-                    } else {
-                        feedback.notificationOccurred(.error)
-                    }
-                }
+            ChallengeController.shared.createChallenge(title: title, description: description, longitude: selectedLocation.longitude, latitude: selectedLocation.latitude, tags: hashtags, photo: challengeImage) { (challenge) in
+                self.createChallengeCompletion(challenge: challenge, feedback: feedback)
             }
         }
         navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Custom Methods
+    
+    func createChallengeCompletion(challenge: Challenge?, feedback: UINotificationFeedbackGenerator) {
+        DispatchQueue.main.async {
+            guard let saveChallengeDelegate = self.saveChallengeDelegate else {return}
+            if let challenge = challenge {
+                saveChallengeDelegate.saveChallengeSuccess(challenge: challenge)
+                feedback.notificationOccurred(.success)
+            } else {
+                saveChallengeDelegate.saveChallengeSuccess(challenge: nil)
+                feedback.notificationOccurred(.error)
+            }
+        }
+    }
+    
     func updateViews() {
         self.title = "Create Challenge"
         selectedImage.isHidden = false

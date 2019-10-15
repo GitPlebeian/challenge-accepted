@@ -10,7 +10,7 @@
         <!--Create Challenge View Controller-->
         <scene sceneID="oQd-Ix-BHB">
             <objects>
-                <viewController storyboardIdentifier="createChallengeNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hU8-pc-jqI" customClass="CreateChallengeViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createChallengeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hU8-pc-jqI" customClass="CreateChallengeViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ypq-0M-QvJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

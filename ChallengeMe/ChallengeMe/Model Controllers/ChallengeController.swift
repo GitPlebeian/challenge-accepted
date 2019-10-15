@@ -150,8 +150,11 @@ class ChallengeController {
     }
     
     // Create Challenge
-    func createChallenge(title: String, description: String, longitude: Double, latitude: Double, tags: [String], photo: UIImage, completion: @escaping (Bool) -> Void) {
-        guard let currentUser = UserController.shared.currentUser else {return}
+    func createChallenge(title: String, description: String, longitude: Double, latitude: Double, tags: [String], photo: UIImage, completion: @escaping (Challenge?) -> Void) {
+        guard let currentUser = UserController.shared.currentUser else {
+            completion(nil)
+            return
+        }
         let authorReference = CKRecord.Reference(recordID: currentUser.recordID, action: .deleteSelf)
         
         let challenge = Challenge(title: title, description: description, latitude: latitude, longitude: longitude, tags: tags, authorReference: authorReference, photo: photo)
@@ -159,11 +162,11 @@ class ChallengeController {
         publicDB.save(challengeRecord) { (record, error) in
             if let error = error {
                 print("Error at: \(#function) Error: \(error)\nLocalized Error: \(error.localizedDescription)")
-                completion(false)
+                completion(nil)
                 return
             }
             guard let record = record, let challenge = Challenge(record: record) else {
-                completion(false)
+                completion(nil)
                 return
             }
             self.challenges.append(challenge)
@@ -173,13 +176,13 @@ class ChallengeController {
                 DispatchQueue.main.async {
                     if success {
                         currentUser.createdChallenges.append(challenge)
-                        completion(true)
+                        completion(challenge)
                         return
                     } else {
                         if let indexToRemove = currentUser.createdChallengesReferences.firstIndex(of: challengeReference) {
                             currentUser.createdChallengesReferences.remove(at: indexToRemove)
                         }
-                        completion(false)
+                        completion(nil)
                         return
                     }
                 }

@@ -65,6 +65,17 @@
                                     <segue destination="RZM-t2-3Zd" kind="show" identifier="toSearchVC" id="g0A-BI-Md1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(# Challenges)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SA-s0-jDV">
+                                <rect key="frame" x="20" y="108" width="200" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="8NK-kU-c4R"/>
+                                    <constraint firstAttribute="height" constant="40" id="TfL-v1-BYC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -76,7 +87,9 @@
                             <constraint firstItem="xJ3-kN-MLC" firstAttribute="top" secondItem="AeF-Hg-imL" secondAttribute="bottom" constant="40" id="Nq8-j1-s8R"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="bottom" secondItem="xJ3-kN-MLC" secondAttribute="bottom" constant="20" id="aEG-8G-vSW"/>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="trailing" secondItem="YFe-xm-WZz" secondAttribute="trailing" id="eWO-qt-NwS"/>
+                            <constraint firstItem="9SA-s0-jDV" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" constant="20" id="iJp-Wy-Np6"/>
                             <constraint firstAttribute="bottom" secondItem="ynS-gZ-CEX" secondAttribute="bottom" id="meQ-8e-Ud2"/>
+                            <constraint firstItem="9SA-s0-jDV" firstAttribute="top" secondItem="YFe-xm-WZz" secondAttribute="top" constant="20" id="od6-M3-YQj"/>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="top" secondItem="Igf-Pq-84R" secondAttribute="top" id="pWN-0W-chc"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="bottom" secondItem="Hwx-Cv-uIB" secondAttribute="bottom" constant="20" id="vNA-zJ-Stk"/>
                             <constraint firstItem="AeF-Hg-imL" firstAttribute="top" secondItem="naY-v1-Y6J" secondAttribute="bottom" constant="29" id="yQj-2e-2zG"/>
@@ -91,6 +104,7 @@
                         <outlet property="createChallengeButton" destination="AeF-Hg-imL" id="eV2-zZ-5r2"/>
                         <outlet property="mainMapGestureRecognizer" destination="ynS-gZ-CEX" id="0vh-9G-bBD"/>
                         <outlet property="map" destination="ynS-gZ-CEX" id="j74-IA-rhZ"/>
+                        <outlet property="numberOfChallengesLabel" destination="9SA-s0-jDV" id="Dy5-aG-8wX"/>
                         <outlet property="searchThisAreaButton" destination="xJ3-kN-MLC" id="R1h-nY-Lyd"/>
                     </connections>
                 </viewController>

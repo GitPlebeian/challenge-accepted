@@ -19,6 +19,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var searchThisAreaButton: UIButton!
     @IBOutlet weak var createChallengeButton: UIButton!
     @IBOutlet weak var mainMapGestureRecognizer: MKMapView!
+    @IBOutlet weak var numberOfChallengesLabel: UILabel!
     
     // MARK: - Properties
     
@@ -53,7 +54,8 @@ class MainMapViewController: UIViewController {
     
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         let createChallengeStoryboard = UIStoryboard(name: "CreateChallenge", bundle: nil)
-        let viewController = createChallengeStoryboard.instantiateViewController(withIdentifier: "createChallengeNavigationController")
+        guard let viewController = createChallengeStoryboard.instantiateViewController(withIdentifier: "createChallengeViewController") as? CreateChallengeViewController else {return}
+        viewController.saveChallengeDelegate = self
         viewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -111,6 +113,7 @@ class MainMapViewController: UIViewController {
                         self.currentAnnotations.append(annotation)
                     }
                     self.map.addAnnotations(self.currentAnnotations)
+                    self.animateNumberOfChallenges()
                 } else {
                     feedback.notificationOccurred(.error)
                     self.presentBasicError(title: "Error", message: "We couldn't get Challenges from the database")
@@ -158,7 +161,39 @@ class MainMapViewController: UIViewController {
         centerOnUserButton.layer.cornerRadius = centerOnUserButton.frame.height / 2
         searchThisAreaButton.layer.cornerRadius = searchThisAreaButton.frame.height / 2
         createChallengeButton.layer.cornerRadius = createChallengeButton.frame.height / 2
+        numberOfChallengesLabel.clipsToBounds = true
+        numberOfChallengesLabel.layer.cornerRadius = numberOfChallengesLabel.frame.height / 2
+        numberOfChallengesLabel.isHidden = true
+        numberOfChallengesLabel.alpha = 0
         map.mapType = .standard
+    }
+    
+    func animateNumberOfChallenges() {
+        numberOfChallengesLabel.isHidden = false
+        if currentAnnotations.count == 1 {
+            numberOfChallengesLabel.text = "\(currentAnnotations.count) Challenge"
+        } else if currentAnnotations.count > 1 {
+            numberOfChallengesLabel.text = "\(currentAnnotations.count) Challenges"
+        } else {
+            numberOfChallengesLabel.text = "No Challenges Found"
+        }
+        UIView.animate(withDuration: 0.2, animations: {
+            self.numberOfChallengesLabel.alpha = 1
+        }) { (_) in
+            var seconds = 0
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+                seconds += 1
+                if seconds >= 4 {
+                    timer.invalidate()
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.numberOfChallengesLabel.alpha = 0
+                    }) { (_) in
+                        self.numberOfChallengesLabel.isHidden = true
+                    }
+                }
+            }
+            
+        }
     }
     
     func setupLocationManager() {
@@ -200,12 +235,21 @@ class MainMapViewController: UIViewController {
                     for challenge in ChallengeController.shared.challenges {
                         let annotation = MKPointAnnotation()
                         annotation.title = challenge.title
-                        annotation.subtitle = "Cheese, dick"
+                        var subtitle = ""
+                        for tag in challenge.tags {
+                            if tag == challenge.tags.last! {
+                                subtitle += tag
+                            } else {
+                                subtitle += tag + " "
+                            }
+                        }
+                        annotation.subtitle = subtitle
                         let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
                         annotation.coordinate = coordinate
                         self.currentAnnotations.append(annotation)
                     }
                     self.map.addAnnotations(self.currentAnnotations)
+                    self.animateNumberOfChallenges()
                 } else {
                     self.presentBasicError(title: "Error", message: "We couldn't get Challenges from the database")
                 }
@@ -288,3 +332,27 @@ extension MainMapViewController: MKMapViewDelegate {
     }
 }
 
+extension MainMapViewController: SaveChallengeSuccessDelegate {
+    func saveChallengeSuccess(challenge: Challenge?) {
+        if let challenge = challenge {
+            let annotation = MKPointAnnotation()
+            annotation.title = challenge.title
+            var subtitle = ""
+            for tag in challenge.tags {
+                if tag == challenge.tags.last! {
+                    subtitle += tag
+                } else {
+                    subtitle += tag + " "
+                }
+            }
+            annotation.subtitle = subtitle
+            let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
+            annotation.coordinate = coordinate
+            currentAnnotations.append(annotation)
+            map.addAnnotation(annotation)
+            animateNumberOfChallenges()
+        } else {
+            
+        }
+    }
+}
