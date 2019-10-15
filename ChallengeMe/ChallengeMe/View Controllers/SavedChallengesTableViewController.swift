@@ -20,6 +20,7 @@ class SavedChallengesTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.reloadData()
         UserController.shared.fetchSavedChallenge { (success) in
             DispatchQueue.main.async {
                 if success {

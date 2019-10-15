@@ -47,7 +47,7 @@ class CreateChallengeMapViewController: UIViewController {
     }
     
     @IBAction func confirmLocationButtonTapped(_ sender: Any) {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Custom Methods

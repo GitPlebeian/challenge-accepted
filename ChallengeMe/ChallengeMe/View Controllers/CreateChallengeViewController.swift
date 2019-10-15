@@ -28,7 +28,7 @@ class CreateChallengeViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var tagsTextField: UITextField!
     
-    @IBOutlet weak var currentLocationButton: UIButton!
+
     @IBOutlet weak var selectLocationButton: UIButton!
     @IBOutlet weak var createChallengeButton: UIButton!
     
@@ -53,18 +53,15 @@ class CreateChallengeViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func useCurrentLocationButtonTapped(_ sender: Any) {
-        guard let location = locationManager.location?.coordinate else { return }
-        challengeLocation = location
-    }
+
     @IBAction func selectLocationButtonTapped(_ sender: Any) {
         guard let mapVC = UIStoryboard(name: "CreateChallenge", bundle: nil).instantiateViewController(identifier: "CreateChallengeMap") as? CreateChallengeMapViewController else { return }
         mapVC.delegate = self
         if let title = titleTextField.text {
             mapVC.challengeTitle = title
         }
-        mapVC.modalPresentationStyle = .fullScreen
-        present(mapVC, animated: true)
+//        mapVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(mapVC, animated: true)
     }
     @IBAction func uploadImageButtonTapped(_ sender: Any) {
         // checks to see if there are any photos in the photo library to access
@@ -95,17 +92,10 @@ class CreateChallengeViewController: UIViewController {
                        .map { String($0) } // turn back into 'strings'
                }
         feedback.prepare()
-        if challengeLocation == nil {
-            guard let currentLocation = locationManager.location?.coordinate else { return }
-            ChallengeController.shared.createChallenge(title: title, description: description, longitude: currentLocation.longitude, latitude: currentLocation.latitude, tags: hashtags, photo: challengeImage) { (challenge) in
-                self.createChallengeCompletion(challenge: challenge, feedback: feedback)
-            }
-        } else {
             guard let selectedLocation = challengeLocation else { return }
             ChallengeController.shared.createChallenge(title: title, description: description, longitude: selectedLocation.longitude, latitude: selectedLocation.latitude, tags: hashtags, photo: challengeImage) { (challenge) in
                 self.createChallengeCompletion(challenge: challenge, feedback: feedback)
             }
-        }
         navigationController?.popViewController(animated: true)
     }
     
@@ -127,7 +117,6 @@ class CreateChallengeViewController: UIViewController {
     func updateViews() {
         self.title = "Create Challenge"
         selectedImage.isHidden = false
-        currentLocationButton.layer.cornerRadius = currentLocationButton.frame.height / 2
         selectLocationButton.layer.cornerRadius = selectLocationButton.frame.height / 2
         createChallengeButton.layer.cornerRadius = createChallengeButton.frame.height / 2
         

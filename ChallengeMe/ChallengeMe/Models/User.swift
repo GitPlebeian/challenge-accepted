@@ -40,8 +40,6 @@ class User {
         } set {
             if let newValue = newValue {
                 self.photoData = newValue.jpegData(compressionQuality: 0.5)
-            } else {
-                self.photoData = UIImage(named: "d")!.jpegData(compressionQuality: 0.5)
             }
         }
     }

@@ -38,7 +38,7 @@ class SetupViewController: UIViewController {
     
     @IBAction func saveUsernameButtonTapped(_ sender: Any) {
         guard let username = usernameTextField.text, username.isEmpty == false else {return}
-        UserController.shared.createCurrentUser(username: username) { (success) in
+        UserController.shared.createCurrentUser(username: username, profilePhoto: profilePhotoImageView.image) { (success) in
             DispatchQueue.main.async {
                 if success {
                     let mainTabBarStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
@@ -65,7 +65,7 @@ class SetupViewController: UIViewController {
         saveUsernameButton.layer.cornerRadius = saveUsernameButton.frame.height / 2
         loadingDataActivityIndicator.startAnimating()
         profilePhotoImageView.isHidden = true
-        uploadPhotoButton.isHidden = false
+        uploadPhotoButton.isHidden = true
     }
     
     func loadUser() {
@@ -81,6 +81,8 @@ class SetupViewController: UIViewController {
                         let viewController = mainTabBarStoryboard.instantiateViewController(withIdentifier: "mainTabBar")
                         viewController.modalPresentationStyle = .fullScreen
                         self.present(viewController, animated: true, completion: nil)
+                        UserController.shared.fetchSavedChallenge { (_) in
+                        }
                     } else {
                         self.setUserStackView.isHidden = false
                         self.uploadPhotoButton.isHidden = false
