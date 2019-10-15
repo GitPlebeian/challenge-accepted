@@ -15,6 +15,15 @@ class SavedChallengesTableViewCell: UITableViewCell {
         @IBOutlet weak var challengeTagsLabel: UILabel!
     
     
+    var challenge: Challenge? {
+        didSet {
+            challengeImageView.image = challenge?.photo
+            challengeTitleLabel.text = challenge?.title
+            challengeDescriptionLabel.text = challenge?.description
+            challengeTagsLabel.text = challenge?.tags.joined(separator: " ")
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

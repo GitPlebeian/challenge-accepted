@@ -20,19 +20,18 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwx-Cv-uIB">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwx-Cv-uIB">
                                 <rect key="frame" x="20" y="743" width="50" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="VXU-5o-yAc"/>
                                     <constraint firstAttribute="width" secondItem="Hwx-Cv-uIB" secondAttribute="height" multiplier="1:1" id="YUv-ls-q0N"/>
                                 </constraints>
-                                <state key="normal" title="Center"/>
+                                <state key="normal" title="Center" image="centerLocation"/>
                                 <connections>
                                     <action selector="centerOnUserButtonTapped:" destination="3A4-wH-37b" eventType="touchUpInside" id="10x-RJ-ElX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ3-kN-MLC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ3-kN-MLC">
                                 <rect key="frame" x="90" y="753" width="304" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -45,23 +44,22 @@
                                     <action selector="searchThisAreaButtonTapped:" destination="3A4-wH-37b" eventType="touchUpInside" id="5sW-zO-nQt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-Hg-imL">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-Hg-imL">
                                 <rect key="frame" x="324" y="663" width="50" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="TUX-Uj-bn0"/>
                                     <constraint firstAttribute="width" secondItem="AeF-Hg-imL" secondAttribute="height" multiplier="1:1" id="u8g-eA-RHM"/>
                                 </constraints>
-                                <state key="normal" title="Create">
+                                <state key="normal" image="createChallenge">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="createChallengeButtonTapped:" destination="3A4-wH-37b" eventType="touchUpInside" id="Bii-Uv-1Hp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naY-v1-Y6J">
-                                <rect key="frame" x="330" y="604" width="48" height="30"/>
-                                <state key="normal" title="Search"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naY-v1-Y6J">
+                                <rect key="frame" x="330" y="576" width="58" height="58"/>
+                                <state key="normal" image="searchChallenges"/>
                                 <connections>
                                     <segue destination="RZM-t2-3Zd" kind="show" identifier="toSearchVC" id="g0A-BI-Md1"/>
                                 </connections>
@@ -242,4 +240,9 @@
             <point key="canvasLocation" x="1992.753623188406" y="293.97321428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="centerLocation" width="58" height="58"/>
+        <image name="createChallenge" width="57" height="56"/>
+        <image name="searchChallenges" width="58" height="58"/>
+    </resources>
 </document>
