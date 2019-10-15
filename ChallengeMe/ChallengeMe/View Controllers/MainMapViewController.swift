@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FTLinearActivityIndicator
 
 class MainMapViewController: UIViewController {
     
@@ -20,6 +21,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var createChallengeButton: UIButton!
     @IBOutlet weak var mainMapGestureRecognizer: MKMapView!
     @IBOutlet weak var numberOfChallengesLabel: UILabel!
+    @IBOutlet weak var activityIndicatorView: FTLinearActivityIndicator!
     
     // MARK: - Properties
     
@@ -38,6 +40,17 @@ class MainMapViewController: UIViewController {
         checkLocationServices()
         updateViews()
         mainMapGestureRecognizer.delegate = self
+//        activityIndicatorView.startAnimating()
+//        let currentWindow: UIWindow? = UIApplication.shared.keyWindow
+//        currentWindow?.addSubview(myView)
+//        self.edgesForExtendedLayout = []
+//        activityIndicatorView.layer.zPosition = 0
+//        self.navigationController?.navigationBar.layer.zPosition = -1
+//        self.view.layer.zPosition = -2
+//        UIApplication.shared.keyWindow
+//        UIApplication.shared.
+//        navigationController?.navigationBar.addSubview(activityIndicatorView)
+        
     }
     
     // MARK: - Actions

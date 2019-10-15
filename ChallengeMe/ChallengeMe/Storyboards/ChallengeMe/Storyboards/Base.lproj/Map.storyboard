@@ -76,9 +76,18 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nue-kg-yRi" customClass="FTLinearActivityIndicator" customModule="FTLinearActivityIndicator">
+                                <rect key="frame" x="326" y="0.0" width="52" height="16"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="4qf-Lo-K1E"/>
+                                    <constraint firstAttribute="width" constant="52" id="Jsd-bc-E7t"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Nue-kg-yRi" secondAttribute="trailing" constant="36" id="8bh-Bs-lAY"/>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" id="A0Y-sI-j2U"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="trailing" secondItem="AeF-Hg-imL" secondAttribute="trailing" constant="40" id="BUa-eX-6c5"/>
                             <constraint firstItem="naY-v1-Y6J" firstAttribute="leading" secondItem="ynS-gZ-CEX" secondAttribute="trailing" constant="-84" id="KSk-AT-7Je"/>
@@ -86,6 +95,7 @@
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="trailing" secondItem="xJ3-kN-MLC" secondAttribute="trailing" constant="20" id="Npp-WO-mPU"/>
                             <constraint firstItem="xJ3-kN-MLC" firstAttribute="top" secondItem="AeF-Hg-imL" secondAttribute="bottom" constant="40" id="Nq8-j1-s8R"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="bottom" secondItem="xJ3-kN-MLC" secondAttribute="bottom" constant="20" id="aEG-8G-vSW"/>
+                            <constraint firstItem="Nue-kg-yRi" firstAttribute="top" secondItem="Igf-Pq-84R" secondAttribute="top" id="ceB-ec-C9N"/>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="trailing" secondItem="YFe-xm-WZz" secondAttribute="trailing" id="eWO-qt-NwS"/>
                             <constraint firstItem="9SA-s0-jDV" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" constant="20" id="iJp-Wy-Np6"/>
                             <constraint firstAttribute="bottom" secondItem="ynS-gZ-CEX" secondAttribute="bottom" id="meQ-8e-Ud2"/>
@@ -100,6 +110,7 @@
                     <navigationItem key="navigationItem" title="Challenges" id="9WU-Pk-4tV"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="Nue-kg-yRi" id="nFh-O6-8QU"/>
                         <outlet property="centerOnUserButton" destination="Hwx-Cv-uIB" id="gNo-ZS-QdE"/>
                         <outlet property="createChallengeButton" destination="AeF-Hg-imL" id="eV2-zZ-5r2"/>
                         <outlet property="mainMapGestureRecognizer" destination="ynS-gZ-CEX" id="0vh-9G-bBD"/>

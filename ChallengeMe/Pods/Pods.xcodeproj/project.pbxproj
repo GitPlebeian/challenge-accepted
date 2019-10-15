@@ -1,0 +1,609 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BB3A02D9199BF3A424EF1A9E2273B7D /* Pods-ChallengeMe-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9653B0BF6540E2889A089A190534CFF9 /* Pods-ChallengeMe-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4EB3CD9A005B260598A9EE02A089FA6C /* FTLinearActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1F44C5A763C3D8AB350AE55597B56C /* FTLinearActivityIndicator.swift */; };
+		53C160B6CEBF6C96DE00CB43ACE54867 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45BDF25839187F28E45CF53FC666574 /* UIApplication+LinearNetworkActivityIndicator.swift */; };
+		718D61E6EE7D5E0364715B5045D584DE /* FTLinearActivityIndicator-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD0B208CC00BCF16DAE6BDA6FC12612 /* FTLinearActivityIndicator-dummy.m */; };
+		8A54EFA5F2C28A0BD38E9936F215D74A /* FTLinearActivityIndicator-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A795BAEA4A38CDF2DE65F8C2DBD6B4B /* FTLinearActivityIndicator-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D9C052E5EEDB1961A372F2FF98E23BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		A8C31EFB70584B0B51C102FC7C837196 /* Pods-ChallengeMe-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 368A7E47272B7E0436652F425300C31A /* Pods-ChallengeMe-dummy.m */; };
+		C1DA0E732121F945C8615ECD6BF5A335 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312B988EF117AE4DE76A268D970131FE /* UIKit.framework */; };
+		D93AF45C21B214F12A3340223FA11BD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2BE0E5383AA88C3E959AD0877DE0A80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9FCDABE5ADE8BF907EAC3EAD3BCB7A02;
+			remoteInfo = FTLinearActivityIndicator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		033BF732048DB41F85179A93082BBFD6 /* FTLinearActivityIndicator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTLinearActivityIndicator.xcconfig; sourceTree = "<group>"; };
+		13DE98818E0BFC7FF0113D177A1C917D /* Pods-ChallengeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ChallengeMe.debug.xcconfig"; sourceTree = "<group>"; };
+		1BA0B602F89D401145187181D15F1697 /* Pods-ChallengeMe-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ChallengeMe-Info.plist"; sourceTree = "<group>"; };
+		2502DFB1042106CCB8FDD1E496864696 /* Pods-ChallengeMe-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ChallengeMe-acknowledgements.plist"; sourceTree = "<group>"; };
+		312B988EF117AE4DE76A268D970131FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		368A7E47272B7E0436652F425300C31A /* Pods-ChallengeMe-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ChallengeMe-dummy.m"; sourceTree = "<group>"; };
+		37C2E53BD09BFD0035D393EB22D93586 /* FTLinearActivityIndicator-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FTLinearActivityIndicator-Info.plist"; sourceTree = "<group>"; };
+		436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		5465F07D94136E103306CEC1328EAA18 /* Pods-ChallengeMe.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ChallengeMe.modulemap"; sourceTree = "<group>"; };
+		5F1F44C5A763C3D8AB350AE55597B56C /* FTLinearActivityIndicator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FTLinearActivityIndicator.swift; path = FTLinearActivityIndicator/Classes/FTLinearActivityIndicator.swift; sourceTree = "<group>"; };
+		8D59827BDC317D85B9DE84478BC3668A /* FTLinearActivityIndicator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTLinearActivityIndicator-prefix.pch"; sourceTree = "<group>"; };
+		91F79BD4C4F18EBE8A8C4077C05EBF4B /* Pods-ChallengeMe-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ChallengeMe-frameworks.sh"; sourceTree = "<group>"; };
+		9653B0BF6540E2889A089A190534CFF9 /* Pods-ChallengeMe-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ChallengeMe-umbrella.h"; sourceTree = "<group>"; };
+		9A795BAEA4A38CDF2DE65F8C2DBD6B4B /* FTLinearActivityIndicator-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTLinearActivityIndicator-umbrella.h"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A50D32E7378F92C0E7A5DA818A2F172B /* FTLinearActivityIndicator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FTLinearActivityIndicator.modulemap; sourceTree = "<group>"; };
+		BBE20CCA63EA4E4E8345F7FBD607937B /* FTLinearActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FTLinearActivityIndicator.framework; path = FTLinearActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D56F5E5BE93B17F278B8C41C36DE83CE /* Pods-ChallengeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ChallengeMe.release.xcconfig"; sourceTree = "<group>"; };
+		DF4A01BE9D1602BAB85E6A65CAF8CEC4 /* Pods_ChallengeMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ChallengeMe.framework; path = "Pods-ChallengeMe.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E45BDF25839187F28E45CF53FC666574 /* UIApplication+LinearNetworkActivityIndicator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIApplication+LinearNetworkActivityIndicator.swift"; path = "FTLinearActivityIndicator/Classes/UIApplication+LinearNetworkActivityIndicator.swift"; sourceTree = "<group>"; };
+		E49C9CCF2CEC68B5F342B143246A36A7 /* Pods-ChallengeMe-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ChallengeMe-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FFD0B208CC00BCF16DAE6BDA6FC12612 /* FTLinearActivityIndicator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTLinearActivityIndicator-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1EE7E0A22347F8F5232F6B37B2F7CE75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D93AF45C21B214F12A3340223FA11BD8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F54EE430D1942C47E95AC65C188BF218 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D9C052E5EEDB1961A372F2FF98E23BA /* Foundation.framework in Frameworks */,
+				C1DA0E732121F945C8615ECD6BF5A335 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07391A977CB497DEFFF1BEB3E0B21520 /* Pods-ChallengeMe */ = {
+			isa = PBXGroup;
+			children = (
+				5465F07D94136E103306CEC1328EAA18 /* Pods-ChallengeMe.modulemap */,
+				E49C9CCF2CEC68B5F342B143246A36A7 /* Pods-ChallengeMe-acknowledgements.markdown */,
+				2502DFB1042106CCB8FDD1E496864696 /* Pods-ChallengeMe-acknowledgements.plist */,
+				368A7E47272B7E0436652F425300C31A /* Pods-ChallengeMe-dummy.m */,
+				91F79BD4C4F18EBE8A8C4077C05EBF4B /* Pods-ChallengeMe-frameworks.sh */,
+				1BA0B602F89D401145187181D15F1697 /* Pods-ChallengeMe-Info.plist */,
+				9653B0BF6540E2889A089A190534CFF9 /* Pods-ChallengeMe-umbrella.h */,
+				13DE98818E0BFC7FF0113D177A1C917D /* Pods-ChallengeMe.debug.xcconfig */,
+				D56F5E5BE93B17F278B8C41C36DE83CE /* Pods-ChallengeMe.release.xcconfig */,
+			);
+			name = "Pods-ChallengeMe";
+			path = "Target Support Files/Pods-ChallengeMe";
+			sourceTree = "<group>";
+		};
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2983683FD097A93297E2F5D4E382B36 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5DB9F94957D10692F336A3DA70129871 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BBE20CCA63EA4E4E8345F7FBD607937B /* FTLinearActivityIndicator.framework */,
+				DF4A01BE9D1602BAB85E6A65CAF8CEC4 /* Pods_ChallengeMe.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		62705922B7A2CD6041E86EF433CEF9FF /* FTLinearActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				5F1F44C5A763C3D8AB350AE55597B56C /* FTLinearActivityIndicator.swift */,
+				E45BDF25839187F28E45CF53FC666574 /* UIApplication+LinearNetworkActivityIndicator.swift */,
+				7BA4395B3B8DE7C45A7600A6758B136D /* Support Files */,
+			);
+			name = FTLinearActivityIndicator;
+			path = FTLinearActivityIndicator;
+			sourceTree = "<group>";
+		};
+		6C338480D2CCCE0A4DCB9871396A08F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				62705922B7A2CD6041E86EF433CEF9FF /* FTLinearActivityIndicator */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7BA4395B3B8DE7C45A7600A6758B136D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A50D32E7378F92C0E7A5DA818A2F172B /* FTLinearActivityIndicator.modulemap */,
+				033BF732048DB41F85179A93082BBFD6 /* FTLinearActivityIndicator.xcconfig */,
+				FFD0B208CC00BCF16DAE6BDA6FC12612 /* FTLinearActivityIndicator-dummy.m */,
+				37C2E53BD09BFD0035D393EB22D93586 /* FTLinearActivityIndicator-Info.plist */,
+				8D59827BDC317D85B9DE84478BC3668A /* FTLinearActivityIndicator-prefix.pch */,
+				9A795BAEA4A38CDF2DE65F8C2DBD6B4B /* FTLinearActivityIndicator-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FTLinearActivityIndicator";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
+				6C338480D2CCCE0A4DCB9871396A08F5 /* Pods */,
+				5DB9F94957D10692F336A3DA70129871 /* Products */,
+				E16DCD39812BA8B4AE2282CFA40E895F /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		E16DCD39812BA8B4AE2282CFA40E895F /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				07391A977CB497DEFFF1BEB3E0B21520 /* Pods-ChallengeMe */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		E2983683FD097A93297E2F5D4E382B36 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */,
+				312B988EF117AE4DE76A268D970131FE /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		084ACC5D1761C26F52CA5E7069D89B08 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BB3A02D9199BF3A424EF1A9E2273B7D /* Pods-ChallengeMe-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916422E159F3CFF49F3D75154A171CE6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A54EFA5F2C28A0BD38E9936F215D74A /* FTLinearActivityIndicator-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		44C5EC20E6F88A5D6A2903771FF6C938 /* Pods-ChallengeMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16CA259830F2FA7C8C5A8599A90C1446 /* Build configuration list for PBXNativeTarget "Pods-ChallengeMe" */;
+			buildPhases = (
+				084ACC5D1761C26F52CA5E7069D89B08 /* Headers */,
+				88BED2E1F8B070C2CD01037E7610661B /* Sources */,
+				1EE7E0A22347F8F5232F6B37B2F7CE75 /* Frameworks */,
+				F7869A98CD3108A04D75B2B7F6A943F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				863BAD745CC7779EA076C1FBECB05825 /* PBXTargetDependency */,
+			);
+			name = "Pods-ChallengeMe";
+			productName = "Pods-ChallengeMe";
+			productReference = DF4A01BE9D1602BAB85E6A65CAF8CEC4 /* Pods_ChallengeMe.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9FCDABE5ADE8BF907EAC3EAD3BCB7A02 /* FTLinearActivityIndicator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B3B11FA3839ADCF9D1F2F6A293D581E /* Build configuration list for PBXNativeTarget "FTLinearActivityIndicator" */;
+			buildPhases = (
+				916422E159F3CFF49F3D75154A171CE6 /* Headers */,
+				A05F999D85BA1A9B050C131B5612CBC9 /* Sources */,
+				F54EE430D1942C47E95AC65C188BF218 /* Frameworks */,
+				D1C79660E1F10968F44E2E2824A825AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FTLinearActivityIndicator;
+			productName = FTLinearActivityIndicator;
+			productReference = BBE20CCA63EA4E4E8345F7FBD607937B /* FTLinearActivityIndicator.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 5DB9F94957D10692F336A3DA70129871 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9FCDABE5ADE8BF907EAC3EAD3BCB7A02 /* FTLinearActivityIndicator */,
+				44C5EC20E6F88A5D6A2903771FF6C938 /* Pods-ChallengeMe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D1C79660E1F10968F44E2E2824A825AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7869A98CD3108A04D75B2B7F6A943F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88BED2E1F8B070C2CD01037E7610661B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8C31EFB70584B0B51C102FC7C837196 /* Pods-ChallengeMe-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A05F999D85BA1A9B050C131B5612CBC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				718D61E6EE7D5E0364715B5045D584DE /* FTLinearActivityIndicator-dummy.m in Sources */,
+				4EB3CD9A005B260598A9EE02A089FA6C /* FTLinearActivityIndicator.swift in Sources */,
+				53C160B6CEBF6C96DE00CB43ACE54867 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		863BAD745CC7779EA076C1FBECB05825 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FTLinearActivityIndicator;
+			target = 9FCDABE5ADE8BF907EAC3EAD3BCB7A02 /* FTLinearActivityIndicator */;
+			targetProxy = F2BE0E5383AA88C3E959AD0877DE0A80 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		84000C38045C22801820994399630A76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 033BF732048DB41F85179A93082BBFD6 /* FTLinearActivityIndicator.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FTLinearActivityIndicator/FTLinearActivityIndicator-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FTLinearActivityIndicator/FTLinearActivityIndicator-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FTLinearActivityIndicator/FTLinearActivityIndicator.modulemap";
+				PRODUCT_MODULE_NAME = FTLinearActivityIndicator;
+				PRODUCT_NAME = FTLinearActivityIndicator;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		916E0404255105F480DC4950B7625F7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		9ED554C903538F579408437A372DB83A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D56F5E5BE93B17F278B8C41C36DE83CE /* Pods-ChallengeMe.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ChallengeMe/Pods-ChallengeMe-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ChallengeMe/Pods-ChallengeMe.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BACF05F1FB7E053478B2D3B95E511F70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13DE98818E0BFC7FF0113D177A1C917D /* Pods-ChallengeMe.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ChallengeMe/Pods-ChallengeMe-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ChallengeMe/Pods-ChallengeMe.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E9E6EFAAAFFDDF098D418D502683DC34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 033BF732048DB41F85179A93082BBFD6 /* FTLinearActivityIndicator.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FTLinearActivityIndicator/FTLinearActivityIndicator-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FTLinearActivityIndicator/FTLinearActivityIndicator-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FTLinearActivityIndicator/FTLinearActivityIndicator.modulemap";
+				PRODUCT_MODULE_NAME = FTLinearActivityIndicator;
+				PRODUCT_NAME = FTLinearActivityIndicator;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		16CA259830F2FA7C8C5A8599A90C1446 /* Build configuration list for PBXNativeTarget "Pods-ChallengeMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BACF05F1FB7E053478B2D3B95E511F70 /* Debug */,
+				9ED554C903538F579408437A372DB83A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916E0404255105F480DC4950B7625F7A /* Debug */,
+				8F17DC3A99F99FBAD606CE6963886315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6B3B11FA3839ADCF9D1F2F6A293D581E /* Build configuration list for PBXNativeTarget "FTLinearActivityIndicator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9E6EFAAAFFDDF098D418D502683DC34 /* Debug */,
+				84000C38045C22801820994399630A76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

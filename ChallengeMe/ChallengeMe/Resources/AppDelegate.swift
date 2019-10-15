@@ -11,12 +11,13 @@ import CoreData
 import UserNotifications
 import CloudKit
 import CoreLocation
+//import FTLinearActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let locationManager = CLLocationManager()
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                print("Good to go")
 //            }
 //        }
+//        UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
+        
         ChallengeController.shared.fetchChallenges(longitude: 50, latitude: 50) { (success) in
             if success {
                 print("Good")

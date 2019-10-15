@@ -1,0 +1,16 @@
+PODS:
+  - FTLinearActivityIndicator (1.3)
+
+DEPENDENCIES:
+  - FTLinearActivityIndicator
+
+SPEC REPOS:
+  trunk:
+    - FTLinearActivityIndicator
+
+SPEC CHECKSUMS:
+  FTLinearActivityIndicator: c89ccc2ef18279a155820c0e81f09ce2e90a2dc9
+
+PODFILE CHECKSUM: 81a3575cf983c18e5a80e5f223f06ccba9691282
+
+COCOAPODS: 1.8.3
