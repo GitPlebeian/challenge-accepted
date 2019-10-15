@@ -82,8 +82,10 @@ class CreateChallengeViewController: UIViewController {
         description.isEmpty == false,
             let challengeImage = selectedImage.image,
             let tagString = tagsTextField.text,
-            tagString.isEmpty == false else {
+            tagString.isEmpty == false,
+            challengeLocation != nil else {
                 feedback.notificationOccurred(.error)
+                presentEmptyFieldsAlert()
                 return
         }
         var hashtags: [String] {
@@ -136,6 +138,13 @@ class CreateChallengeViewController: UIViewController {
         descriptionTextView.backgroundColor = .white
         titleTextField.attributedPlaceholder = NSAttributedString(string: "Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         tagsTextField.attributedPlaceholder = NSAttributedString(string: "Tags: Seperate With Spaces", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+    }
+    
+    func presentEmptyFieldsAlert() {
+        let alert = UIAlertController(title: "Uh-Oh!", message: "Looks like you forgot something. Please ensure all fields are completed", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(ok)
+        present(alert, animated: true)
     }
     
     fileprivate func presentPhotoPickerController() {

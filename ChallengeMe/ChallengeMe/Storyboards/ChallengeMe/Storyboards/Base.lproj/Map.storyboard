@@ -21,18 +21,19 @@
                                 <gestureRecognizers/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwx-Cv-uIB">
-                                <rect key="frame" x="20" y="753" width="40" height="40"/>
+                                <rect key="frame" x="20" y="743" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="VXU-5o-yAc"/>
+                                    <constraint firstAttribute="height" constant="50" id="VXU-5o-yAc"/>
                                     <constraint firstAttribute="width" secondItem="Hwx-Cv-uIB" secondAttribute="height" multiplier="1:1" id="YUv-ls-q0N"/>
                                 </constraints>
+                                <state key="normal" title="Center"/>
                                 <connections>
                                     <action selector="centerOnUserButtonTapped:" destination="3A4-wH-37b" eventType="touchUpInside" id="10x-RJ-ElX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ3-kN-MLC">
-                                <rect key="frame" x="80" y="753" width="314" height="40"/>
+                                <rect key="frame" x="90" y="753" width="304" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Aj9-Oc-I92"/>
@@ -45,13 +46,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-Hg-imL">
-                                <rect key="frame" x="334" y="673" width="40" height="40"/>
+                                <rect key="frame" x="324" y="663" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="TUX-Uj-bn0"/>
+                                    <constraint firstAttribute="height" constant="50" id="TUX-Uj-bn0"/>
                                     <constraint firstAttribute="width" secondItem="AeF-Hg-imL" secondAttribute="height" multiplier="1:1" id="u8g-eA-RHM"/>
                                 </constraints>
-                                <state key="normal">
+                                <state key="normal" title="Create">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -59,7 +60,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naY-v1-Y6J">
-                                <rect key="frame" x="330" y="614" width="48" height="30"/>
+                                <rect key="frame" x="330" y="604" width="48" height="30"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <segue destination="RZM-t2-3Zd" kind="show" identifier="toSearchVC" id="g0A-BI-Md1"/>

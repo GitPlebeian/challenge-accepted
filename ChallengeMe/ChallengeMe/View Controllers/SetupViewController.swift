@@ -134,7 +134,7 @@ class SetupViewController: UIViewController {
             self.requestPhotoLibraryAuthorization(imagePicker: imagePicker)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            self.dismiss(animated: true)
+            imagePicker.dismiss(animated: true)
         }
         
         alertController.addAction(camera)

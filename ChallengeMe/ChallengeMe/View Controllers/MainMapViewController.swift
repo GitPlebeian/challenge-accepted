@@ -316,6 +316,7 @@ extension MainMapViewController: MKMapViewDelegate {
         view.canShowCallout = true
         view.calloutOffset = CGPoint(x: 0, y: -3)
         view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        view.rightCalloutAccessoryView?.tintColor = .black
         return view
     }
     
