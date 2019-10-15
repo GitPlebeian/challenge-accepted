@@ -23,7 +23,7 @@ class ActionButton: UIButton {
     func setupUI() {
         backgroundColor = .actionRed
         setTitleColor(.white, for: .normal)
-        addCornerRadius(self)
+        addCircularCorners(self)
         addShadow(self)
     }
 }

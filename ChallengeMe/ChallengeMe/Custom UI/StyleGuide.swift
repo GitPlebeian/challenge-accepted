@@ -25,8 +25,12 @@ extension UIColor {
 }
 
 extension UIView {
-    func addCornerRadius(_ button: UIButton) {
+    func addCircularCorners(_ button: UIButton) {
         layer.cornerRadius = button.frame.height / 2
+    }
+    
+    func addCornerRadius(_ radius: CGFloat = 4) {
+        layer.cornerRadius = radius
     }
     
     func addShadow(_ button: UIButton) {
