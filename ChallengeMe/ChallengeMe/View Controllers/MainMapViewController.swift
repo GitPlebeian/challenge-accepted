@@ -40,16 +40,7 @@ class MainMapViewController: UIViewController {
         checkLocationServices()
         updateViews()
         mainMapGestureRecognizer.delegate = self
-//        activityIndicatorView.startAnimating()
-//        let currentWindow: UIWindow? = UIApplication.shared.keyWindow
-//        currentWindow?.addSubview(myView)
-//        self.edgesForExtendedLayout = []
-//        activityIndicatorView.layer.zPosition = 0
-//        self.navigationController?.navigationBar.layer.zPosition = -1
-//        self.view.layer.zPosition = -2
-//        UIApplication.shared.keyWindow
-//        UIApplication.shared.
-//        navigationController?.navigationBar.addSubview(activityIndicatorView)
+        
         
     }
     
