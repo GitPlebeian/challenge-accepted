@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createdChallengesTableView.reloadData()
+        updateProfileInfo()
     }
 
     // MARK: - Custom Functions
@@ -35,6 +36,12 @@ class ProfileViewController: UIViewController {
         profileImageVIew.layer.cornerRadius = profileImageVIew.frame.height / 2
         nameLabel.text = currentUser.username
         profileImageVIew.image = currentUser.profilePhoto
+    }
+    
+    func updateProfileInfo() {
+        guard let currentUser = UserController.shared.currentUser else { return }
+        profileImageVIew.image = currentUser.profilePhoto
+        nameLabel.text = currentUser.username
     }
     
     // MARK: - Navigation

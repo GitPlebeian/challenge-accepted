@@ -31,7 +31,6 @@ class SearchChallengesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? SearchChallengesTableViewCell else { return UITableViewCell() }
-//        let challenge: Challenge
         if searchBar.text == "" {
             let challenge = ChallengeController.shared.challenges[indexPath.row]
             cell.challenge = challenge

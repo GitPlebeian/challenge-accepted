@@ -26,8 +26,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadViews()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        createToolBar()
     }
 
     // MARK: - Actions
@@ -75,6 +74,15 @@ class SettingsViewController: UIViewController {
         currentUserNameLabel.text = currentUser.username
         saveButton.isHidden = true
         nameTextField.isHidden = true
+    }
+    
+    func createToolBar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
+        toolBar.setItems([flexibleSpace, doneButton], animated: true)
+        nameTextField.inputAccessoryView = toolBar
     }
     
     @objc func dismissKeyboard() {
@@ -138,7 +146,7 @@ class SettingsViewController: UIViewController {
             self.requestPhotoLibraryAuthorization(imagePicker: imagePicker)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            self.dismiss(animated: true)
+            imagePicker.dismiss(animated: true)
         }
         
         alertController.addAction(camera)

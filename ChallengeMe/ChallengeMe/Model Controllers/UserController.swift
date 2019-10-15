@@ -19,7 +19,7 @@ class UserController {
     // MARK: - CRUD
     
     // create
-    func createCurrentUser(username: String, completion: @escaping (Bool) -> Void) {
+    func createCurrentUser(username: String, profilePhoto: UIImage?, completion: @escaping (Bool) -> Void) {
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
@@ -30,7 +30,12 @@ class UserController {
             guard let recordID = recordID else {completion(false); return}
             let reference = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
             
-            let newUser = User(username: username, appleUserReference: reference, profilePhoto: UIImage(named: "d")!)
+            let newUser: User
+            if let profilePhoto = profilePhoto {
+                newUser = User(username: username, appleUserReference: reference, profilePhoto: profilePhoto)
+            } else {
+                newUser = User(username: username, appleUserReference: reference, profilePhoto: UIImage(named: "d"))
+            }
             let userRecord = CKRecord(user: newUser)
             self.publicDB.save(userRecord, completionHandler:  { (record, error) in
                 if let error = error {
