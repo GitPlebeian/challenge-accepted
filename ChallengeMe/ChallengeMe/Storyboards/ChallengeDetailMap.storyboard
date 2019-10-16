@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZSx-u9-kwd">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Ort-Dn-Ptj">
+            <objects>
+                <viewController id="ZSx-u9-kwd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7do-Un-Sle">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7zg-L7-aP9">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7zg-L7-aP9" firstAttribute="trailing" secondItem="C02-52-X9U" secondAttribute="trailing" id="0eY-Zg-SmU"/>
+                            <constraint firstItem="7zg-L7-aP9" firstAttribute="top" secondItem="C02-52-X9U" secondAttribute="top" id="Mib-xF-FAS"/>
+                            <constraint firstAttribute="bottom" secondItem="7zg-L7-aP9" secondAttribute="bottom" id="nsW-gd-RrH"/>
+                            <constraint firstItem="7zg-L7-aP9" firstAttribute="leading" secondItem="C02-52-X9U" secondAttribute="leading" id="wim-5s-iYc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="C02-52-X9U"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cY5-fl-Zfg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79.710144927536234" y="165.40178571428569"/>
+        </scene>
+    </scenes>
+</document>
