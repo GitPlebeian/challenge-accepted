@@ -28,15 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
         
-        ChallengeController.shared.fetchChallenges(longitude: 50, latitude: 50) { (success) in
-            if success {
-                print("Good")
-                print(ChallengeController.shared.challenges)
-            } else {
-                print("Bad")
-            }
-        }
-        
+//        ChallengeController.shared.fetchChallenges(longitude: 50, latitude: 50) { (success) in
+//            if success {
+//                print("Good")
+//                print(ChallengeController.shared.challenges)
+//            } else {
+//                print("Bad")
+//            }
+//        }
+//
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { (userDidAllow, error) in
             if let error = error {
@@ -91,11 +91,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let location = locationManager.location?.coordinate {
-            ChallengeController.shared.fetchChallenges(longitude: location.longitude, latitude: location.latitude) { (success) in
-                if success {
-                    print("Received remote notification and fetched challenges")
-                }
-            }
+//            ChallengeController.shared.fetchChallenges(longitude: location.longitude, latitude: location.latitude) { (success) in
+//                if success {
+//                    print("Received remote notification and fetched challenges")
+//                }
+//            }
         }
     }
     

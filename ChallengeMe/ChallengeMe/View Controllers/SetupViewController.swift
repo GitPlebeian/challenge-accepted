@@ -81,8 +81,6 @@ class SetupViewController: UIViewController {
                         let viewController = mainTabBarStoryboard.instantiateViewController(withIdentifier: "mainTabBar")
                         viewController.modalPresentationStyle = .fullScreen
                         self.present(viewController, animated: true, completion: nil)
-                        UserController.shared.fetchSavedChallenge { (_) in
-                        }
                     } else {
                         self.setUserStackView.isHidden = false
                         self.uploadPhotoButton.isHidden = false

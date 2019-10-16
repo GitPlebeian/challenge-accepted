@@ -16,18 +16,45 @@ class SavedChallengesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Accepted Challenges"
+        NotificationCenter.default.addObserver(self, selector: #selector(userUpdatedSavedChallenge), name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        let feedback = UINotificationFeedbackGenerator()
+        feedback.prepare()
         UserController.shared.fetchSavedChallenge { (success) in
             DispatchQueue.main.async {
                 if success {
+                    feedback.notificationOccurred(.success)
                     self.tableView.reloadData()
+                } else {
+                    feedback.notificationOccurred(.error)
+                    self.presentBasicAlert(title: "Error", message: "Could not get save challenges, please try again later")
                 }
             }
         }
+    }
+    
+    // MARK: - Custom Functions
+    
+    @objc func userUpdatedSavedChallenge() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func presentBasicAlert(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
     
     // MARK: - TableView Delegate and DataSource
@@ -54,6 +81,9 @@ class SavedChallengesTableViewController: UITableViewController {
                     if success {
                         feedback.notificationOccurred(.success)
                         tableView.deleteRows(at: [indexPath], with: .fade)
+                        let challengeDataDict:[String: Challenge] = ["challenge": challenge]
+                        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil, userInfo: challengeDataDict)
                     } else {
                         feedback.notificationOccurred(.error)
                     }

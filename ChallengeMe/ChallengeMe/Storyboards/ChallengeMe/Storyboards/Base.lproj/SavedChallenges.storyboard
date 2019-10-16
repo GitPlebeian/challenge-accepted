@@ -99,7 +99,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="naV-Z2-N5L">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="B9m-7e-BXL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="B9m-7e-BXL">
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="uSc-dR-cW4" id="g4B-lQ-R2i"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Pe-LV-XRG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

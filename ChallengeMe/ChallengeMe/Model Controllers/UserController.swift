@@ -210,10 +210,23 @@ class UserController {
             guard let challengeRecords = challengeRecords else {
                 return
             }
-            let challenges = challengeRecords.compactMap({Challenge(record: $0)})
-            currentUser.createdChallenges = challenges
+            let createdChallenges = challengeRecords.compactMap({Challenge(record: $0)})
+            currentUser.createdChallenges = createdChallenges
         }
     }
+    
+    func assignCreatedChallenges() {
+        guard let currentUser = currentUser else {return}
+        for challenge in ChallengeController.shared.challenges {
+            for createdChallenge in currentUser.createdChallenges {
+                if challenge == createdChallenge {
+                    let indexOfCreatedChallenge = currentUser.createdChallenges.firstIndex(of: createdChallenge)!
+                    currentUser.createdChallenges[indexOfCreatedChallenge] = challenge
+                }
+            }
+        }
+    }
+    
     // Delete Created Challenge - Removes from all users.
     
     func deleteCreatedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {

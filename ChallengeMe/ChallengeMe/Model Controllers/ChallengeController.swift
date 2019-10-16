@@ -59,6 +59,8 @@ class ChallengeController {
     // Add User Who Saved
     func toggleSavedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
+        let challengeDictionary: [String: Challenge] = ["challenge": challenge]
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil, userInfo: challengeDictionary)
         
         var userExists = false
         for reference in challenge.usersWhoSavedReferences {
@@ -69,6 +71,9 @@ class ChallengeController {
         if userExists {
             userUnSavedChallenge(challenge: challenge) { (success) in
                 if success {
+                    let challengeDataDict:[String: Challenge] = ["challenge": challenge]
+                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil, userInfo: challengeDataDict)
                     completion(true)
                     return
                 } else {
@@ -79,6 +84,9 @@ class ChallengeController {
         } else {
             userSavedChallenge(challenge: challenge) { (success) in
                 if success {
+                    let challengeDataDict:[String: Challenge] = ["challenge": challenge]
+                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForSaveKey), object: nil, userInfo: challengeDataDict)
                     completion(true)
                     return
                 } else {
@@ -210,8 +218,19 @@ class ChallengeController {
             }
             let challenges = records.compactMap({Challenge(record: $0)})
             self.challenges = challenges
+            UserController.shared.assignCreatedChallenges()
             completion(true)
         }
+    }
+    
+    func didUserSaveChallenge(challenge: Challenge) -> Bool {
+        guard let user = UserController.shared.currentUser else {return false}
+        for userWhoSaved in challenge.usersWhoSavedReferences {
+            if userWhoSaved.recordID == user.recordID {
+                return true
+            }
+        }
+        return false
     }
     
     // Delete Challenges

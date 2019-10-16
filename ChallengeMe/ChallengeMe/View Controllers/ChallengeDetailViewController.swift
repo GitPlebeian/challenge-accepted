@@ -20,12 +20,20 @@ class ChallengeDetailViewController: UIViewController {
     @IBOutlet weak var showOnMapButton: UIButton!
     
     // MARK: - Properties
-    var challenge: Challenge?
+    var challenge: Challenge? {
+        didSet {
+            updateSaveButtonForChallenge()
+        }
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loadViews()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(enableSaveChallengeButtonForSave), name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForSaveKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enableSaveChallengeButtonForUnsave), name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(disableSaveChallengeButton), name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil)
     }
     
     // MARK: - Actions
@@ -70,6 +78,62 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
+    
+    func updateSaveButtonForChallenge() {
+        loadViewIfNeeded()
+        guard let challenge = challenge else {return}
+        if ChallengeController.shared.didUserSaveChallenge(challenge: challenge) {
+            self.acceptChallengeButton.setTitle("Unsave", for: .normal)
+        } else {
+            self.acceptChallengeButton.setTitle("Save", for: .normal)
+        }
+    }
+    
+    @objc func enableSaveChallengeButtonForUnsave(notification: NSNotification) {
+        DispatchQueue.main.async {
+            guard let challenge = self.challenge,
+            let notificationChallenge = notification.userInfo!["challenge"]! as? Challenge else {return}
+            if notificationChallenge == challenge {
+                self.acceptChallengeButton.isEnabled = true
+                self.acceptChallengeButton.setTitle("Save", for: .normal)
+                self.acceptChallengeButton.isHidden = false
+            }
+        }
+    }
+    
+    @objc func enableSaveChallengeButtonForSave(notification: NSNotification) {
+        DispatchQueue.main.async {
+            guard let challenge = self.challenge,
+            let notificationChallenge = notification.userInfo!["challenge"]! as? Challenge else {return}
+            if notificationChallenge == challenge {
+                self.acceptChallengeButton.isEnabled = true
+                self.acceptChallengeButton.setTitle("Unsave", for: .normal)
+                self.acceptChallengeButton.isHidden = false
+            }
+        }
+    }
+    
+    @objc func disableSaveChallengeButton(notification: NSNotification) {
+        DispatchQueue.main.async {
+            guard let challenge = self.challenge,
+            let notificationChallenge = notification.userInfo!["challenge"]! as? Challenge else {return}
+            if notificationChallenge == challenge {
+                self.acceptChallengeButton.isEnabled = false
+            }
+        }
+    }
+    
+//    func updateSaveChallengeButtonLabel() {
+//        guard let currentUser = UserController.shared.currentUser,
+//        let challenge = challenge else {return}
+//
+//        for savedChallenge in currentUser.completedChallenges {
+//            if savedChallenge == challenge {
+//                acceptChallengeButton.titleLabel?.text = "Save Challenge"
+//            }
+//        }
+//    }
+    
     func loadViews() {
         guard let challenge = challenge else { return }
         challengeImageView.image = challenge.photo
@@ -119,6 +183,7 @@ class ChallengeDetailViewController: UIViewController {
 }
 
 // MARK: - Mail Delegate
+
 extension ChallengeDetailViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let error = error {

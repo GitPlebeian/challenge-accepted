@@ -34,6 +34,7 @@
 		869AD6AD23454F70003E2C42 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD6AC23454F70003E2C42 /* ProfileViewController.swift */; };
 		86D73FF023569177007C2035 /* ChallengeDetailMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */; };
 		86D73FF2235742A9007C2035 /* ChallengeDetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */; };
+		86D73FF42357568E007C2035 /* NotificationNameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D73FF32357568E007C2035 /* NotificationNameKeys.swift */; };
 		86E210E2234BA881001AE931 /* ChallengeHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E1234BA881001AE931 /* ChallengeHistory.storyboard */; };
 		86E210E4234BA890001AE931 /* CreatedChallenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */; };
 		86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */; };
@@ -85,6 +86,7 @@
 		869AD6AC23454F70003E2C42 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChallengeDetailMap.storyboard; sourceTree = "<group>"; };
 		86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailMapViewController.swift; sourceTree = "<group>"; };
+		86D73FF32357568E007C2035 /* NotificationNameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameKeys.swift; sourceTree = "<group>"; };
 		86E210E1234BA881001AE931 /* ChallengeHistory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChallengeHistory.storyboard; sourceTree = "<group>"; };
 		86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatedChallenges.storyboard; sourceTree = "<group>"; };
 		86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		8610FE94234B8D5900AB009D /* Helper Methods */ = {
 			isa = PBXGroup;
 			children = (
+				86D73FF32357568E007C2035 /* NotificationNameKeys.swift */,
 			);
 			path = "Helper Methods";
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				A5084224234E753000D5C4E9 /* SearchChallengesTableViewCell.swift in Sources */,
 				869AD69F234507B1003E2C42 /* MainMapViewController.swift in Sources */,
 				868D14352343B32500B7691B /* ChallengeController.swift in Sources */,
+				86D73FF42357568E007C2035 /* NotificationNameKeys.swift in Sources */,
 				868D14332343B31A00B7691B /* UserController.swift in Sources */,
 				865A78672347ABFD00FEC8EA /* MessagesTableViewController.swift in Sources */,
 				A5F1F9E9234BDEE30015894B /* MessageController.swift in Sources */,
