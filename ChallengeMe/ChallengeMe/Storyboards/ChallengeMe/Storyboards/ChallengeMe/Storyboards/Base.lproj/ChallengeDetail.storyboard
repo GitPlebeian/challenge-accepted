@@ -34,8 +34,8 @@
                                     <action selector="saveChallengeButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="GKR-9m-RFT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Id4-kw-L6Z">
-                                <rect key="frame" x="148" y="750" width="119" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Id4-kw-L6Z">
+                                <rect key="frame" x="147.5" y="760" width="119" height="30"/>
                                 <state key="normal" title="Report Challenge"/>
                                 <connections>
                                     <action selector="reportingButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="Hvl-WD-6JV"/>
@@ -75,6 +75,13 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59j-wM-AoL">
+                                <rect key="frame" x="41.5" y="703" width="331" height="30"/>
+                                <state key="normal" title="Show On Map"/>
+                                <connections>
+                                    <action selector="showOnMapButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="BVR-2B-W52"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -84,9 +91,12 @@
                             <constraint firstItem="hff-ps-jTO" firstAttribute="centerX" secondItem="c8b-A6-Dxb" secondAttribute="centerX" id="JaN-is-5G5"/>
                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="width" secondItem="c8b-A6-Dxb" secondAttribute="width" multiplier="0.8" id="SNY-mq-3YN"/>
                             <constraint firstItem="0dh-ml-4Vw" firstAttribute="width" secondItem="c8b-A6-Dxb" secondAttribute="width" multiplier="0.8" id="VP1-qG-gCk"/>
+                            <constraint firstItem="Id4-kw-L6Z" firstAttribute="top" secondItem="59j-wM-AoL" secondAttribute="bottom" constant="27" id="a4B-Kg-xm9"/>
                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="centerX" secondItem="c8b-A6-Dxb" secondAttribute="centerX" id="aFS-h9-IIX"/>
                             <constraint firstItem="Id4-kw-L6Z" firstAttribute="centerX" secondItem="c8b-A6-Dxb" secondAttribute="centerX" id="lbY-ip-6zM"/>
+                            <constraint firstItem="59j-wM-AoL" firstAttribute="centerX" secondItem="c8b-A6-Dxb" secondAttribute="centerX" id="qXA-Ri-8Gh"/>
                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="top" secondItem="0dh-ml-4Vw" secondAttribute="bottom" constant="64" id="rIq-rb-JBt"/>
+                            <constraint firstItem="59j-wM-AoL" firstAttribute="width" secondItem="c8b-A6-Dxb" secondAttribute="width" multiplier="0.8" id="rL5-UR-s8K"/>
                             <constraint firstItem="hff-ps-jTO" firstAttribute="top" secondItem="c8b-A6-Dxb" secondAttribute="top" constant="24" id="zKs-ap-X74"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c8b-A6-Dxb"/>
@@ -96,6 +106,7 @@
                         <outlet property="acceptChallengeButton" destination="aG1-Ad-zPT" id="LRp-1y-Q1v"/>
                         <outlet property="challengeDescription" destination="isK-Lr-PU1" id="VNK-On-YJd"/>
                         <outlet property="challengeImageView" destination="hff-ps-jTO" id="slt-mV-mlz"/>
+                        <outlet property="showOnMapButton" destination="59j-wM-AoL" id="gOv-tl-RN7"/>
                         <outlet property="tagsLabel" destination="VNc-at-McQ" id="itJ-61-Um8"/>
                         <outlet property="titleLabel" destination="DOx-2G-QF3" id="9Bi-h1-h3N"/>
                     </connections>

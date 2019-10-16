@@ -17,6 +17,7 @@ class ChallengeDetailViewController: UIViewController {
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var acceptChallengeButton: UIButton!
     @IBOutlet weak var challengeDescription: UILabel!
+    @IBOutlet weak var showOnMapButton: UIButton!
     
     // MARK: - Properties
     var challenge: Challenge?
@@ -28,6 +29,18 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    @IBAction func showOnMapButtonTapped(_ sender: Any) {
+        guard let challenge = challenge else {return}
+        
+        let challengeDetailMapStoryboard = UIStoryboard(name: "ChallengeDetailMap", bundle: nil)
+        guard let challengeDetailMapViewController = challengeDetailMapStoryboard.instantiateViewController(withIdentifier: "challengeDetailMap") as? ChallengeDetailMapViewController else {return}
+        challengeDetailMapViewController.challenge = challenge
+        
+        challengeDetailMapViewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(challengeDetailMapViewController, animated: true)
+    }
+    
     @IBAction func saveChallengeButtonTapped(_ sender: Any) {
         guard let challenge = challenge else {return}
         let feedback = UINotificationFeedbackGenerator()

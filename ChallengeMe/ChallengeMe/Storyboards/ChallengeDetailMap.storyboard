@@ -7,31 +7,51 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Challenge Detail Map View Controller-->
         <scene sceneID="Ort-Dn-Ptj">
             <objects>
-                <viewController id="ZSx-u9-kwd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="challengeDetailMap" id="ZSx-u9-kwd" customClass="ChallengeDetailMapViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7do-Un-Sle">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7zg-L7-aP9">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWk-l8-npC">
+                                <rect key="frame" x="41.5" y="797" width="331" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="YiL-ir-VTC"/>
+                                </constraints>
+                                <state key="normal" title="Get Directions">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="getDirectionsButtonTapped:" destination="ZSx-u9-kwd" eventType="touchUpInside" id="HU4-3T-yD9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="7zg-L7-aP9" firstAttribute="trailing" secondItem="C02-52-X9U" secondAttribute="trailing" id="0eY-Zg-SmU"/>
-                            <constraint firstItem="7zg-L7-aP9" firstAttribute="top" secondItem="C02-52-X9U" secondAttribute="top" id="Mib-xF-FAS"/>
+                            <constraint firstItem="7zg-L7-aP9" firstAttribute="top" secondItem="7do-Un-Sle" secondAttribute="top" id="DyD-ml-YJM"/>
+                            <constraint firstItem="C02-52-X9U" firstAttribute="bottom" secondItem="wWk-l8-npC" secondAttribute="bottom" constant="20" id="HOK-5L-b5x"/>
+                            <constraint firstItem="wWk-l8-npC" firstAttribute="centerX" secondItem="C02-52-X9U" secondAttribute="centerX" id="dhI-yJ-GUV"/>
+                            <constraint firstItem="wWk-l8-npC" firstAttribute="width" secondItem="C02-52-X9U" secondAttribute="width" multiplier="0.8" id="fWM-3S-7to"/>
                             <constraint firstAttribute="bottom" secondItem="7zg-L7-aP9" secondAttribute="bottom" id="nsW-gd-RrH"/>
                             <constraint firstItem="7zg-L7-aP9" firstAttribute="leading" secondItem="C02-52-X9U" secondAttribute="leading" id="wim-5s-iYc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C02-52-X9U"/>
                     </view>
+                    <connections>
+                        <outlet property="getDirectionsButton" destination="wWk-l8-npC" id="F2b-8s-pDE"/>
+                        <outlet property="map" destination="7zg-L7-aP9" id="BHe-ni-uMU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cY5-fl-Zfg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79.710144927536234" y="165.40178571428569"/>
+            <point key="canvasLocation" x="79.710144927536234" y="164.73214285714286"/>
         </scene>
     </scenes>
 </document>

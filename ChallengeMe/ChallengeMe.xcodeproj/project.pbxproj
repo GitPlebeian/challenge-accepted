@@ -33,6 +33,7 @@
 		869AD6AB23454F3D003E2C42 /* CreateChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */; };
 		869AD6AD23454F70003E2C42 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869AD6AC23454F70003E2C42 /* ProfileViewController.swift */; };
 		86D73FF023569177007C2035 /* ChallengeDetailMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */; };
+		86D73FF2235742A9007C2035 /* ChallengeDetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */; };
 		86E210E2234BA881001AE931 /* ChallengeHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E1234BA881001AE931 /* ChallengeHistory.storyboard */; };
 		86E210E4234BA890001AE931 /* CreatedChallenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */; };
 		86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */; };
@@ -83,6 +84,7 @@
 		869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeViewController.swift; sourceTree = "<group>"; };
 		869AD6AC23454F70003E2C42 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChallengeDetailMap.storyboard; sourceTree = "<group>"; };
+		86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailMapViewController.swift; sourceTree = "<group>"; };
 		86E210E1234BA881001AE931 /* ChallengeHistory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChallengeHistory.storyboard; sourceTree = "<group>"; };
 		86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatedChallenges.storyboard; sourceTree = "<group>"; };
 		86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */,
 				86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */,
 				8699DB84234CE5F700CE3E27 /* SetupViewController.swift */,
+				86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				A5084220234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift in Sources */,
 				868D14152343B25800B7691B /* SceneDelegate.swift in Sources */,
 				A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */,
+				86D73FF2235742A9007C2035 /* ChallengeDetailMapViewController.swift in Sources */,
 				86E210E8234BAA14001AE931 /* SavedChallengesTableViewController.swift in Sources */,
 				A58BABF42350D96C00A0AF9D /* SettingsViewController.swift in Sources */,
 				868D14312343B2FD00B7691B /* Challenge.swift in Sources */,
