@@ -16,15 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hff-ps-jTO">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hff-ps-jTO">
                                 <rect key="frame" x="20.5" y="68" width="373" height="190"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="190" id="yTL-UU-2eE"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aG1-Ad-zPT">
-                                <rect key="frame" x="293.5" y="240" width="65" height="30"/>
+                                <rect key="frame" x="268.5" y="240" width="100" height="40"/>
                                 <color key="backgroundColor" name="actionRed"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3x9-t2-Ja7"/>
+                                    <constraint firstAttribute="width" constant="100" id="puD-CV-mNK"/>
+                                </constraints>
                                 <state key="normal" title="  Accept  ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -100,7 +104,7 @@
                             <constraint firstItem="0dh-ml-4Vw" firstAttribute="width" secondItem="c8b-A6-Dxb" secondAttribute="width" multiplier="0.8" id="VP1-qG-gCk"/>
                             <constraint firstItem="Id4-kw-L6Z" firstAttribute="top" secondItem="59j-wM-AoL" secondAttribute="bottom" constant="27" id="a4B-Kg-xm9"/>
                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="centerX" secondItem="c8b-A6-Dxb" secondAttribute="centerX" id="aFS-h9-IIX"/>
-                            <constraint firstItem="aG1-Ad-zPT" firstAttribute="leading" secondItem="hff-ps-jTO" secondAttribute="trailing" constant="-100" id="bwh-Ws-sGo"/>
+                            <constraint firstItem="aG1-Ad-zPT" firstAttribute="leading" secondItem="hff-ps-jTO" secondAttribute="trailing" constant="-125" id="bwh-Ws-sGo"/>
                             <constraint firstItem="hff-ps-jTO" firstAttribute="width" secondItem="c8b-A6-Dxb" secondAttribute="width" multiplier="0.9" id="cnD-zk-Rhw"/>
                             <constraint firstItem="Id4-kw-L6Z" firstAttribute="centerX" secondItem="c8b-A6-Dxb" secondAttribute="centerX" id="lbY-ip-6zM"/>
                             <constraint firstItem="59j-wM-AoL" firstAttribute="centerX" secondItem="c8b-A6-Dxb" secondAttribute="centerX" id="qXA-Ri-8Gh"/>
