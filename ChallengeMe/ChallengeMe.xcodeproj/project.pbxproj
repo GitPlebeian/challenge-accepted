@@ -34,7 +34,6 @@
 		86D73FF023569177007C2035 /* ChallengeDetailMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */; };
 		86D73FF2235742A9007C2035 /* ChallengeDetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */; };
 		86D73FF42357568E007C2035 /* NotificationNameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D73FF32357568E007C2035 /* NotificationNameKeys.swift */; };
-		86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */; };
 		86E210E8234BAA14001AE931 /* SavedChallengesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */; };
 		86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */; };
 		A5084220234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */; };
@@ -80,7 +79,6 @@
 		86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChallengeDetailMap.storyboard; sourceTree = "<group>"; };
 		86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailMapViewController.swift; sourceTree = "<group>"; };
 		86D73FF32357568E007C2035 /* NotificationNameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameKeys.swift; sourceTree = "<group>"; };
-		86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesViewController.swift; sourceTree = "<group>"; };
 		86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChallengesTableViewController.swift; sourceTree = "<group>"; };
 		86E210EA234BCE51001AE931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/ChallengeMe/Storyboards/Base.lproj/ChallengeDetail.storyboard; sourceTree = "<group>"; };
 		A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesTableViewCell.swift; sourceTree = "<group>"; };
@@ -110,12 +108,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8610FE94234B8D5900AB009D /* Helper Methods */ = {
+		8610FE94234B8D5900AB009D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				86D73FF32357568E007C2035 /* NotificationNameKeys.swift */,
 			);
-			path = "Helper Methods";
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		865A7860234790B900FEC8EA /* Navigation View Controllers */ = {
@@ -153,15 +151,13 @@
 			path = "Search Challenges";
 			sourceTree = "<group>";
 		};
-		868227602358A10300E2041D /* Create(d) Challenge */ = {
+		868227602358A10300E2041D /* Create Challenge */ = {
 			isa = PBXGroup;
 			children = (
 				869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */,
 				A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */,
-				A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */,
-				86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */,
 			);
-			path = "Create(d) Challenge";
+			path = "Create Challenge";
 			sourceTree = "<group>";
 		};
 		868227612358A12400E2041D /* Saved Challenges */ = {
@@ -177,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				869AD6AC23454F70003E2C42 /* ProfileViewController.swift */,
+				A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */,
 				A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */,
 			);
 			path = Profile;
@@ -218,7 +215,7 @@
 				868D142A2343B26900B7691B /* Models */,
 				868D142B2343B27400B7691B /* Model Controllers */,
 				A54628E82350F54100D04BFE /* Custom UI */,
-				8610FE94234B8D5900AB009D /* Helper Methods */,
+				8610FE94234B8D5900AB009D /* Helper */,
 				86624BF6235624A900D5F92B /* Extensions */,
 				868D142C2343B28E00B7691B /* Resources */,
 				868D141B2343B25800B7691B /* ChallengeMe.xcdatamodeld */,
@@ -232,7 +229,7 @@
 				865A7860234790B900FEC8EA /* Navigation View Controllers */,
 				869AD69E234507B1003E2C42 /* MainMapViewController.swift */,
 				8699DB84234CE5F700CE3E27 /* SetupViewController.swift */,
-				868227602358A10300E2041D /* Create(d) Challenge */,
+				868227602358A10300E2041D /* Create Challenge */,
 				8682275F2358A0E100E2041D /* Search Challenges */,
 				8682275E2358A0A900E2041D /* Challenge Detail */,
 				868227622358A13D00E2041D /* Profile */,
@@ -452,7 +449,6 @@
 				86624BF8235624CE00D5F92B /* UIApplicationExtension.swift in Sources */,
 				A5F1F9EB234BE9D50015894B /* SavedChallengesTableViewCell.swift in Sources */,
 				868D14132343B25800B7691B /* AppDelegate.swift in Sources */,
-				86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */,
 				A5FD520C234CF7E6006E171D /* ChallengeDetailViewController.swift in Sources */,
 				8699DB85234CE5F700CE3E27 /* SetupViewController.swift in Sources */,
 				A5084220234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift in Sources */,

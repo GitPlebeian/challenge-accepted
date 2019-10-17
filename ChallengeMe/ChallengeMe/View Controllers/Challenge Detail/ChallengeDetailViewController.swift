@@ -31,9 +31,13 @@ class ChallengeDetailViewController: UIViewController {
         super.viewDidLoad()
         loadViews()
         
+        // Changes Save button to "Unsave"
         NotificationCenter.default.addObserver(self, selector: #selector(enableSaveChallengeButtonForSave), name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForSaveKey), object: nil)
+        // Changes save button to "Save"
         NotificationCenter.default.addObserver(self, selector: #selector(enableSaveChallengeButtonForUnsave), name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil)
+        // Disables save button while network is waiting
         NotificationCenter.default.addObserver(self, selector: #selector(disableSaveChallengeButton), name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(popViewControllerIfChallengeDeleted(notification:)), name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil)
     }
     
     // MARK: - Actions
@@ -86,6 +90,16 @@ class ChallengeDetailViewController: UIViewController {
             self.acceptChallengeButton.setTitle("Unsave", for: .normal)
         } else {
             self.acceptChallengeButton.setTitle("Save", for: .normal)
+        }
+    }
+    
+    @objc func popViewControllerIfChallengeDeleted(notification: NSNotification) {
+        DispatchQueue.main.async {
+            guard let challenge = self.challenge,
+            let notificationChallenge = notification.userInfo!["challenge"]! as? Challenge else {return}
+            if notificationChallenge == challenge {
+                self.navigationController?.popViewController(animated: false)
+            }
         }
     }
     

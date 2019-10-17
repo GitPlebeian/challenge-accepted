@@ -256,5 +256,7 @@ class ChallengeController {
                 completion(true)
             }
         }
+        let challengeDictionary: [String: Challenge] = ["challenge": challenge]
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil, userInfo: challengeDictionary)
     }
 }
