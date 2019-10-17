@@ -18,11 +18,12 @@ struct FontKeys {
 }
 
 extension UIColor {
-    static let action = UIColor(named: "actionRed")
+    static let action = UIColor(named: "action")
     static let highlight = UIColor(named: "highlight")
     static let tabBar = UIColor(named: "tabBar")
     static let navBar = UIColor(named: "navBar")
     static let text = UIColor(named: "text")
+    static let buttonText = UIColor(named: "buttonText")
     static let background = UIColor(named: "background")
     static let challenge = UIColor(named: "challenge")
 }

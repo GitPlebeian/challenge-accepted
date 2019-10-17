@@ -43,6 +43,8 @@
 		A54628EC2350F6C800D04BFE /* StyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54628EB2350F6C800D04BFE /* StyleGuide.swift */; };
 		A56CE8FD2354D88000192CE1 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56CE8FC2354D88000192CE1 /* ActionButton.swift */; };
 		A58BABF42350D96C00A0AF9D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */; };
+		A5CCA4712358D2EF00AED748 /* ChallengeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CCA4702358D2EF00AED748 /* ChallengeLabel.swift */; };
+		A5CCA4732358E22900AED748 /* HighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CCA4722358E22900AED748 /* HighlightButton.swift */; };
 		A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */; };
 		A5F1F9EB234BE9D50015894B /* SavedChallengesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9EA234BE9D50015894B /* SavedChallengesTableViewCell.swift */; };
 		A5FD520C234CF7E6006E171D /* ChallengeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */; };
@@ -88,6 +90,8 @@
 		A54628EB2350F6C800D04BFE /* StyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuide.swift; sourceTree = "<group>"; };
 		A56CE8FC2354D88000192CE1 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A5CCA4702358D2EF00AED748 /* ChallengeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeLabel.swift; sourceTree = "<group>"; };
+		A5CCA4722358E22900AED748 /* HighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightButton.swift; sourceTree = "<group>"; };
 		A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeMapViewController.swift; sourceTree = "<group>"; };
 		A5F1F9EA234BE9D50015894B /* SavedChallengesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChallengesTableViewCell.swift; sourceTree = "<group>"; };
 		A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 			children = (
 				A54628EB2350F6C800D04BFE /* StyleGuide.swift */,
 				A56CE8FC2354D88000192CE1 /* ActionButton.swift */,
+				A5CCA4722358E22900AED748 /* HighlightButton.swift */,
+				A5CCA4702358D2EF00AED748 /* ChallengeLabel.swift */,
 			);
 			path = "Custom UI";
 			sourceTree = "<group>";
@@ -457,8 +463,10 @@
 				86E210E8234BAA14001AE931 /* SavedChallengesTableViewController.swift in Sources */,
 				A58BABF42350D96C00A0AF9D /* SettingsViewController.swift in Sources */,
 				868D14312343B2FD00B7691B /* Challenge.swift in Sources */,
+				A5CCA4732358E22900AED748 /* HighlightButton.swift in Sources */,
 				860629AE234E24BB005DA674 /* MapNavigationController.swift in Sources */,
 				A56CE8FD2354D88000192CE1 /* ActionButton.swift in Sources */,
+				A5CCA4712358D2EF00AED748 /* ChallengeLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

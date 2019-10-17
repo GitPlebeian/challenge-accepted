@@ -13,9 +13,9 @@ import Photos
 class SettingsViewController: UIViewController {
 
     // MARK: - Outlets
+    @IBOutlet weak var userView: UIView!
     @IBOutlet weak var currentUserNameLabel: UILabel!
     @IBOutlet weak var profilePhotoImageView: UIImageView!
-    @IBOutlet weak var editNameButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -34,16 +34,12 @@ class SettingsViewController: UIViewController {
         presentImagePicker()
     }
     @IBAction func editNameButtonTapped(_ sender: Any) {
-        editNameButton.isHidden = true
-        currentUserNameLabel.isHidden = true
         saveButton.isHidden = false
         nameTextField.isHidden = false
     }
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let newName = nameTextField.text else { return }
+        guard let newName = nameTextField.text, !newName.isEmpty else { return }
         currentUserNameLabel.text = newName
-        editNameButton.isHidden = false
-        currentUserNameLabel.isHidden = false
         saveButton.isHidden = true
         nameTextField.isHidden = true
         UserController.shared.currentUser?.username = newName
@@ -74,6 +70,13 @@ class SettingsViewController: UIViewController {
         currentUserNameLabel.text = currentUser.username
         saveButton.isHidden = true
         nameTextField.isHidden = true
+        userView.layer.shadowColor = UIColor.black.cgColor
+        userView.layer.shadowOpacity = 0.3
+        userView.layer.shadowOffset = CGSize(width: 2, height: 4)
+        userView.layer.shadowRadius = 3
+        userView.addCornerRadius(8)
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
     }
     
     func createToolBar() {

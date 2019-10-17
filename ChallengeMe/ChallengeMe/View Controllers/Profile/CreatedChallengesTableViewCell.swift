@@ -26,6 +26,7 @@ class CreatedChallengesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .challenge
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

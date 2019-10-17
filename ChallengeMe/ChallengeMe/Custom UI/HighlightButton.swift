@@ -1,14 +1,14 @@
 //
-//  ActionButton.swift
+//  HighlightButton.swift
 //  ChallengeMe
 //
-//  Created by Michael Moore on 10/14/19.
+//  Created by Michael Moore on 10/17/19.
 //  Copyright © 2019 Jax Tubbs. All rights reserved.
 //
 
 import UIKit
 
-class ActionButton: UIButton {
+class HighlightButton: UIButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,7 +21,7 @@ class ActionButton: UIButton {
     }
     
     func setupUI() {
-        backgroundColor = .action
+        backgroundColor = .highlight
         setTitleColor(.buttonText, for: .normal)
         addCircularCorners(self)
         addShadow(self)

@@ -11,6 +11,8 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     // MARK: - Outlets
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
+    @IBOutlet weak var userView: UIView!
     @IBOutlet weak var createdChallengesTableView: UITableView!
     @IBOutlet weak var profileImageVIew: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -36,6 +38,16 @@ class ProfileViewController: UIViewController {
         profileImageVIew.layer.cornerRadius = profileImageVIew.frame.height / 2
         nameLabel.text = currentUser.username
         profileImageVIew.image = currentUser.profilePhoto
+        userView.layer.shadowColor = UIColor.black.cgColor
+        userView.layer.shadowOpacity = 0.3
+        userView.layer.shadowOffset = CGSize(width: 2, height: 4)
+        userView.layer.shadowRadius = 3
+        userView.addCornerRadius(8)
+        createdChallengesTableView.tableFooterView = UIView()
+        createdChallengesTableView.backgroundColor = .background
+        settingsButton.tintColor = .white
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
     }
     
     func updateProfileInfo() {
