@@ -74,11 +74,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             let challenge = currentUser.createdChallenges[indexPath.row]
             UserController.shared.deleteCreatedChallenge(challenge: challenge) { (success) in
                 DispatchQueue.main.async {
-                    tableView.deleteRows(at: [indexPath], with: .fade)
                     if success {
-                        print("Deleted completed challenge")
-                    } else {
-                        print("Was unable to delete completed challenge")
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        let challengeDictionary: [String: Challenge] = ["challenge": challenge]
+                        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil, userInfo: challengeDictionary)
                     }
                 }
             }

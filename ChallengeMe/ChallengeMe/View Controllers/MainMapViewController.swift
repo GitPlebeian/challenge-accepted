@@ -21,7 +21,7 @@ class MainMapViewController: UIViewController {
     @IBOutlet weak var createChallengeButton: UIButton!
     @IBOutlet weak var mainMapGestureRecognizer: MKMapView!
     @IBOutlet weak var numberOfChallengesLabel: UILabel!
-    @IBOutlet weak var activityIndicatorView: FTLinearActivityIndicator!
+    @IBOutlet weak var activityIndicator: FTLinearActivityIndicator!
     
     // MARK: - Properties
     
@@ -41,7 +41,10 @@ class MainMapViewController: UIViewController {
         updateViews()
         mainMapGestureRecognizer.delegate = self
         
-        
+        // Will remove annotation after challenge was deleted.
+        NotificationCenter.default.addObserver(self, selector: #selector(removeAnnotationForChallengeDeletion(notification:)), name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil)
+        activityIndicator.layer.zPosition = 10
+        activityIndicator.startAnimating()
     }
     
     // MARK: - Actions
@@ -131,6 +134,18 @@ class MainMapViewController: UIViewController {
     }
     
     // MARK: - Custom Funcitons
+    
+    @objc func removeAnnotationForChallengeDeletion(notification: NSNotification) {
+        DispatchQueue.main.async {
+            for annotation in self.currentAnnotations {
+                guard let challenge = notification.userInfo!["challenge"] as? Challenge else {return}
+                if annotation.coordinate.latitude == challenge.latitude &&
+                    annotation.coordinate.longitude == challenge.longitude {
+                    self.map.removeAnnotation(annotation)
+                }
+            }
+        }
+    }
     
     func disableSearchThisAreaButton() {
         searchThisAreaButton.isEnabled = false
