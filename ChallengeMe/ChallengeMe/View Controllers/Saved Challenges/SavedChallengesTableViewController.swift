@@ -59,12 +59,12 @@ class SavedChallengesTableViewController: UITableViewController {
     
     // MARK: - TableView Delegate and DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserController.shared.currentUser?.completedChallenges.count ?? 0
+        return UserController.shared.currentUser?.savedChallenges.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? SavedChallengesTableViewCell,
-            let challenge = UserController.shared.currentUser?.completedChallenges[indexPath.row] else { return UITableViewCell() }
+            let challenge = UserController.shared.currentUser?.savedChallenges[indexPath.row] else { return UITableViewCell() }
         cell.challenge = challenge
         
         return cell
@@ -73,7 +73,7 @@ class SavedChallengesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let currentUser = UserController.shared.currentUser else { return }
-            let challenge = currentUser.completedChallenges[indexPath.row]
+            let challenge = currentUser.savedChallenges[indexPath.row]
             let feedback = UINotificationFeedbackGenerator()
             feedback.prepare()
             ChallengeController.shared.userUnSavedChallenge(challenge: challenge) { (success) in
@@ -97,7 +97,7 @@ class SavedChallengesTableViewController: UITableViewController {
         if segue.identifier == "toChallengeDetailVC" {
             guard let indexPath = tableView.indexPathForSelectedRow,
                 let destinationVC = segue.destination as? ChallengeDetailViewController else { return }
-            let challenge = UserController.shared.currentUser?.completedChallenges[indexPath.row]
+            let challenge = UserController.shared.currentUser?.savedChallenges[indexPath.row]
             destinationVC.challenge = challenge
         }
     }

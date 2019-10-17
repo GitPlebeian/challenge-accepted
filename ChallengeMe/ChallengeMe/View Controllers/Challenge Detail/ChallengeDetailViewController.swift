@@ -204,6 +204,8 @@ extension ChallengeDetailViewController: MFMailComposeViewControllerDelegate {
             break
         case .sent:
             break
+        @unknown default:
+            print("Unknown switch at \(#function)")
         }
         controller.dismiss(animated: true)
     }

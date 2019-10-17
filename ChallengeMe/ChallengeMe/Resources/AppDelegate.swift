@@ -77,26 +77,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.applicationIconBadgeNumber = 0
     }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        MessageController.shared.subscribeToRemoteNotifications { (error) in
-            if let error = error {
-                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-            }
-        }
-    }
-    
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Error registering to APNs: \(error): \(error.localizedDescription)")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if let location = locationManager.location?.coordinate {
-//            ChallengeController.shared.fetchChallenges(longitude: location.longitude, latitude: location.latitude) { (success) in
-//                if success {
-//                    print("Received remote notification and fetched challenges")
-//                }
-//            }
-        }
     }
     
     

@@ -20,6 +20,7 @@ class ChallengeController {
     
     // MARK: - Helper
     
+    // Called to help the search this area predicate make a square search area
     func getLongitudeMeasurementForLatitude(latitude: Double) -> Double {
         var latitude = latitude
         if latitude < 0 {
@@ -54,24 +55,38 @@ class ChallengeController {
         }
     }
     
+    
+    // Checks if user has saved the challenge
+    func didUserSaveChallenge(challenge: Challenge) -> Bool {
+        guard let user = UserController.shared.currentUser else {return false}
+        for userWhoSaved in challenge.usersWhoSavedReferences {
+            if userWhoSaved.recordID == user.recordID {
+                return true
+            }
+        }
+        return false
+    }
+    
     // MARK: - CRUD
     
-    // Add User Who Saved
+    // Adds a user to the challenge. The addition tells the challenge that it has been saved by a user
     func toggleSavedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
         let challengeDictionary: [String: Challenge] = ["challenge": challenge]
+        // Notification Center is used to diable the save button while the network is updating the record.
         NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil, userInfo: challengeDictionary)
-        
         var userExists = false
         for reference in challenge.usersWhoSavedReferences {
             if reference.recordID == currentUser.recordID {
                 userExists = true
             }
         }
+        // UN-saves the challenge if the user has already saved
         if userExists {
             userUnSavedChallenge(challenge: challenge) { (success) in
                 if success {
                     let challengeDataDict:[String: Challenge] = ["challenge": challenge]
+                    // Notifications enable the save/unsave button after the challenge has been updated
                     NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
                     NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil, userInfo: challengeDataDict)
                     completion(true)
@@ -82,9 +97,11 @@ class ChallengeController {
                 }
             }
         } else {
+            // Saves the challenge if the user has not saved
             userSavedChallenge(challenge: challenge) { (success) in
                 if success {
                     let challengeDataDict:[String: Challenge] = ["challenge": challenge]
+                    // Notifications enable the save/unsave button after the challenge has been updated
                     NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
                     NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForSaveKey), object: nil, userInfo: challengeDataDict)
                     completion(true)
@@ -97,6 +114,7 @@ class ChallengeController {
         }
     }
     
+    // Saves challenge for user
     func userSavedChallenge(challenge: Challenge,completion: @escaping (Bool) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
         let reference = CKRecord.Reference(recordID: currentUser.recordID, action: .none)
@@ -114,7 +132,7 @@ class ChallengeController {
                 completion(false)
                 return
             } else {
-                currentUser.completedChallenges.append(challenge)
+                currentUser.savedChallenges.append(challenge)
                 completion(true)
                 return
             }
@@ -122,7 +140,7 @@ class ChallengeController {
         publicDB.add(modificationOp)
     }
     
-    // Remove user who saved
+    // Removes saved challenge for user
     func userUnSavedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {return}
         var userWhoSavedReferenceToRemoveOptional: CKRecord.Reference?
@@ -147,8 +165,8 @@ class ChallengeController {
                 completion(false)
                 return
             } else {
-                if let indexToRemoveChallengeFromUser = currentUser.completedChallenges.firstIndex(of: challenge) {
-                    currentUser.completedChallenges.remove(at: indexToRemoveChallengeFromUser)
+                if let indexToRemoveChallengeFromUser = currentUser.savedChallenges.firstIndex(of: challenge) {
+                    currentUser.savedChallenges.remove(at: indexToRemoveChallengeFromUser)
                 }
                 completion(true)
                 return
@@ -157,7 +175,7 @@ class ChallengeController {
         publicDB.add(modificationOp)
     }
     
-    // Create Challenge
+    // Creates Challenge
     func createChallenge(title: String, description: String, longitude: Double, latitude: Double, tags: [String], photo: UIImage, completion: @escaping (Challenge?) -> Void) {
         guard let currentUser = UserController.shared.currentUser else {
             completion(nil)
@@ -198,7 +216,7 @@ class ChallengeController {
         }
     }
     
-    // Fetch Challenges
+    // Fetches Challenges based on a search area.
     func fetchChallenges(longitude: Double, latitude: Double, completion: @escaping (Bool) -> Void) {
         let predicate = NSPredicate(format: "(%K <= %@) && (%K >= %@) && (%K <= %@) && (%K >= %@)", argumentArray: [
             ChallengeConstants.longitudeKey, longitude + getLongitudeMeasurementForLatitude(latitude: latitude),
@@ -223,17 +241,7 @@ class ChallengeController {
         }
     }
     
-    func didUserSaveChallenge(challenge: Challenge) -> Bool {
-        guard let user = UserController.shared.currentUser else {return false}
-        for userWhoSaved in challenge.usersWhoSavedReferences {
-            if userWhoSaved.recordID == user.recordID {
-                return true
-            }
-        }
-        return false
-    }
-    
-    // Delete Challenges
+    // Deletes Challenge
     func deleteChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
         let challengeRecordID = challenge.recordID
         publicDB.delete(withRecordID: challengeRecordID) { (_, error) in

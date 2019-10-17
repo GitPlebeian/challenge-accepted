@@ -27,7 +27,6 @@ class CreateChallengeViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var tagsTextField: UITextField!
-    
 
     @IBOutlet weak var selectLocationButton: UIButton!
     @IBOutlet weak var createChallengeButton: UIButton!
@@ -50,6 +49,8 @@ class CreateChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        titleTextField.delegate = self
+        tagsTextField.delegate = self
     }
     
     // MARK: - Actions
@@ -193,6 +194,8 @@ class CreateChallengeViewController: UIViewController {
                 alert.addAction(settings)
                 alert.addAction(cancel)
                 self.present(alert, animated: true)
+            @unknown default:
+                print("Unknown switch at \(#function)")
             }
         }
     }
@@ -225,6 +228,8 @@ class CreateChallengeViewController: UIViewController {
             alert.addAction(settings)
             alert.addAction(cancel)
             self.present(alert, animated: true)
+        @unknown default:
+            print("Unknown switch at \(#function)")
         }
     }
 }
@@ -247,5 +252,12 @@ extension CreateChallengeViewController: UIImagePickerControllerDelegate, UINavi
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
+    }
+}
+
+extension CreateChallengeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

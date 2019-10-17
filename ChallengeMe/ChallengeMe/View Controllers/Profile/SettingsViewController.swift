@@ -187,6 +187,8 @@ class SettingsViewController: UIViewController {
                 alert.addAction(settings)
                 alert.addAction(cancel)
                 self.present(alert, animated: true)
+            @unknown default:
+                print("Unknown Switch at \(#function)")
             }
         }
     }
@@ -223,6 +225,8 @@ class SettingsViewController: UIViewController {
             alert.addAction(settings)
             alert.addAction(cancel)
             self.present(alert, animated: true)
+        @unknown default:
+            print("Unknown switch at \(#function)")
         }
     }
     
@@ -249,6 +253,8 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
             break
         case .sent:
             break
+        @unknown default:
+            print("Unknown switch at \(#function)")
         }
         controller.dismiss(animated: true)
     }

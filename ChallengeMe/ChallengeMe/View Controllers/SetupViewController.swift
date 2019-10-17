@@ -173,6 +173,8 @@ class SetupViewController: UIViewController {
                 alert.addAction(settings)
                 alert.addAction(cancel)
                 self.present(alert, animated: true)
+            @unknown default:
+                print("Unknown switch at \(#function)")
             }
         }
     }
@@ -209,6 +211,8 @@ class SetupViewController: UIViewController {
             alert.addAction(settings)
             alert.addAction(cancel)
             self.present(alert, animated: true)
+        @unknown default:
+            print("Unknown Switch")
         }
     }
 

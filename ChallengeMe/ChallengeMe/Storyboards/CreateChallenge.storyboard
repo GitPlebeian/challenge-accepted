@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fLH-rE-1tH">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fLH-rE-1tH">
                                 <rect key="frame" x="20.5" y="68" width="373" height="292"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write Challenge Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WAo-Xa-JXx">
@@ -29,6 +29,9 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cY1-ye-w4w">
                                         <rect key="frame" x="0.0" y="46" width="373" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="jTK-v0-jks"/>
+                                        </constraints>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -43,9 +46,11 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="cY1-ye-w4w" firstAttribute="width" secondItem="fLH-rE-1tH" secondAttribute="width" id="0h7-gr-p8C"/>
+                                    <constraint firstItem="q3k-Ta-MZB" firstAttribute="top" secondItem="cY1-ye-w4w" secondAttribute="bottom" constant="12" id="2g8-S7-JKL"/>
                                     <constraint firstItem="WAo-Xa-JXx" firstAttribute="width" secondItem="fLH-rE-1tH" secondAttribute="width" id="4lH-Uy-9cy"/>
                                     <constraint firstItem="WAo-Xa-JXx" firstAttribute="centerX" secondItem="fLH-rE-1tH" secondAttribute="centerX" id="5Zs-bW-ns5"/>
                                     <constraint firstItem="cY1-ye-w4w" firstAttribute="centerX" secondItem="fLH-rE-1tH" secondAttribute="centerX" id="EeQ-fW-NZ3"/>
+                                    <constraint firstItem="cY1-ye-w4w" firstAttribute="top" secondItem="WAo-Xa-JXx" secondAttribute="bottom" constant="12" id="dv0-8k-Ywa"/>
                                     <constraint firstItem="q3k-Ta-MZB" firstAttribute="centerX" secondItem="fLH-rE-1tH" secondAttribute="centerX" id="gjs-9v-6DC"/>
                                     <constraint firstItem="q3k-Ta-MZB" firstAttribute="width" secondItem="fLH-rE-1tH" secondAttribute="width" id="khE-89-JRR"/>
                                 </constraints>
@@ -111,6 +116,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="WAo-Xa-JXx" firstAttribute="top" secondItem="rNy-Ev-Gy3" secondAttribute="top" constant="24" id="40s-ih-i0N"/>
                             <constraint firstItem="fLH-rE-1tH" firstAttribute="width" secondItem="rNy-Ev-Gy3" secondAttribute="width" multiplier="0.9" id="4yT-nV-h0Q"/>
                             <constraint firstItem="dqU-13-agW" firstAttribute="top" secondItem="8j1-BT-TcK" secondAttribute="bottom" constant="124" id="Cn9-Rx-nrc"/>
                             <constraint firstItem="fLH-rE-1tH" firstAttribute="centerX" secondItem="rNy-Ev-Gy3" secondAttribute="centerX" id="Fkh-bW-FyV"/>

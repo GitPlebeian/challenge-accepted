@@ -11,7 +11,6 @@
 		860629AE234E24BB005DA674 /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860629AD234E24BB005DA674 /* MapNavigationController.swift */; };
 		865A7862234790FD00FEC8EA /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A7861234790FD00FEC8EA /* MainTabBarViewController.swift */; };
 		865A78652347ABAA00FEC8EA /* SavedChallenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 865A78632347ABAA00FEC8EA /* SavedChallenges.storyboard */; };
-		865A78672347ABFD00FEC8EA /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865A78662347ABFD00FEC8EA /* MessagesTableViewController.swift */; };
 		86624BF8235624CE00D5F92B /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86624BF7235624CE00D5F92B /* UIApplicationExtension.swift */; };
 		868D14132343B25800B7691B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14122343B25800B7691B /* AppDelegate.swift */; };
 		868D14152343B25800B7691B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D14142343B25800B7691B /* SceneDelegate.swift */; };
@@ -35,8 +34,6 @@
 		86D73FF023569177007C2035 /* ChallengeDetailMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */; };
 		86D73FF2235742A9007C2035 /* ChallengeDetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */; };
 		86D73FF42357568E007C2035 /* NotificationNameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D73FF32357568E007C2035 /* NotificationNameKeys.swift */; };
-		86E210E2234BA881001AE931 /* ChallengeHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E1234BA881001AE931 /* ChallengeHistory.storyboard */; };
-		86E210E4234BA890001AE931 /* CreatedChallenges.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */; };
 		86E210E6234BAA05001AE931 /* CreatedChallengesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */; };
 		86E210E8234BAA14001AE931 /* SavedChallengesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */; };
 		86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */; };
@@ -48,10 +45,7 @@
 		A56CE8FD2354D88000192CE1 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56CE8FC2354D88000192CE1 /* ActionButton.swift */; };
 		A58BABF42350D96C00A0AF9D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */; };
 		A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */; };
-		A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9E6234BD7DB0015894B /* Message.swift */; };
-		A5F1F9E9234BDEE30015894B /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9E8234BDEE30015894B /* MessageController.swift */; };
 		A5F1F9EB234BE9D50015894B /* SavedChallengesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1F9EA234BE9D50015894B /* SavedChallengesTableViewCell.swift */; };
-		A5FD520A234CEBAC006E171D /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD5209234CEBAC006E171D /* MessageDetailViewController.swift */; };
 		A5FD520C234CF7E6006E171D /* ChallengeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +54,6 @@
 		860629AD234E24BB005DA674 /* MapNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
 		865A7861234790FD00FEC8EA /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		865A78642347ABAA00FEC8EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/Base.lproj/SavedChallenges.storyboard; sourceTree = "<group>"; };
-		865A78662347ABFD00FEC8EA /* MessagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
 		86624BF7235624CE00D5F92B /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		868D140F2343B25800B7691B /* ChallengeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChallengeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		868D14122343B25800B7691B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,8 +80,6 @@
 		86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChallengeDetailMap.storyboard; sourceTree = "<group>"; };
 		86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailMapViewController.swift; sourceTree = "<group>"; };
 		86D73FF32357568E007C2035 /* NotificationNameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameKeys.swift; sourceTree = "<group>"; };
-		86E210E1234BA881001AE931 /* ChallengeHistory.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChallengeHistory.storyboard; sourceTree = "<group>"; };
-		86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatedChallenges.storyboard; sourceTree = "<group>"; };
 		86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedChallengesViewController.swift; sourceTree = "<group>"; };
 		86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChallengesTableViewController.swift; sourceTree = "<group>"; };
 		86E210EA234BCE51001AE931 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ChallengeMe/Storyboards/ChallengeMe/Storyboards/Base.lproj/ChallengeDetail.storyboard; sourceTree = "<group>"; };
@@ -100,10 +91,7 @@
 		A56CE8FC2354D88000192CE1 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChallengeMapViewController.swift; sourceTree = "<group>"; };
-		A5F1F9E6234BD7DB0015894B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		A5F1F9E8234BDEE30015894B /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		A5F1F9EA234BE9D50015894B /* SavedChallengesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedChallengesTableViewCell.swift; sourceTree = "<group>"; };
-		A5FD5209234CEBAC006E171D /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 		A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewController.swift; sourceTree = "<group>"; };
 		CDDC683B3EA5C4246DEB63E2 /* Pods-ChallengeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeMe.release.xcconfig"; path = "Target Support Files/Pods-ChallengeMe/Pods-ChallengeMe.release.xcconfig"; sourceTree = "<group>"; };
 		EFA526614FAFA27B3A2FB393 /* Pods-ChallengeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeMe.debug.xcconfig"; path = "Target Support Files/Pods-ChallengeMe/Pods-ChallengeMe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +135,62 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8682275E2358A0A900E2041D /* Challenge Detail */ = {
+			isa = PBXGroup;
+			children = (
+				A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */,
+				86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */,
+			);
+			path = "Challenge Detail";
+			sourceTree = "<group>";
+		};
+		8682275F2358A0E100E2041D /* Search Challenges */ = {
+			isa = PBXGroup;
+			children = (
+				A5084221234E750500D5C4E9 /* SearchChallengesTableViewController.swift */,
+				A5084223234E753000D5C4E9 /* SearchChallengesTableViewCell.swift */,
+			);
+			path = "Search Challenges";
+			sourceTree = "<group>";
+		};
+		868227602358A10300E2041D /* Create(d) Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */,
+				A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */,
+				A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */,
+				86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */,
+			);
+			path = "Create(d) Challenge";
+			sourceTree = "<group>";
+		};
+		868227612358A12400E2041D /* Saved Challenges */ = {
+			isa = PBXGroup;
+			children = (
+				A5F1F9EA234BE9D50015894B /* SavedChallengesTableViewCell.swift */,
+				86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */,
+			);
+			path = "Saved Challenges";
+			sourceTree = "<group>";
+		};
+		868227622358A13D00E2041D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				869AD6AC23454F70003E2C42 /* ProfileViewController.swift */,
+				A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		868227632358A32000E2041D /* Challenge Detail */ = {
+			isa = PBXGroup;
+			children = (
+				86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */,
+				86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */,
+			);
+			path = "Challenge Detail";
+			sourceTree = "<group>";
+		};
 		868D14062343B25800B7691B = {
 			isa = PBXGroup;
 			children = (
@@ -187,21 +231,12 @@
 			children = (
 				865A7860234790B900FEC8EA /* Navigation View Controllers */,
 				869AD69E234507B1003E2C42 /* MainMapViewController.swift */,
-				869AD6AA23454F3D003E2C42 /* CreateChallengeViewController.swift */,
-				A5084221234E750500D5C4E9 /* SearchChallengesTableViewController.swift */,
-				A5084223234E753000D5C4E9 /* SearchChallengesTableViewCell.swift */,
-				A5FD520B234CF7E6006E171D /* ChallengeDetailViewController.swift */,
-				A5EA586B234B88C500A243D9 /* CreateChallengeMapViewController.swift */,
-				869AD6AC23454F70003E2C42 /* ProfileViewController.swift */,
-				A58BABF32350D96C00A0AF9D /* SettingsViewController.swift */,
-				A508421F234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift */,
-				865A78662347ABFD00FEC8EA /* MessagesTableViewController.swift */,
-				A5FD5209234CEBAC006E171D /* MessageDetailViewController.swift */,
-				A5F1F9EA234BE9D50015894B /* SavedChallengesTableViewCell.swift */,
-				86E210E5234BAA05001AE931 /* CreatedChallengesViewController.swift */,
-				86E210E7234BAA14001AE931 /* SavedChallengesTableViewController.swift */,
 				8699DB84234CE5F700CE3E27 /* SetupViewController.swift */,
-				86D73FF1235742A9007C2035 /* ChallengeDetailMapViewController.swift */,
+				868227602358A10300E2041D /* Create(d) Challenge */,
+				8682275F2358A0E100E2041D /* Search Challenges */,
+				8682275E2358A0A900E2041D /* Challenge Detail */,
+				868227622358A13D00E2041D /* Profile */,
+				868227612358A12400E2041D /* Saved Challenges */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -211,7 +246,6 @@
 			children = (
 				868D142E2343B2F200B7691B /* User.swift */,
 				868D14302343B2FD00B7691B /* Challenge.swift */,
-				A5F1F9E6234BD7DB0015894B /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,7 +255,6 @@
 			children = (
 				868D14322343B31A00B7691B /* UserController.swift */,
 				868D14342343B32500B7691B /* ChallengeController.swift */,
-				A5F1F9E8234BDEE30015894B /* MessageController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -242,16 +275,13 @@
 			isa = PBXGroup;
 			children = (
 				8699DB86234CE97700CE3E27 /* TabBar.storyboard */,
-				86E210E9234BCE51001AE931 /* ChallengeDetail.storyboard */,
+				868227632358A32000E2041D /* Challenge Detail */,
 				868D14182343B25800B7691B /* Main.storyboard */,
 				869AD6A823454A46003E2C42 /* CreateChallenge.storyboard */,
 				869AD6A323454917003E2C42 /* Profile.storyboard */,
-				86E210E3234BA890001AE931 /* CreatedChallenges.storyboard */,
-				86E210E1234BA881001AE931 /* ChallengeHistory.storyboard */,
 				869AD6A0234548ED003E2C42 /* Map.storyboard */,
 				865A78632347ABAA00FEC8EA /* SavedChallenges.storyboard */,
 				868D14202343B25800B7691B /* LaunchScreen.storyboard */,
-				86D73FEF23569177007C2035 /* ChallengeDetailMap.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -350,12 +380,10 @@
 				868D141F2343B25800B7691B /* Assets.xcassets in Resources */,
 				865A78652347ABAA00FEC8EA /* SavedChallenges.storyboard in Resources */,
 				86E210EB234BCE51001AE931 /* ChallengeDetail.storyboard in Resources */,
-				86E210E4234BA890001AE931 /* CreatedChallenges.storyboard in Resources */,
 				868D141A2343B25800B7691B /* Main.storyboard in Resources */,
 				A54628EA2350F56800D04BFE /* Colors.xcassets in Resources */,
 				86D73FF023569177007C2035 /* ChallengeDetailMap.storyboard in Resources */,
 				869AD6A2234548ED003E2C42 /* Map.storyboard in Resources */,
-				86E210E2234BA881001AE931 /* ChallengeHistory.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,9 +441,6 @@
 				868D14352343B32500B7691B /* ChallengeController.swift in Sources */,
 				86D73FF42357568E007C2035 /* NotificationNameKeys.swift in Sources */,
 				868D14332343B31A00B7691B /* UserController.swift in Sources */,
-				865A78672347ABFD00FEC8EA /* MessagesTableViewController.swift in Sources */,
-				A5F1F9E9234BDEE30015894B /* MessageController.swift in Sources */,
-				A5FD520A234CEBAC006E171D /* MessageDetailViewController.swift in Sources */,
 				A5EA586C234B88C500A243D9 /* CreateChallengeMapViewController.swift in Sources */,
 				A54628EC2350F6C800D04BFE /* StyleGuide.swift in Sources */,
 				A5084222234E750500D5C4E9 /* SearchChallengesTableViewController.swift in Sources */,
@@ -432,7 +457,6 @@
 				8699DB85234CE5F700CE3E27 /* SetupViewController.swift in Sources */,
 				A5084220234E4E2600D5C4E9 /* CreatedChallengesTableViewCell.swift in Sources */,
 				868D14152343B25800B7691B /* SceneDelegate.swift in Sources */,
-				A5F1F9E7234BD7DB0015894B /* Message.swift in Sources */,
 				86D73FF2235742A9007C2035 /* ChallengeDetailMapViewController.swift in Sources */,
 				86E210E8234BAA14001AE931 /* SavedChallengesTableViewController.swift in Sources */,
 				A58BABF42350D96C00A0AF9D /* SettingsViewController.swift in Sources */,
