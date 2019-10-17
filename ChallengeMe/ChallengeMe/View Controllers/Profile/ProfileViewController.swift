@@ -35,7 +35,6 @@ class ProfileViewController: UIViewController {
     // MARK: - Custom Functions
     func updateViews() {
         guard let currentUser = UserController.shared.currentUser else { return }
-        profileImageVIew.layer.cornerRadius = profileImageVIew.frame.height / 2
         nameLabel.text = currentUser.username
         profileImageVIew.image = currentUser.profilePhoto
         userView.layer.shadowColor = UIColor.black.cgColor
@@ -48,6 +47,7 @@ class ProfileViewController: UIViewController {
         settingsButton.tintColor = .white
         navigationController?.navigationBar.barTintColor = .black
         tabBarController?.tabBar.barTintColor = .tabBar
+        view.backgroundColor = .background
     }
     
     func updateProfileInfo() {

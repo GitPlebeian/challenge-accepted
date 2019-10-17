@@ -15,13 +15,14 @@ class SavedChallengesTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Accepted Challenges"
+        updateViews()
         NotificationCenter.default.addObserver(self, selector: #selector(userUpdatedSavedChallenge), name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        
     }
     
     // MARK: - Actions
@@ -43,6 +44,14 @@ class SavedChallengesTableViewController: UITableViewController {
     }
     
     // MARK: - Custom Functions
+    func updateViews() {
+        title = "Accepted Challenges"
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .background
+    }
+    
     
     @objc func userUpdatedSavedChallenge() {
         DispatchQueue.main.async {

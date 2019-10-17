@@ -19,6 +19,8 @@ class SearchChallengesTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         searchBar.delegate = self
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
     }
 
     // MARK: - Table view data source

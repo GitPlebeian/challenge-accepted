@@ -18,12 +18,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7zg-L7-aP9">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWk-l8-npC">
-                                <rect key="frame" x="41.5" y="797" width="331" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWk-l8-npC" customClass="HighlightButton" customModule="ChallengeMe" customModuleProvider="target">
+                                <rect key="frame" x="158" y="812" width="98" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="YiL-ir-VTC"/>
-                                </constraints>
                                 <state key="normal" title="Get Directions">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -38,7 +35,6 @@
                             <constraint firstItem="7zg-L7-aP9" firstAttribute="top" secondItem="7do-Un-Sle" secondAttribute="top" id="DyD-ml-YJM"/>
                             <constraint firstItem="C02-52-X9U" firstAttribute="bottom" secondItem="wWk-l8-npC" secondAttribute="bottom" constant="20" id="HOK-5L-b5x"/>
                             <constraint firstItem="wWk-l8-npC" firstAttribute="centerX" secondItem="C02-52-X9U" secondAttribute="centerX" id="dhI-yJ-GUV"/>
-                            <constraint firstItem="wWk-l8-npC" firstAttribute="width" secondItem="C02-52-X9U" secondAttribute="width" multiplier="0.8" id="fWM-3S-7to"/>
                             <constraint firstAttribute="bottom" secondItem="7zg-L7-aP9" secondAttribute="bottom" id="nsW-gd-RrH"/>
                             <constraint firstItem="7zg-L7-aP9" firstAttribute="leading" secondItem="C02-52-X9U" secondAttribute="leading" id="wim-5s-iYc"/>
                         </constraints>

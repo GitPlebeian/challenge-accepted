@@ -181,6 +181,9 @@ class MainMapViewController: UIViewController {
         numberOfChallengesLabel.isHidden = true
         numberOfChallengesLabel.alpha = 0
         map.mapType = .standard
+        title = "Accepted Challenges"
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
     }
     
     func animateNumberOfChallenges() {

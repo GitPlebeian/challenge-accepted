@@ -77,6 +77,7 @@ class SettingsViewController: UIViewController {
         userView.addCornerRadius(8)
         navigationController?.navigationBar.barTintColor = .black
         tabBarController?.tabBar.barTintColor = .tabBar
+        view.backgroundColor = .background
     }
     
     func createToolBar() {

@@ -159,6 +159,9 @@ class ChallengeDetailViewController: UIViewController {
         tagsLabel.text = challenge.tags.joined(separator: " ")
         challengeDescription.text = challenge.description
         title = challenge.title
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
+        view.backgroundColor = .background
     }
     
     func presentReportAlert() {

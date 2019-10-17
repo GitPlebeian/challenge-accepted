@@ -103,6 +103,20 @@ class CreateChallengeViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
+    func createToolBar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
+        toolBar.setItems([flexibleSpace, doneButton], animated: true)
+        titleTextField.inputAccessoryView = toolBar
+        descriptionTextView.inputAccessoryView = toolBar
+        tagsTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func dismissKeyboard() {
+              view.endEditing(true)
+    }
     
     func createChallengeCompletion(challenge: Challenge?, feedback: UINotificationFeedbackGenerator) {
         DispatchQueue.main.async {
@@ -136,9 +150,14 @@ class CreateChallengeViewController: UIViewController {
         tagsTextField.layer.borderColor = UIColor.black.cgColor
         tagsTextField.layer.borderWidth = 1
         
-        descriptionTextView.backgroundColor = .white
+        descriptionTextView.backgroundColor = .background
         titleTextField.attributedPlaceholder = NSAttributedString(string: "Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         tagsTextField.attributedPlaceholder = NSAttributedString(string: "Tags: Seperate With Spaces", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
+        view.backgroundColor = .background
+        
     }
     
     func presentEmptyFieldsAlert() {

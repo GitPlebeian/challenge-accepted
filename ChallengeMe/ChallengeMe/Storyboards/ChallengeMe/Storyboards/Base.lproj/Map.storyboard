@@ -26,16 +26,16 @@
                                     <constraint firstAttribute="height" constant="50" id="VXU-5o-yAc"/>
                                     <constraint firstAttribute="width" secondItem="Hwx-Cv-uIB" secondAttribute="height" multiplier="1:1" id="YUv-ls-q0N"/>
                                 </constraints>
-                                <state key="normal" title="Center" image="centerLocation"/>
+                                <state key="normal" title="Center" image="centerLocationButtonIcon"/>
                                 <connections>
                                     <action selector="centerOnUserButtonTapped:" destination="3A4-wH-37b" eventType="touchUpInside" id="10x-RJ-ElX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJ3-kN-MLC">
-                                <rect key="frame" x="90" y="753" width="304" height="40"/>
+                                <rect key="frame" x="90" y="743" width="304" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Aj9-Oc-I92"/>
+                                    <constraint firstAttribute="height" constant="50" id="Aj9-Oc-I92"/>
                                 </constraints>
                                 <state key="normal" title="Search Area">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,12 +45,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeF-Hg-imL">
-                                <rect key="frame" x="324" y="663" width="50" height="50"/>
+                                <rect key="frame" x="330" y="653" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="TUX-Uj-bn0"/>
                                     <constraint firstAttribute="width" secondItem="AeF-Hg-imL" secondAttribute="height" multiplier="1:1" id="u8g-eA-RHM"/>
                                 </constraints>
-                                <state key="normal" image="createChallenge">
+                                <state key="normal" image="createChallengeButtonIcon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -58,8 +58,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naY-v1-Y6J">
-                                <rect key="frame" x="330" y="576" width="58" height="58"/>
-                                <state key="normal" image="searchChallenges"/>
+                                <rect key="frame" x="330" y="579" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="naY-v1-Y6J" secondAttribute="height" multiplier="1:1" id="0y1-RY-cu4"/>
+                                    <constraint firstAttribute="width" constant="50" id="6pl-WE-6Xa"/>
+                                </constraints>
+                                <state key="normal" image="searchChallengesButtonIcon"/>
                                 <connections>
                                     <segue destination="RZM-t2-3Zd" kind="show" identifier="toSearchVC" id="g0A-BI-Md1"/>
                                 </connections>
@@ -97,7 +101,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" id="A0Y-sI-j2U"/>
-                            <constraint firstItem="YFe-xm-WZz" firstAttribute="trailing" secondItem="AeF-Hg-imL" secondAttribute="trailing" constant="40" id="BUa-eX-6c5"/>
                             <constraint firstItem="naY-v1-Y6J" firstAttribute="leading" secondItem="ynS-gZ-CEX" secondAttribute="trailing" constant="-84" id="KSk-AT-7Je"/>
                             <constraint firstItem="Hwx-Cv-uIB" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" constant="20" id="MWk-6Q-HcV"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="trailing" secondItem="xJ3-kN-MLC" secondAttribute="trailing" constant="20" id="Npp-WO-mPU"/>
@@ -105,14 +108,15 @@
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="bottom" secondItem="xJ3-kN-MLC" secondAttribute="bottom" constant="20" id="aEG-8G-vSW"/>
                             <constraint firstItem="YFe-xm-WZz" firstAttribute="trailing" secondItem="VPH-z1-omc" secondAttribute="trailing" id="bWf-iO-dXV"/>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="trailing" secondItem="YFe-xm-WZz" secondAttribute="trailing" id="eWO-qt-NwS"/>
+                            <constraint firstItem="AeF-Hg-imL" firstAttribute="leading" secondItem="naY-v1-Y6J" secondAttribute="leading" id="fCs-0Z-nIy"/>
                             <constraint firstItem="9SA-s0-jDV" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" constant="20" id="iJp-Wy-Np6"/>
                             <constraint firstAttribute="bottom" secondItem="ynS-gZ-CEX" secondAttribute="bottom" id="meQ-8e-Ud2"/>
                             <constraint firstItem="VPH-z1-omc" firstAttribute="top" secondItem="YFe-xm-WZz" secondAttribute="top" id="noj-ko-q9p"/>
                             <constraint firstItem="9SA-s0-jDV" firstAttribute="top" secondItem="YFe-xm-WZz" secondAttribute="top" constant="20" id="od6-M3-YQj"/>
                             <constraint firstItem="ynS-gZ-CEX" firstAttribute="top" secondItem="Igf-Pq-84R" secondAttribute="top" id="pWN-0W-chc"/>
                             <constraint firstItem="VPH-z1-omc" firstAttribute="leading" secondItem="YFe-xm-WZz" secondAttribute="leading" id="tYF-uE-may"/>
-                            <constraint firstItem="YFe-xm-WZz" firstAttribute="bottom" secondItem="Hwx-Cv-uIB" secondAttribute="bottom" constant="20" id="vNA-zJ-Stk"/>
-                            <constraint firstItem="AeF-Hg-imL" firstAttribute="top" secondItem="naY-v1-Y6J" secondAttribute="bottom" constant="29" id="yQj-2e-2zG"/>
+                            <constraint firstItem="Hwx-Cv-uIB" firstAttribute="top" secondItem="xJ3-kN-MLC" secondAttribute="top" id="xRd-Fp-rlm"/>
+                            <constraint firstItem="AeF-Hg-imL" firstAttribute="top" secondItem="naY-v1-Y6J" secondAttribute="bottom" constant="24" id="yQj-2e-2zG"/>
                             <constraint firstItem="xJ3-kN-MLC" firstAttribute="leading" secondItem="Hwx-Cv-uIB" secondAttribute="trailing" constant="20" id="yZd-Fb-odm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YFe-xm-WZz"/>
@@ -252,8 +256,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="centerLocation" width="58" height="58"/>
-        <image name="createChallenge" width="57" height="56"/>
-        <image name="searchChallenges" width="58" height="58"/>
+        <image name="centerLocationButtonIcon" width="58" height="58"/>
+        <image name="createChallengeButtonIcon" width="57" height="56"/>
+        <image name="searchChallengesButtonIcon" width="58" height="58"/>
     </resources>
 </document>

@@ -16,7 +16,7 @@ class UserController {
     var currentUser: User?
     let publicDB = CKContainer.default().publicCloudDatabase
     
-    // MARK: - Hellper
+    // MARK: - Helper
     
     // Makes sure that every challenge is pointing to the same place in memeory and if not, it will swap values and make sure every challenge is pointing to the same place in memory
     func assignCreatedChallenges() {

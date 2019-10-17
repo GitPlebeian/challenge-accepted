@@ -20,6 +20,8 @@ class MapNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
     }
     
 

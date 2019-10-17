@@ -66,6 +66,8 @@ class SetupViewController: UIViewController {
         loadingDataActivityIndicator.startAnimating()
         profilePhotoImageView.isHidden = true
         uploadPhotoButton.isHidden = true
+        navigationController?.navigationBar.barTintColor = .black
+        tabBarController?.tabBar.barTintColor = .tabBar
     }
     
     func loadUser() {
