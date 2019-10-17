@@ -12,7 +12,7 @@ import UIKit
 
 	@objc public var hidesWhenStopped = true
 	
-	let duration = 1.5
+    let duration = 1.5
 	let leftGradientLayer = CAGradientLayer()
 	let rightGradientLayer = CAGradientLayer()
 	let leftAnimation = CABasicAnimation(keyPath: "position.x")
@@ -23,7 +23,7 @@ import UIKit
 		super.layoutSubviews()
 		
 		clipsToBounds = true
-		layer.cornerRadius = bounds.size.height * 0.5
+//		layer.cornerRadius = bounds.size.height * 0.5
 
 		if (hidesWhenStopped) {
 			isHidden = !animating
@@ -43,7 +43,7 @@ import UIKit
 		leftGradientLayer.endPoint = CGPoint(x: 1, y: 0)
 		leftGradientLayer.anchorPoint = CGPoint(x: 0, y: 0)
 		leftGradientLayer.frame = CGRect(x: 0, y: 0, width: bounds.size.width, height: bounds.size.height)
-		leftGradientLayer.cornerRadius = bounds.size.height * 0.5
+//		leftGradientLayer.cornerRadius = bounds.size.height * 0.5
 		leftGradientLayer.masksToBounds = true
 
 		leftAnimation.fromValue = -self.bounds.size.width
@@ -59,7 +59,7 @@ import UIKit
 		rightGradientLayer.endPoint = CGPoint(x: 0, y: 0)
 		rightGradientLayer.anchorPoint = CGPoint(x: 0, y: 0)
 		rightGradientLayer.frame = CGRect(x: bounds.size.width, y: 0, width: bounds.size.width, height: bounds.size.height)
-		rightGradientLayer.cornerRadius = bounds.size.height * 0.5
+//		rightGradientLayer.cornerRadius = bounds.size.height * 0.5
 		rightGradientLayer.masksToBounds = true
 
 		rightAnimation.fromValue = self.bounds.size.width
