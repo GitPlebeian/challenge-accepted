@@ -31,7 +31,6 @@ class MainMapViewController: UIViewController {
     var waitingForSearch = true
     var currentSearchArea: MKPolyline?
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -40,24 +39,12 @@ class MainMapViewController: UIViewController {
         checkLocationServices()
         updateViews()
         mainMapGestureRecognizer.delegate = self
-        
         // Will remove annotation after challenge was deleted.
         NotificationCenter.default.addObserver(self, selector: #selector(removeAnnotationForChallengeDeletion(notification:)), name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil)
-        activityIndicator.layer.zPosition = 10
         activityIndicator.startAnimating()
     }
     
     // MARK: - Actions
-    
-//    @IBAction func tappedOnMap(_ sender: UITapGestureRecognizer) {
-//        let location = sender.location(in: map)
-//        let coordinate = map.convert(location, toCoordinateFrom: map)
-//
-//        let longdon = MKPointAnnotation()
-//        longdon.title = "Bois"
-//        longdon.coordinate = coordinate
-//        map.addAnnotation(longdon)
-//    }
     
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         let createChallengeStoryboard = UIStoryboard(name: "CreateChallenge", bundle: nil)
@@ -73,7 +60,7 @@ class MainMapViewController: UIViewController {
         } else {
             return
         }
-        
+        numberOfChallengesLabel.isHidden = true
         if let searchArea = currentSearchArea {
             map.removeOverlay(searchArea)
         }
@@ -93,12 +80,13 @@ class MainMapViewController: UIViewController {
         let line = MKPolyline(coordinates: cordinateArray, count: 5)
         currentSearchArea = line
         map.addOverlay(line)
-        
+        self.activityIndicator.startAnimating()
         map.removeAnnotations(self.currentAnnotations)
         ChallengeController.shared.fetchChallenges(longitude: map.centerCoordinate.longitude, latitude: map.centerCoordinate.latitude) { (success) in
             DispatchQueue.main.async {
                 let feedback = UINotificationFeedbackGenerator()
                 if success {
+                    self.activityIndicator.stopAnimating()
                     feedback.notificationOccurred(.success)
                     self.waitingForSearch = false
                     self.enableSearchThisAreaButton()
@@ -137,18 +125,22 @@ class MainMapViewController: UIViewController {
     
     @objc func removeAnnotationForChallengeDeletion(notification: NSNotification) {
         DispatchQueue.main.async {
+            var index = 0
             for annotation in self.currentAnnotations {
                 guard let challenge = notification.userInfo!["challenge"] as? Challenge else {return}
                 if annotation.coordinate.latitude == challenge.latitude &&
                     annotation.coordinate.longitude == challenge.longitude {
+                    self.currentAnnotations.remove(at: index)
                     self.map.removeAnnotation(annotation)
                 }
+                index += 1
             }
         }
     }
     
     func disableSearchThisAreaButton() {
         searchThisAreaButton.isEnabled = false
+        waitingForSearch = true
         UIView.animate(withDuration: 0.2) {
             self.searchThisAreaButton.alpha = 0.5
         }
@@ -199,10 +191,12 @@ class MainMapViewController: UIViewController {
         UIView.animate(withDuration: 0.2, animations: {
             self.numberOfChallengesLabel.alpha = 1
         }) { (_) in
-            var seconds = 0
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-                seconds += 1
-                if seconds >= 4 {
+            var seconds = 0.0
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+                seconds += 0.5
+                if self.waitingForSearch == true {
+                    timer.invalidate()
+                } else if seconds >= 4 {
                     timer.invalidate()
                     UIView.animate(withDuration: 0.2, animations: {
                         self.numberOfChallengesLabel.alpha = 0
@@ -211,7 +205,6 @@ class MainMapViewController: UIViewController {
                     }
                 }
             }
-            
         }
     }
     
@@ -269,6 +262,7 @@ class MainMapViewController: UIViewController {
                     }
                     self.map.addAnnotations(self.currentAnnotations)
                     self.animateNumberOfChallenges()
+                    self.activityIndicator.stopAnimating()
                 } else {
                     self.presentBasicError(title: "Error", message: "We couldn't get Challenges from the database")
                 }

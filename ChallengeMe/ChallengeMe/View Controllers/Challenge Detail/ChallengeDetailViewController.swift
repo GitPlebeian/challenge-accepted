@@ -98,7 +98,7 @@ class ChallengeDetailViewController: UIViewController {
             guard let challenge = self.challenge,
             let notificationChallenge = notification.userInfo!["challenge"]! as? Challenge else {return}
             if notificationChallenge == challenge {
-                self.navigationController?.popViewController(animated: false)
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
