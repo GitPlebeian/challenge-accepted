@@ -94,7 +94,7 @@ class SetupViewController: UIViewController {
     
     func presentErrorAlertForFetch(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: title, style: .default) { (_) in
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
             self.refreshButton.isHidden = false
         }
         alertController.addAction(okAction)

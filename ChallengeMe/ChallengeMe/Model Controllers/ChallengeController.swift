@@ -70,45 +70,64 @@ class ChallengeController {
     // MARK: - CRUD
     
     // Adds a user to the challenge. The addition tells the challenge that it has been saved by a user
-    func toggleSavedChallenge(challenge: Challenge, completion: @escaping (Bool) -> Void) {
-        guard let currentUser = UserController.shared.currentUser else {return}
-        let challengeDictionary: [String: Challenge] = ["challenge": challenge]
-        // Notification Center is used to diable the save button while the network is updating the record.
-        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil, userInfo: challengeDictionary)
-        var userExists = false
-        for reference in challenge.usersWhoSavedReferences {
-            if reference.recordID == currentUser.recordID {
-                userExists = true
+    func toggleSavedChallenge(challenge: Challenge, completion: @escaping (Bool, Bool) -> Void) {
+        
+        // Checks to see if the challenge has been deleted
+        let predicate = NSPredicate(format: "recordID == %@", challenge.recordID)
+        let query = CKQuery(recordType: ChallengeConstants.recordTypeKey, predicate: predicate)
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                completion(false, false)
+                return
             }
-        }
-        // UN-saves the challenge if the user has already saved
-        if userExists {
-            userUnSavedChallenge(challenge: challenge) { (success) in
-                if success {
-                    let challengeDataDict:[String: Challenge] = ["challenge": challenge]
-                    // Notifications enable the save/unsave button after the challenge has been updated
-                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
-                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil, userInfo: challengeDataDict)
-                    completion(true)
-                    return
-                } else {
-                    completion(false)
-                    return
+            guard let records = records else {
+                completion(false, false)
+                return
+            }
+            if records.count == 0 {
+                completion(true, true)
+                return
+            }
+            guard let currentUser = UserController.shared.currentUser else {return}
+            let challengeDictionary: [String: Challenge] = ["challenge": challenge]
+            // Notification Center is used to diable the save button while the network is updating the record.
+            NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil, userInfo: challengeDictionary)
+            var userExists = false
+            for reference in challenge.usersWhoSavedReferences {
+                if reference.recordID == currentUser.recordID {
+                    userExists = true
                 }
             }
-        } else {
-            // Saves the challenge if the user has not saved
-            userSavedChallenge(challenge: challenge) { (success) in
-                if success {
-                    let challengeDataDict:[String: Challenge] = ["challenge": challenge]
-                    // Notifications enable the save/unsave button after the challenge has been updated
-                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
-                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForSaveKey), object: nil, userInfo: challengeDataDict)
-                    completion(true)
-                    return
-                } else {
-                    completion(false)
-                    return
+            // UN-saves the challenge if the user has already saved
+            if userExists {
+                self.userUnSavedChallenge(challenge: challenge) { (success) in
+                    if success {
+                        let challengeDataDict:[String: Challenge] = ["challenge": challenge]
+                        // Notifications enable the save/unsave button after the challenge has been updated
+                        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil, userInfo: challengeDataDict)
+                        completion(true, false)
+                        return
+                    } else {
+                        completion(false, false)
+                        return
+                    }
+                }
+            } else {
+                // Saves the challenge if the user has not saved
+                self.userSavedChallenge(challenge: challenge) { (success) in
+                    if success {
+                        let challengeDataDict:[String: Challenge] = ["challenge": challenge]
+                        // Notifications enable the save/unsave button after the challenge has been updated
+                        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForSaveKey), object: nil, userInfo: challengeDataDict)
+                        completion(true, false)
+                        return
+                    } else {
+                        completion(false, false)
+                        return
+                    }
                 }
             }
         }

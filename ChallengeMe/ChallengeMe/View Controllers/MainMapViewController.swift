@@ -60,7 +60,11 @@ class MainMapViewController: UIViewController {
         } else {
             return
         }
-        numberOfChallengesLabel.isHidden = true
+        UIView.animate(withDuration: 0.2, animations: {
+            self.numberOfChallengesLabel.alpha = 0
+        }) { (_) in
+            self.numberOfChallengesLabel.isHidden = true
+        }
         if let searchArea = currentSearchArea {
             map.removeOverlay(searchArea)
         }
@@ -81,16 +85,16 @@ class MainMapViewController: UIViewController {
         currentSearchArea = line
         map.addOverlay(line)
         self.activityIndicator.startAnimating()
-        map.removeAnnotations(self.currentAnnotations)
+        map.removeAnnotations(currentAnnotations)
         ChallengeController.shared.fetchChallenges(longitude: map.centerCoordinate.longitude, latitude: map.centerCoordinate.latitude) { (success) in
             DispatchQueue.main.async {
                 let feedback = UINotificationFeedbackGenerator()
+                self.activityIndicator.stopAnimating()
+                self.waitingForSearch = false
+                self.enableSearchThisAreaButton()
+                self.currentAnnotations.removeAll(keepingCapacity: false)
                 if success {
-                    self.activityIndicator.stopAnimating()
                     feedback.notificationOccurred(.success)
-                    self.waitingForSearch = false
-                    self.enableSearchThisAreaButton()
-                    self.currentAnnotations.removeAll(keepingCapacity: false)
                     for challenge in ChallengeController.shared.challenges {
                         let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
                         let annotation = MKPointAnnotation()

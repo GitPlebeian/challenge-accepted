@@ -57,24 +57,21 @@ class ChallengeDetailViewController: UIViewController {
         guard let challenge = challenge else {return}
         let feedback = UINotificationFeedbackGenerator()
         feedback.prepare()
-        ChallengeController.shared.toggleSavedChallenge(challenge: challenge) { (success) in
+        ChallengeController.shared.toggleSavedChallenge(challenge: challenge) { (success, wasDeleted) in
             DispatchQueue.main.async {
                 if success {
-                    feedback.notificationOccurred(.success)
+                    if wasDeleted {
+                        feedback.notificationOccurred(.error)
+                        self.navigationController?.popViewController(animated: true)
+                        self.presentBasicAlert(title: "Error", message: "The creator deleted this challenge")
+                    } else {
+                        feedback.notificationOccurred(.success)
+                    }
                 } else {
                     feedback.notificationOccurred(.error)
                 }
             }
         }
-//        UserController.shared.addSavedChallenge(challenge: challenge) { (success) in
-//            DispatchQueue.main.async {
-//                if success {
-//                    feedback.notificationOccurred(.success)
-//                } else {
-//                    feedback.notificationOccurred(.error)
-//                }
-//            }
-//        }
     }
     
     @IBAction func reportingButtonTapped(_ sender: Any) {
@@ -82,6 +79,13 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
+    
+    func presentBasicAlert(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
     
     func updateSaveButtonForChallenge() {
         loadViewIfNeeded()
