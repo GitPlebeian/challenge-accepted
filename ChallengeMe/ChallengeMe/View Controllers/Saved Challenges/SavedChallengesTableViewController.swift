@@ -46,7 +46,11 @@ class SavedChallengesTableViewController: UITableViewController {
     // MARK: - Custom Functions
     func updateViews() {
         title = "Accepted Challenges"
-        navigationController?.navigationBar.barTintColor = .black
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+
         tabBarController?.tabBar.barTintColor = .tabBar
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = .background

@@ -154,8 +154,12 @@ class CreateChallengeViewController: UIViewController {
         titleTextField.attributedPlaceholder = NSAttributedString(string: "Title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         tagsTextField.attributedPlaceholder = NSAttributedString(string: "Tags: Seperate With Spaces", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
-        navigationController?.navigationBar.barTintColor = .black
+        
         tabBarController?.tabBar.barTintColor = .tabBar
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         view.backgroundColor = .background
         
     }

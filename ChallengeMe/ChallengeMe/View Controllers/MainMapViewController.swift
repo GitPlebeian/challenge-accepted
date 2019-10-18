@@ -182,7 +182,7 @@ class MainMapViewController: UIViewController {
         numberOfChallengesLabel.alpha = 0
         map.mapType = .standard
         title = "Accepted Challenges"
-        navigationController?.navigationBar.barTintColor = .black
+//        navigationController?.navigationBar.barTintColor = .black
         tabBarController?.tabBar.barTintColor = .tabBar
     }
     
