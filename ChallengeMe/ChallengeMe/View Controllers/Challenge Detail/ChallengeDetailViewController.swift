@@ -41,6 +41,9 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Actions
+    @IBAction func challengeImageButtonTapped(_ sender: Any) {
+        
+    }
     
     @IBAction func showOnMapButtonTapped(_ sender: Any) {
         guard let challenge = challenge else {return}
