@@ -41,7 +41,18 @@ class MainMapViewController: UIViewController {
         mainMapGestureRecognizer.delegate = self
         // Will remove annotation after challenge was deleted.
         NotificationCenter.default.addObserver(self, selector: #selector(removeAnnotationForChallengeDeletion(notification:)), name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil)
-        activityIndicator.startAnimating()
+        // Will start loading animation or stop loading animation
+        NotificationCenter.default.addObserver(self, selector: #selector(startLoadingAnimation), name: NSNotification.Name(NotificationNameKeys.startLoadingAnimationKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopLoadingAnimation), name: NSNotification.Name(NotificationNameKeys.stopLoadingAnimationKey), object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateMapViewForLoad()
     }
     
     // MARK: - Actions
@@ -84,12 +95,11 @@ class MainMapViewController: UIViewController {
         let line = MKPolyline(coordinates: cordinateArray, count: 5)
         currentSearchArea = line
         map.addOverlay(line)
-        self.activityIndicator.startAnimating()
         map.removeAnnotations(currentAnnotations)
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.startLoadingAnimationKey), object: nil)
         ChallengeController.shared.fetchChallenges(longitude: map.centerCoordinate.longitude, latitude: map.centerCoordinate.latitude) { (success) in
             DispatchQueue.main.async {
                 let feedback = UINotificationFeedbackGenerator()
-                self.activityIndicator.stopAnimating()
                 self.waitingForSearch = false
                 self.enableSearchThisAreaButton()
                 self.currentAnnotations.removeAll(keepingCapacity: false)
@@ -126,6 +136,18 @@ class MainMapViewController: UIViewController {
     }
     
     // MARK: - Custom Funcitons
+    
+    @objc func startLoadingAnimation() {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
+    }
+    
+    @objc func stopLoadingAnimation() {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+        }
+    }
     
     @objc func removeAnnotationForChallengeDeletion(notification: NSNotification) {
         DispatchQueue.main.async {
@@ -234,6 +256,7 @@ class MainMapViewController: UIViewController {
     }
     
     func updateMapViewForLoad() {
+        loadViewIfNeeded()
         var locationToLoad: CLLocationCoordinate2D
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
@@ -248,6 +271,7 @@ class MainMapViewController: UIViewController {
         }
         disableSearchThisAreaButton()
         map.removeAnnotations(self.currentAnnotations)
+        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.startLoadingAnimationKey), object: nil)
         ChallengeController.shared.fetchChallenges(longitude: locationToLoad.longitude, latitude: locationToLoad.latitude) { (success) in
             DispatchQueue.main.async {
                 if success {
@@ -272,8 +296,6 @@ class MainMapViewController: UIViewController {
                     }
                     self.map.addAnnotations(self.currentAnnotations)
                     self.animateNumberOfChallenges()
-                    // FIXME: - Uncomment
-//                    self.activityIndicator.stopAnimating()
                 } else {
                     self.presentBasicError(title: "Error", message: "We couldn't get Challenges from the database")
                 }
@@ -304,7 +326,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        updateMapViewForLoad()
+        
     }
 }
 
@@ -318,7 +340,6 @@ extension MainMapViewController: MKMapViewDelegate {
         var view: MKAnnotationView
         let identifier = "marker"
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
-            print(annotation.coordinate)
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
