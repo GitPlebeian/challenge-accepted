@@ -14,6 +14,7 @@ class SearchChallengesTableViewController: UITableViewController {
     
     // MARK: - Properties
     var searchResults: [Challenge] = []
+    var selectedChallenge: Challenge?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,12 @@ class SearchChallengesTableViewController: UITableViewController {
         if segue.identifier == "toChallengeDetailVC" {
             guard let indexPath = tableView.indexPathForSelectedRow,
                 let destinationVC = segue.destination as? ChallengeDetailViewController else { return }
-            let challenge = searchResults[indexPath.row]
+            var challenge: Challenge
+            if searchBar.text == "" {
+                challenge = ChallengeController.shared.challenges[indexPath.row]
+            } else {
+                challenge = searchResults[indexPath.row]
+            }
             destinationVC.challenge = challenge
         }
     }
