@@ -42,7 +42,22 @@ class ChallengeDetailViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func challengeImageButtonTapped(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+            let screenSize: CGRect = UIScreen.main.bounds
+            // TODO: Fix
+            self.challengeImageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height * 0.2)
+            self.challengeImageView.center = CGPoint(x: self.challengeImageView.center.x, y: self.challengeImageView.center.y + 150)
+        }
         
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.view.addSubview(blurEffectView)
+        self.view.bringSubviewToFront(self.challengeImageView)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(returnViews))
+        view.addGestureRecognizer(tapGesture)
     }
     
     @IBAction func showOnMapButtonTapped(_ sender: Any) {
@@ -81,6 +96,19 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
+    @objc func returnViews() {
+        for subview in view.subviews {
+            if subview.isKind(of: UIVisualEffectView.self) {
+                subview.removeFromSuperview()
+            }
+        }
+        UIView.animate(withDuration: 0.5) {
+            self.challengeImageView.transform = .identity
+            self.challengeImageView.center = CGPoint(x: self.challengeImageView.center.x, y: self.challengeImageView.center.y - 150)
+        }
+        view.sendSubviewToBack(challengeImageView)
+    }
+    
     
     func presentBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

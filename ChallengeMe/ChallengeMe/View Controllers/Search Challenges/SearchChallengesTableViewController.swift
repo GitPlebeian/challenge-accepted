@@ -18,9 +18,17 @@ class SearchChallengesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
         searchBar.delegate = self
-        navigationController?.navigationBar.barTintColor = .black
+        
+    }
+    
+    // MARK: - Custom Methods
+    func updateViews() {
+        tableView.tableFooterView = UIView()
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
     }
 

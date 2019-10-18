@@ -25,7 +25,7 @@ class SearchChallengesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .challenge
+        self.contentView.backgroundColor = .challenge
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

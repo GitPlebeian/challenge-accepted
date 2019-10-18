@@ -157,7 +157,6 @@
                                                 <constraint firstItem="xFx-je-NvX" firstAttribute="leading" secondItem="6fa-Xz-5aB" secondAttribute="leading" constant="8" id="qOD-n4-tow"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="challengeDescriptionLabel" destination="o8h-A2-2cu" id="Qb4-x4-XCx"/>
                                             <outlet property="challengeImageView" destination="O1b-Mo-dN0" id="6kj-rO-afn"/>

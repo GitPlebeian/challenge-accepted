@@ -10,6 +10,7 @@ import UIKit
 
 class CreatedChallengesTableViewCell: UITableViewCell {
 
+
     @IBOutlet weak var challengeImageView: UIImageView!
     @IBOutlet weak var challengeTitleLabel: UILabel!
     @IBOutlet weak var challengeDescriptionLabel: UILabel!
@@ -26,7 +27,7 @@ class CreatedChallengesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .challenge
+        self.contentView.backgroundColor = .challenge
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
