@@ -248,6 +248,7 @@
                     <navigationItem key="navigationItem" id="VBz-6Q-clD"/>
                     <connections>
                         <outlet property="mapGestureRecognizer" destination="RlV-OR-eUq" id="Kos-TN-ebF"/>
+                        <outlet property="selectChallengeLabel" destination="1kH-pS-WA0" id="vDr-uc-Q3x"/>
                         <outlet property="selectLocationMapView" destination="NNg-Nl-FqJ" id="2U1-3o-gSr"/>
                     </connections>
                 </viewController>

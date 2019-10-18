@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,8 +14,10 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ebz-aI-6mH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="highlight"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="highlight"/>
                     </tabBar>
                     <connections>
                         <segue destination="ctV-M3-MZT" kind="relationship" relationship="viewControllers" id="Y7E-Nc-vpX"/>
@@ -30,7 +33,7 @@
         <scene sceneID="QYZ-us-NYa">
             <objects>
                 <viewControllerPlaceholder storyboardName="Map" id="iiY-ZO-9wp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Ae8-lo-L7x"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="mapTabIcon" id="Ae8-lo-L7x"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9m-SH-Dws" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -40,7 +43,7 @@
         <scene sceneID="66a-l2-fK5">
             <objects>
                 <viewControllerPlaceholder storyboardName="Profile" id="ctV-M3-MZT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="QKc-hU-XU4"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profileTabIcon" id="QKc-hU-XU4"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ov-gJ-eLc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -50,11 +53,19 @@
         <scene sceneID="4zf-Oa-3Ag">
             <objects>
                 <viewControllerPlaceholder storyboardName="SavedChallenges" id="jOa-wu-1yf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gws-pK-H5U"/>
+                    <tabBarItem key="tabBarItem" title="Challenges" image="ChallengesTabIcon" id="gws-pK-H5U"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="phN-tx-YCC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="796" y="-30"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ChallengesTabIcon" width="41" height="41"/>
+        <image name="mapTabIcon" width="21" height="33"/>
+        <image name="profileTabIcon" width="25" height="26"/>
+        <namedColor name="highlight">
+            <color red="0.13300000131130219" green="0.16699999570846558" blue="0.50999999046325684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

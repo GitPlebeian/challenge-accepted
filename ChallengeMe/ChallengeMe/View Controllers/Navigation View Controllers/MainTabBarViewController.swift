@@ -12,7 +12,10 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = .black
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
         selectedIndex = 1
         

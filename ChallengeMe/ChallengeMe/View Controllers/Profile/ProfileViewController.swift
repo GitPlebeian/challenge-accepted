@@ -45,7 +45,11 @@ class ProfileViewController: UIViewController {
         createdChallengesTableView.tableFooterView = UIView()
         createdChallengesTableView.backgroundColor = .background
         settingsButton.tintColor = .white
-        navigationController?.navigationBar.barTintColor = .black
+        
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
         view.backgroundColor = .background
     }

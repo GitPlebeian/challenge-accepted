@@ -167,7 +167,10 @@ class ChallengeDetailViewController: UIViewController {
         tagsLabel.text = challenge.tags.joined(separator: " ")
         challengeDescription.text = challenge.description
         title = challenge.title
-        navigationController?.navigationBar.barTintColor = .black
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
         view.backgroundColor = .background
     }

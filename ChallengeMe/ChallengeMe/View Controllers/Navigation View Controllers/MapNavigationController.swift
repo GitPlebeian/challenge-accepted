@@ -12,15 +12,20 @@ class MapNavigationController: UINavigationController {
 
     // MARK: - Properties
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
-    }
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .darkContent
+//    }
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = .black
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
+        tabBarController?.tabBar.unselectedItemTintColor = .white
         tabBarController?.tabBar.barTintColor = .tabBar
     }
     

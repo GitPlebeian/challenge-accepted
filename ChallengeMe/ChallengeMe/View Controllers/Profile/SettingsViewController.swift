@@ -75,7 +75,11 @@ class SettingsViewController: UIViewController {
         userView.layer.shadowOffset = CGSize(width: 2, height: 4)
         userView.layer.shadowRadius = 3
         userView.addCornerRadius(8)
-        navigationController?.navigationBar.barTintColor = .black
+        
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
         view.backgroundColor = .background
     }

@@ -17,6 +17,7 @@ protocol CreateChallengeMapDelegate: class {
 class CreateChallengeMapViewController: UIViewController {
     
     // MARK: - Outlets
+    @IBOutlet weak var selectChallengeLabel: ChallengeLabel!
     @IBOutlet weak var selectLocationMapView: MKMapView!
     @IBOutlet var mapGestureRecognizer: UITapGestureRecognizer!
     
@@ -30,6 +31,7 @@ class CreateChallengeMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         centerMapOnUser()
+        updateViews()
     }
     
     // MARK: - Actions
@@ -51,6 +53,15 @@ class CreateChallengeMapViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
+    func updateViews() {
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
+        selectChallengeLabel.addCornerRadius()
+    }
+    
     func centerMapOnUser() {
            if let location = locationManager.location?.coordinate {
                selectLocationMapView.showsUserLocation = true

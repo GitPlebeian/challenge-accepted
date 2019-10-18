@@ -181,8 +181,11 @@ class MainMapViewController: UIViewController {
         numberOfChallengesLabel.isHidden = true
         numberOfChallengesLabel.alpha = 0
         map.mapType = .standard
-        title = "Accepted Challenges"
-//        navigationController?.navigationBar.barTintColor = .black
+        title = "Map"
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.white
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
     }
     
@@ -314,13 +317,14 @@ extension MainMapViewController: MKMapViewDelegate {
 
         var view: MKAnnotationView
         let identifier = "marker"
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
             print(annotation.coordinate)
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
+        view.image = UIImage(named: "challengeAnnotationIcon")
         view.canShowCallout = true
         view.calloutOffset = CGPoint(x: 0, y: -3)
         view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)

@@ -67,12 +67,13 @@ extension ChallengeDetailMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var view: MKAnnotationView
         let identifier = "marker"
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
         }
+        view.image = UIImage(named: "challengeAnnotationIcon")
         view.canShowCallout = true
         view.calloutOffset = CGPoint(x: 0, y: -3)
         view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
