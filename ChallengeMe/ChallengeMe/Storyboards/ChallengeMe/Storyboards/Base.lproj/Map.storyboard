@@ -24,7 +24,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ea-Y8-RkD" customClass="FTLinearActivityIndicator" customModule="FTLinearActivityIndicator">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="4"/>
                                 <color key="backgroundColor" name="challenge"/>
-                                <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="0CS-ah-FDI"/>
                                 </constraints>

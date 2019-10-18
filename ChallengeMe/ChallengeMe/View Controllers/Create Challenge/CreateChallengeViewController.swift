@@ -40,7 +40,11 @@ class CreateChallengeViewController: UIViewController {
     let locationManager = CLLocationManager()
     var timer = false
     var countDown = false
-    var challengeLocation: CLLocationCoordinate2D?
+    var challengeLocation: CLLocationCoordinate2D? {
+        didSet {
+            selectLocationButton.setTitle("Change Location", for: .normal)
+        }
+    }
     
     weak var delegate: PhotoSelectedDelegate?
     weak var saveChallengeDelegate: SaveChallengeSuccessDelegate?
@@ -49,6 +53,7 @@ class CreateChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        createToolBar()
         titleTextField.delegate = self
         tagsTextField.delegate = self
     }
@@ -84,6 +89,7 @@ class CreateChallengeViewController: UIViewController {
             let challengeImage = selectedImage.image,
             let tagString = tagsTextField.text,
             tagString.isEmpty == false,
+            tagString != " ",
             challengeLocation != nil else {
                 feedback.notificationOccurred(.error)
                 presentEmptyFieldsAlert()

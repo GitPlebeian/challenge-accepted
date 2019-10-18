@@ -24,7 +24,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8j1-BT-TcK" customClass="HighlightButton" customModule="ChallengeMe" customModuleProvider="target">
                                                 <rect key="frame" x="107" y="338" width="200" height="50"/>
-                                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="Liw-c1-G0W"/>
                                                     <constraint firstAttribute="height" constant="50" id="soi-kR-49x"/>
@@ -53,7 +53,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7Zv-cA-aJ8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="219" height="61"/>
                                                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="18"/>
-                                                                <state key="normal" title="Upload Image" image="uploadImageButtonIcon">
+                                                                <state key="normal" title="  Upload Image" image="uploadImageButtonIcon">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <connections>
@@ -64,7 +64,7 @@
                                                                 <rect key="frame" x="0.0" y="69" width="219" height="61"/>
                                                                 <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="18"/>
                                                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <state key="normal" title="Take Picture" image="takePictureButtonIcon">
+                                                                <state key="normal" title="  Take Picture" image="takePictureButtonIcon">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <connections>
