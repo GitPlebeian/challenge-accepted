@@ -145,7 +145,7 @@ class MainMapViewController: UIViewController {
     func disableSearchThisAreaButton() {
         searchThisAreaButton.isEnabled = false
         waitingForSearch = true
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.1) {
             self.searchThisAreaButton.alpha = 0.5
         }
     }
@@ -195,7 +195,7 @@ class MainMapViewController: UIViewController {
         } else {
             numberOfChallengesLabel.text = "No Challenges Found"
         }
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             self.numberOfChallengesLabel.alpha = 1
         }) { (_) in
             var seconds = 0.0
@@ -269,7 +269,8 @@ class MainMapViewController: UIViewController {
                     }
                     self.map.addAnnotations(self.currentAnnotations)
                     self.animateNumberOfChallenges()
-                    self.activityIndicator.stopAnimating()
+                    // FIXME: - Uncomment
+//                    self.activityIndicator.stopAnimating()
                 } else {
                     self.presentBasicError(title: "Error", message: "We couldn't get Challenges from the database")
                 }

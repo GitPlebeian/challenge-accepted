@@ -37,7 +37,7 @@ class ChallengeDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(enableSaveChallengeButtonForUnsave), name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil)
         // Disables save button while network is waiting
         NotificationCenter.default.addObserver(self, selector: #selector(disableSaveChallengeButton), name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(popViewControllerIfChallengeDeleted(notification:)), name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(popViewControllerIfChallengeDeleted(notification:)), name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil)
     }
     
     // MARK: - Actions
@@ -62,8 +62,7 @@ class ChallengeDetailViewController: UIViewController {
                 if success {
                     if wasDeleted {
                         feedback.notificationOccurred(.error)
-                        self.navigationController?.popViewController(animated: true)
-                        self.presentBasicAlert(title: "Error", message: "The creator deleted this challenge")
+                        self.presentPopViewControllerBasicAlert(title: "Notification", message: "The creator deleted this challenge while you were viewing it")
                     } else {
                         feedback.notificationOccurred(.success)
                     }
@@ -83,6 +82,15 @@ class ChallengeDetailViewController: UIViewController {
     func presentBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+    
+    func presentPopViewControllerBasicAlert(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+            self.navigationController?.popViewController(animated: true)
+        }
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }

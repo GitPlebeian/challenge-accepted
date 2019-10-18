@@ -84,12 +84,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             guard let currentUser = UserController.shared.currentUser else { return }
             let challenge = currentUser.createdChallenges[indexPath.row]
+            let feedback = UINotificationFeedbackGenerator()
+            feedback.prepare()
             UserController.shared.deleteCreatedChallenge(challenge: challenge) { (success) in
                 DispatchQueue.main.async {
                     if success {
                         tableView.deleteRows(at: [indexPath], with: .fade)
                         let challengeDictionary: [String: Challenge] = ["challenge": challenge]
+                        feedback.notificationOccurred(.success)
                         NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil, userInfo: challengeDictionary)
+                    } else {
+                        feedback.notificationOccurred(.error)
                     }
                 }
             }

@@ -72,6 +72,7 @@ class ChallengeController {
     // Adds a user to the challenge. The addition tells the challenge that it has been saved by a user
     func toggleSavedChallenge(challenge: Challenge, completion: @escaping (Bool, Bool) -> Void) {
         
+        let challengeDictionary: [String: Challenge] = ["challenge": challenge]
         // Checks to see if the challenge has been deleted
         let predicate = NSPredicate(format: "recordID == %@", challenge.recordID)
         let query = CKQuery(recordType: ChallengeConstants.recordTypeKey, predicate: predicate)
@@ -86,11 +87,11 @@ class ChallengeController {
                 return
             }
             if records.count == 0 {
+                NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil, userInfo: challengeDictionary)
                 completion(true, true)
                 return
             }
             guard let currentUser = UserController.shared.currentUser else {return}
-            let challengeDictionary: [String: Challenge] = ["challenge": challenge]
             // Notification Center is used to diable the save button while the network is updating the record.
             NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil, userInfo: challengeDictionary)
             var userExists = false
