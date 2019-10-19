@@ -12,12 +12,15 @@ import MessageUI
 class ChallengeDetailViewController: UIViewController {
 
     // MARK: - Outlets
+    @IBOutlet weak var blurEffect: UIVisualEffectView!
     @IBOutlet weak var challengeImageView: UIImageView!
+    @IBOutlet weak var challengeImageButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var acceptChallengeButton: UIButton!
     @IBOutlet weak var challengeDescription: UILabel!
     @IBOutlet weak var showOnMapButton: UIButton!
+    @IBOutlet weak var mainSubView: UIView!
     
     // MARK: - Properties
     var challenge: Challenge? {
@@ -25,6 +28,7 @@ class ChallengeDetailViewController: UIViewController {
             updateSaveButtonForChallenge()
         }
     }
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -42,20 +46,13 @@ class ChallengeDetailViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func challengeImageButtonTapped(_ sender: Any) {
+        blurEffect.isHidden = false
+        challengeImageButton.isUserInteractionEnabled = false
+        // TODO: Fix shifting and sizing image
         UIView.animate(withDuration: 0.5) {
-            let screenSize: CGRect = UIScreen.main.bounds
-            // TODO: Fix
-            self.challengeImageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height * 0.2)
-            self.challengeImageView.center = CGPoint(x: self.challengeImageView.center.x, y: self.challengeImageView.center.y + 150)
+            self.challengeImageView.center = self.mainSubView.center
         }
-        
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(blurEffectView)
-        self.view.bringSubviewToFront(self.challengeImageView)
-        
+        mainSubView.bringSubviewToFront(challengeImageView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(returnViews))
         view.addGestureRecognizer(tapGesture)
     }
@@ -97,16 +94,20 @@ class ChallengeDetailViewController: UIViewController {
     
     // MARK: - Custom Methods
     @objc func returnViews() {
-        for subview in view.subviews {
-            if subview.isKind(of: UIVisualEffectView.self) {
-                subview.removeFromSuperview()
-            }
-        }
+        // TODO: Fix shifting and sizing image
         UIView.animate(withDuration: 0.5) {
             self.challengeImageView.transform = .identity
             self.challengeImageView.center = CGPoint(x: self.challengeImageView.center.x, y: self.challengeImageView.center.y - 150)
         }
-        view.sendSubviewToBack(challengeImageView)
+        challengeImageButton.isUserInteractionEnabled = true
+        blurEffect.isHidden = true
+        mainSubView.sendSubviewToBack(challengeImageView)
+        guard let gestures = view.gestureRecognizers else { return }
+        for gesture in gestures {
+            if gesture.isKind(of: UITapGestureRecognizer.self) {
+                view.removeGestureRecognizer(gesture)
+            }
+        }
     }
     
     
@@ -204,6 +205,7 @@ class ChallengeDetailViewController: UIViewController {
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
         view.backgroundColor = .background
+        blurEffect.isHidden = true
     }
     
     func presentReportAlert() {

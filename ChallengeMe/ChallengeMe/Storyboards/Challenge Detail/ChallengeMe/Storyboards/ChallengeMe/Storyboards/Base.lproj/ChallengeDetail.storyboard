@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ndo-0P-4Dt">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,23 +13,23 @@
             <objects>
                 <viewController storyboardIdentifier="challengeDetail" id="Ndo-0P-4Dt" customClass="ChallengeDetailViewController" customModule="ChallengeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zme-LW-Kkw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZZ-89-gHQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jhj-PV-lXw">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hff-ps-jTO">
-                                                <rect key="frame" x="10.5" y="24" width="393" height="175"/>
+                                                <rect key="frame" x="9.3333333333333428" y="24" width="356.33333333333326" height="175"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="175" id="yTL-UU-2eE"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aG1-Ad-zPT" customClass="ActionButton" customModule="ChallengeMe" customModuleProvider="target">
-                                                <rect key="frame" x="287.5" y="179" width="100" height="40"/>
+                                                <rect key="frame" x="249.66666666666663" y="179" width="100" height="40"/>
                                                 <color key="backgroundColor" name="actionRed"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="3x9-t2-Ja7"/>
@@ -42,7 +43,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Id4-kw-L6Z" customClass="ActionButton" customModule="ChallengeMe" customModuleProvider="target">
-                                                <rect key="frame" x="107" y="552.5" width="200" height="30"/>
+                                                <rect key="frame" x="87.666666666666686" y="552.33333333333337" width="200" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="XIs-XO-3iX"/>
                                                 </constraints>
@@ -52,16 +53,16 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="0dh-ml-4Vw">
-                                                <rect key="frame" x="20.5" y="243" width="373" height="66"/>
+                                                <rect key="frame" x="18.666666666666657" y="243" width="337.66666666666674" height="66"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOx-2G-QF3" customClass="HeaderChallengeLabel" customModule="ChallengeMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="33.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="337.66666666666669" height="33.666666666666664"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(tags)" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNc-at-McQ" customClass="ChallengeLabel" customModule="ChallengeMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="45.5" width="373" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="45.666666666666686" width="337.66666666666669" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -73,16 +74,16 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zxi-ZN-e2g">
-                                                <rect key="frame" x="20.5" y="345" width="373" height="52.5"/>
+                                                <rect key="frame" x="18.666666666666657" y="345" width="337.66666666666674" height="52.333333333333314"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Challenge Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMP-Cn-sq4" customClass="SubheaderChallengeLabel" customModule="ChallengeMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="337.66666666666669" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Challenge Description)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isK-Lr-PU1" customClass="ChallengeLabel" customModule="ChallengeMe" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="32" width="373" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="32" width="337.66666666666669" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -94,7 +95,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59j-wM-AoL" customClass="HighlightButton" customModule="ChallengeMe" customModuleProvider="target">
-                                                <rect key="frame" x="119.5" y="447.5" width="175" height="30"/>
+                                                <rect key="frame" x="100" y="447.33333333333331" width="175" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="175" id="u3P-bF-8SB"/>
                                                 </constraints>
@@ -103,8 +104,16 @@
                                                     <action selector="showOnMapButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="BVR-2B-W52"/>
                                                 </connections>
                                             </button>
+                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZb-YJ-ifX">
+                                                <rect key="frame" x="0.0" y="800" width="375" height="12"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HF9-g2-wJS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="12"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </view>
+                                                <blurEffect style="regular"/>
+                                            </visualEffectView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiJ-Yg-yUu">
-                                                <rect key="frame" x="10.5" y="24" width="393" height="175"/>
+                                                <rect key="frame" x="9.3333333333333428" y="24" width="356.33333333333326" height="175"/>
                                                 <connections>
                                                     <action selector="challengeImageButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="qN6-hx-Xlz"/>
                                                 </connections>
@@ -116,6 +125,7 @@
                                             <constraint firstItem="0dh-ml-4Vw" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="2IV-K3-DiM"/>
                                             <constraint firstItem="hff-ps-jTO" firstAttribute="width" secondItem="Jhj-PV-lXw" secondAttribute="width" multiplier="0.95" id="4DC-ig-qpb"/>
                                             <constraint firstItem="0dh-ml-4Vw" firstAttribute="top" secondItem="aG1-Ad-zPT" secondAttribute="bottom" constant="24" id="5nD-PQ-Hwe"/>
+                                            <constraint firstItem="nZb-YJ-ifX" firstAttribute="top" secondItem="Jhj-PV-lXw" secondAttribute="top" constant="800" id="7Le-lH-lF1"/>
                                             <constraint firstItem="hff-ps-jTO" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="9Jq-Zh-eOV"/>
                                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="top" secondItem="0dh-ml-4Vw" secondAttribute="bottom" constant="36" id="AQV-kZ-37d"/>
                                             <constraint firstItem="Id4-kw-L6Z" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="BRX-0K-9ys"/>
@@ -124,13 +134,16 @@
                                             <constraint firstItem="hiJ-Yg-yUu" firstAttribute="width" secondItem="hff-ps-jTO" secondAttribute="width" id="J5k-QP-qHI"/>
                                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="width" secondItem="Jhj-PV-lXw" secondAttribute="width" multiplier="0.9" id="KtT-FF-VkW"/>
                                             <constraint firstItem="aG1-Ad-zPT" firstAttribute="trailing" secondItem="hff-ps-jTO" secondAttribute="trailing" constant="-16" id="VxP-V0-hEy"/>
+                                            <constraint firstAttribute="trailing" secondItem="nZb-YJ-ifX" secondAttribute="trailing" id="Wgc-Px-xfr"/>
                                             <constraint firstItem="hff-ps-jTO" firstAttribute="top" secondItem="Jhj-PV-lXw" secondAttribute="top" constant="24" id="bqc-eo-ggX"/>
+                                            <constraint firstAttribute="bottom" secondItem="nZb-YJ-ifX" secondAttribute="bottom" id="dCR-ds-O2T"/>
                                             <constraint firstItem="59j-wM-AoL" firstAttribute="top" secondItem="zxi-ZN-e2g" secondAttribute="bottom" constant="50" id="g1I-oG-mTO"/>
                                             <constraint firstItem="0dh-ml-4Vw" firstAttribute="width" secondItem="Jhj-PV-lXw" secondAttribute="width" multiplier="0.9" id="gmB-E7-fyh"/>
                                             <constraint firstItem="aG1-Ad-zPT" firstAttribute="bottom" secondItem="hff-ps-jTO" secondAttribute="bottom" constant="20" id="hfT-ao-bnN"/>
                                             <constraint firstItem="hiJ-Yg-yUu" firstAttribute="centerX" secondItem="hff-ps-jTO" secondAttribute="centerX" id="m3O-yS-Xr1"/>
                                             <constraint firstItem="hiJ-Yg-yUu" firstAttribute="height" secondItem="hff-ps-jTO" secondAttribute="height" id="nWR-Mg-rvR"/>
                                             <constraint firstItem="59j-wM-AoL" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="wXj-Mg-oqt"/>
+                                            <constraint firstItem="nZb-YJ-ifX" firstAttribute="leading" secondItem="Jhj-PV-lXw" secondAttribute="leading" id="zeq-qg-N4h"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -153,12 +166,16 @@
                             <constraint firstItem="oZZ-89-gHQ" firstAttribute="top" secondItem="zme-LW-Kkw" secondAttribute="top" id="wuq-zp-cGO"/>
                             <constraint firstAttribute="trailing" secondItem="oZZ-89-gHQ" secondAttribute="trailing" id="x5p-6H-y12"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="RoL-HY-RNS"/>
                     </view>
                     <navigationItem key="navigationItem" id="2by-a9-0rf"/>
                     <connections>
                         <outlet property="acceptChallengeButton" destination="aG1-Ad-zPT" id="LRp-1y-Q1v"/>
+                        <outlet property="blurEffect" destination="nZb-YJ-ifX" id="Cq9-1Z-xwn"/>
                         <outlet property="challengeDescription" destination="isK-Lr-PU1" id="VNK-On-YJd"/>
+                        <outlet property="challengeImageButton" destination="hiJ-Yg-yUu" id="CKw-3h-9IC"/>
                         <outlet property="challengeImageView" destination="hff-ps-jTO" id="slt-mV-mlz"/>
+                        <outlet property="mainSubView" destination="Jhj-PV-lXw" id="mcT-z2-sVv"/>
                         <outlet property="showOnMapButton" destination="59j-wM-AoL" id="gOv-tl-RN7"/>
                         <outlet property="tagsLabel" destination="VNc-at-McQ" id="itJ-61-Um8"/>
                         <outlet property="titleLabel" destination="DOx-2G-QF3" id="9Bi-h1-h3N"/>

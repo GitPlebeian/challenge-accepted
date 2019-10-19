@@ -17,28 +17,12 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let locationManager = CLLocationManager()
-//    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        ChallengeController.shared.createChallenge(title: "Dick", description: "But", measurement: "Dick", longitude: 50, latitude: 50, photo: UIImage(named: "d")!) { (challenge) in
-//            if let challenge = challenge {
-//                print("Good to go")
-//            }
-//        }
-//        UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
+
         
-//        ChallengeController.shared.fetchChallenges(longitude: 50, latitude: 50) { (success) in
-//            if success {
-//                print("Good")
-//                print(ChallengeController.shared.challenges)
-//            } else {
-//                print("Bad")
-//            }
-//        }
-//
-        
-        UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { (userDidAllow, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.sound, .alert]) { (userDidAllow, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
             }
@@ -72,9 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // MARK: - Notifications
-    // sets the badges back to 0 when the user opens the app
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        application.applicationIconBadgeNumber = 0
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        ChallengeController.shared.subscribeToRemoteNotifications { (error) in
+            if let error = error {
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+            }
+        }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -83,9 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     }
-    
-    
-    
     
 
     // MARK: - Core Data stack
