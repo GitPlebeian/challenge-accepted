@@ -210,12 +210,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gme-oB-BBI">
-                                <rect key="frame" x="-60" y="321" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="background"/>
-                                <color key="tintColor" name="highlight"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rch-TT-tLN" customClass="HighlightButton" customModule="ChallengeMe" customModuleProvider="target">
                                 <rect key="frame" x="167" y="597" width="80" height="30"/>
                                 <state key="normal" title="   Support   "/>
@@ -388,14 +382,8 @@
         <image name="editButtonIcon" width="17" height="17"/>
         <image name="profileTabIcon" width="25" height="26"/>
         <image name="settingsButtonIcon" width="29" height="29"/>
-        <namedColor name="background">
-            <color red="0.074000000953674316" green="0.078000001609325409" blue="0.082999996840953827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="challenge">
             <color red="0.22699999809265137" green="0.23100000619888306" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="highlight">
-            <color red="0.13300000131130219" green="0.16699999570846558" blue="0.50999999046325684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

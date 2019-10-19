@@ -41,17 +41,6 @@ class MainMapViewController: UIViewController {
         mainMapGestureRecognizer.delegate = self
         // Will remove annotation after challenge was deleted.
         NotificationCenter.default.addObserver(self, selector: #selector(removeAnnotationForChallengeDeletion(notification:)), name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil)
-        // Will start loading animation or stop loading animation
-        NotificationCenter.default.addObserver(self, selector: #selector(startLoadingAnimation), name: NSNotification.Name(NotificationNameKeys.startLoadingAnimationKey), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(stopLoadingAnimation), name: NSNotification.Name(NotificationNameKeys.stopLoadingAnimationKey), object: nil)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         updateMapViewForLoad()
     }
     
@@ -96,13 +85,14 @@ class MainMapViewController: UIViewController {
         currentSearchArea = line
         map.addOverlay(line)
         map.removeAnnotations(currentAnnotations)
-        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.startLoadingAnimationKey), object: nil)
+        activityIndicator.startAnimating()
         ChallengeController.shared.fetchChallenges(longitude: map.centerCoordinate.longitude, latitude: map.centerCoordinate.latitude) { (success) in
             DispatchQueue.main.async {
                 let feedback = UINotificationFeedbackGenerator()
                 self.waitingForSearch = false
                 self.enableSearchThisAreaButton()
                 self.currentAnnotations.removeAll(keepingCapacity: false)
+                self.activityIndicator.stopAnimating()
                 if success {
                     feedback.notificationOccurred(.success)
                     for challenge in ChallengeController.shared.challenges {
@@ -271,9 +261,10 @@ class MainMapViewController: UIViewController {
         }
         disableSearchThisAreaButton()
         map.removeAnnotations(self.currentAnnotations)
-        NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.startLoadingAnimationKey), object: nil)
+        activityIndicator.startAnimating()
         ChallengeController.shared.fetchChallenges(longitude: locationToLoad.longitude, latitude: locationToLoad.latitude) { (success) in
             DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
                 if success {
                     self.waitingForSearch = false
                     self.enableSearchThisAreaButton()

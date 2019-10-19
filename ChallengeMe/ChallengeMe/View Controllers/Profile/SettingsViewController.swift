@@ -95,7 +95,7 @@ class SettingsViewController: UIViewController {
     
     @objc func dismissKeyboard() {
            view.endEditing(true)
-       }
+    }
     
     func showMailComposer() {
         guard MFMailComposeViewController.canSendMail() else { presentEmailAlert(); return }
