@@ -16,7 +16,7 @@ class ChallengeController {
     
     var challenges: [Challenge] = []
     let publicDB = CKContainer.default().publicCloudDatabase
-    let searchAreaMeasurement = 1.0
+    let searchAreaMeasurement = 0.2
     
     // MARK: - Helper
     
@@ -276,27 +276,6 @@ class ChallengeController {
                 }
                 completion(true)
             }
-        }
-    }
-    
-    func subscribeToRemoteNotifications(completion: @escaping (Error?) -> Void) {
-        // TODO: Fix predicate to only grab challenges near the user's current location
-        let predicate = NSPredicate(value: true)
-        let subscription = CKQuerySubscription(recordType: ChallengeConstants.recordTypeKey, predicate: predicate, options: [.firesOnRecordCreation])
-        
-        let notificationInfo = CKSubscription.NotificationInfo()
-        notificationInfo.alertBody = "Hey! Checkout this new challenge someone just posted!"
-        notificationInfo.shouldBadge = false
-        notificationInfo.soundName = "default"
-        subscription.notificationInfo = notificationInfo
-        
-        publicDB.save(subscription) { (_, error) in
-            if let error = error {
-                print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
-                completion(error)
-                return
-            }
-            completion(nil)
         }
     }
 }

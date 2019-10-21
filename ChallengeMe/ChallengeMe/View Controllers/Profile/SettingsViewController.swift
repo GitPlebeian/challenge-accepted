@@ -13,8 +13,7 @@ import Photos
 class SettingsViewController: UIViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var userView: UIView!
-    @IBOutlet weak var currentUserNameLabel: UILabel!
+
     @IBOutlet weak var profilePhotoImageView: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -33,15 +32,9 @@ class SettingsViewController: UIViewController {
     @IBAction func editProfilePhotoButtonTapped(_ sender: Any) {
         presentImagePicker()
     }
-    @IBAction func editNameButtonTapped(_ sender: Any) {
-        saveButton.isHidden = false
-        nameTextField.isHidden = false
-    }
+
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let newName = nameTextField.text, !newName.isEmpty else { return }
-        currentUserNameLabel.text = newName
-        saveButton.isHidden = true
-        nameTextField.isHidden = true
         UserController.shared.currentUser?.username = newName
         UserController.shared.updateUser { (success) in
             if success {
@@ -67,15 +60,6 @@ class SettingsViewController: UIViewController {
     func loadViews() {
         guard let currentUser = UserController.shared.currentUser else { return }
         profilePhotoImageView.image = currentUser.profilePhoto
-        currentUserNameLabel.text = currentUser.username
-        saveButton.isHidden = true
-        nameTextField.isHidden = true
-        userView.layer.shadowColor = UIColor.black.cgColor
-        userView.layer.shadowOpacity = 0.3
-        userView.layer.shadowOffset = CGSize(width: 2, height: 4)
-        userView.layer.shadowRadius = 3
-        userView.addCornerRadius(8)
-        
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.black
         nav?.tintColor = UIColor.white
@@ -109,7 +93,7 @@ class SettingsViewController: UIViewController {
     
     func presentDeleteAlert() {
         guard let currentUser = UserController.shared.currentUser else { return }
-        let alert = UIAlertController(title: "Delete Account?", message: "Are you sure you'd like to delete your account?", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Delete Account?", message: "Are you sure you'd like to delete your account? All of your created challenges will be deleted as well", preferredStyle: .actionSheet)
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (delete) in
             UserController.shared.deleteUser(user: currentUser) { (success) in
                 if success {

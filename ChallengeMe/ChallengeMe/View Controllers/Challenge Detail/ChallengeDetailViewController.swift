@@ -12,9 +12,7 @@ import MessageUI
 class ChallengeDetailViewController: UIViewController {
 
     // MARK: - Outlets
-    @IBOutlet weak var blurEffect: UIVisualEffectView!
     @IBOutlet weak var challengeImageView: UIImageView!
-    @IBOutlet weak var challengeImageButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var acceptChallengeButton: UIButton!
@@ -28,7 +26,6 @@ class ChallengeDetailViewController: UIViewController {
             updateSaveButtonForChallenge()
         }
     }
-    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -45,17 +42,6 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func challengeImageButtonTapped(_ sender: Any) {
-        blurEffect.isHidden = false
-        challengeImageButton.isUserInteractionEnabled = false
-        // TODO: Fix shifting and sizing image
-        UIView.animate(withDuration: 0.5) {
-            self.challengeImageView.center = self.mainSubView.center
-        }
-        mainSubView.bringSubviewToFront(challengeImageView)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(returnViews))
-        view.addGestureRecognizer(tapGesture)
-    }
     
     @IBAction func showOnMapButtonTapped(_ sender: Any) {
         guard let challenge = challenge else {return}
@@ -93,24 +79,6 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
-    @objc func returnViews() {
-        // TODO: Fix shifting and sizing image
-        UIView.animate(withDuration: 0.5) {
-            self.challengeImageView.transform = .identity
-            self.challengeImageView.center = CGPoint(x: self.challengeImageView.center.x, y: self.challengeImageView.center.y - 150)
-        }
-        challengeImageButton.isUserInteractionEnabled = true
-        blurEffect.isHidden = true
-        mainSubView.sendSubviewToBack(challengeImageView)
-        guard let gestures = view.gestureRecognizers else { return }
-        for gesture in gestures {
-            if gesture.isKind(of: UITapGestureRecognizer.self) {
-                view.removeGestureRecognizer(gesture)
-            }
-        }
-    }
-    
-    
     func presentBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -205,7 +173,6 @@ class ChallengeDetailViewController: UIViewController {
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
         view.backgroundColor = .background
-        blurEffect.isHidden = true
     }
     
     func presentReportAlert() {
@@ -248,7 +215,6 @@ class ChallengeDetailViewController: UIViewController {
 }
 
 // MARK: - Mail Delegate
-
 extension ChallengeDetailViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let error = error {
