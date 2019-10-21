@@ -104,46 +104,24 @@
                                                     <action selector="showOnMapButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="BVR-2B-W52"/>
                                                 </connections>
                                             </button>
-                                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZb-YJ-ifX">
-                                                <rect key="frame" x="0.0" y="800" width="375" height="12"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HF9-g2-wJS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="12"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </view>
-                                                <blurEffect style="regular"/>
-                                            </visualEffectView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiJ-Yg-yUu">
-                                                <rect key="frame" x="9.3333333333333428" y="24" width="356.33333333333326" height="175"/>
-                                                <connections>
-                                                    <action selector="challengeImageButtonTapped:" destination="Ndo-0P-4Dt" eventType="touchUpInside" id="qN6-hx-Xlz"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="hiJ-Yg-yUu" firstAttribute="centerY" secondItem="hff-ps-jTO" secondAttribute="centerY" id="17n-5N-fpM"/>
                                             <constraint firstItem="0dh-ml-4Vw" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="2IV-K3-DiM"/>
                                             <constraint firstItem="hff-ps-jTO" firstAttribute="width" secondItem="Jhj-PV-lXw" secondAttribute="width" multiplier="0.95" id="4DC-ig-qpb"/>
                                             <constraint firstItem="0dh-ml-4Vw" firstAttribute="top" secondItem="aG1-Ad-zPT" secondAttribute="bottom" constant="24" id="5nD-PQ-Hwe"/>
-                                            <constraint firstItem="nZb-YJ-ifX" firstAttribute="top" secondItem="Jhj-PV-lXw" secondAttribute="top" constant="800" id="7Le-lH-lF1"/>
                                             <constraint firstItem="hff-ps-jTO" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="9Jq-Zh-eOV"/>
                                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="top" secondItem="0dh-ml-4Vw" secondAttribute="bottom" constant="36" id="AQV-kZ-37d"/>
                                             <constraint firstItem="Id4-kw-L6Z" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="BRX-0K-9ys"/>
                                             <constraint firstItem="Id4-kw-L6Z" firstAttribute="top" secondItem="59j-wM-AoL" secondAttribute="bottom" constant="75" id="Dwf-FL-ypg"/>
                                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="Dzt-dt-6ie"/>
-                                            <constraint firstItem="hiJ-Yg-yUu" firstAttribute="width" secondItem="hff-ps-jTO" secondAttribute="width" id="J5k-QP-qHI"/>
                                             <constraint firstItem="zxi-ZN-e2g" firstAttribute="width" secondItem="Jhj-PV-lXw" secondAttribute="width" multiplier="0.9" id="KtT-FF-VkW"/>
                                             <constraint firstItem="aG1-Ad-zPT" firstAttribute="trailing" secondItem="hff-ps-jTO" secondAttribute="trailing" constant="-16" id="VxP-V0-hEy"/>
-                                            <constraint firstAttribute="trailing" secondItem="nZb-YJ-ifX" secondAttribute="trailing" id="Wgc-Px-xfr"/>
                                             <constraint firstItem="hff-ps-jTO" firstAttribute="top" secondItem="Jhj-PV-lXw" secondAttribute="top" constant="24" id="bqc-eo-ggX"/>
-                                            <constraint firstAttribute="bottom" secondItem="nZb-YJ-ifX" secondAttribute="bottom" id="dCR-ds-O2T"/>
                                             <constraint firstItem="59j-wM-AoL" firstAttribute="top" secondItem="zxi-ZN-e2g" secondAttribute="bottom" constant="50" id="g1I-oG-mTO"/>
                                             <constraint firstItem="0dh-ml-4Vw" firstAttribute="width" secondItem="Jhj-PV-lXw" secondAttribute="width" multiplier="0.9" id="gmB-E7-fyh"/>
                                             <constraint firstItem="aG1-Ad-zPT" firstAttribute="bottom" secondItem="hff-ps-jTO" secondAttribute="bottom" constant="20" id="hfT-ao-bnN"/>
-                                            <constraint firstItem="hiJ-Yg-yUu" firstAttribute="centerX" secondItem="hff-ps-jTO" secondAttribute="centerX" id="m3O-yS-Xr1"/>
-                                            <constraint firstItem="hiJ-Yg-yUu" firstAttribute="height" secondItem="hff-ps-jTO" secondAttribute="height" id="nWR-Mg-rvR"/>
                                             <constraint firstItem="59j-wM-AoL" firstAttribute="centerX" secondItem="Jhj-PV-lXw" secondAttribute="centerX" id="wXj-Mg-oqt"/>
-                                            <constraint firstItem="nZb-YJ-ifX" firstAttribute="leading" secondItem="Jhj-PV-lXw" secondAttribute="leading" id="zeq-qg-N4h"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -171,9 +149,7 @@
                     <navigationItem key="navigationItem" id="2by-a9-0rf"/>
                     <connections>
                         <outlet property="acceptChallengeButton" destination="aG1-Ad-zPT" id="LRp-1y-Q1v"/>
-                        <outlet property="blurEffect" destination="nZb-YJ-ifX" id="Cq9-1Z-xwn"/>
                         <outlet property="challengeDescription" destination="isK-Lr-PU1" id="VNK-On-YJd"/>
-                        <outlet property="challengeImageButton" destination="hiJ-Yg-yUu" id="CKw-3h-9IC"/>
                         <outlet property="challengeImageView" destination="hff-ps-jTO" id="slt-mV-mlz"/>
                         <outlet property="mainSubView" destination="Jhj-PV-lXw" id="mcT-z2-sVv"/>
                         <outlet property="showOnMapButton" destination="59j-wM-AoL" id="gOv-tl-RN7"/>
