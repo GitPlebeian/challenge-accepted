@@ -34,9 +34,12 @@ class ProfileViewController: UIViewController {
 
     // MARK: - Custom Functions
     func updateViews() {
-        guard let currentUser = UserController.shared.currentUser else { return }
-        nameLabel.text = currentUser.username
-        profileImageVIew.image = currentUser.profilePhoto
+        if let currentUser = UserController.shared.currentUser {
+            nameLabel.text = currentUser.username
+            profileImageVIew.image = currentUser.profilePhoto
+        } else {
+            profileImageVIew.image = UIImage(named: "defaultProfileImage")
+        }
         userView.layer.shadowColor = UIColor.black.cgColor
         userView.layer.shadowOpacity = 0.3
         userView.layer.shadowOffset = CGSize(width: 2, height: 4)
@@ -52,6 +55,7 @@ class ProfileViewController: UIViewController {
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         tabBarController?.tabBar.barTintColor = .tabBar
         view.backgroundColor = .background
+        
     }
     
     func updateProfileInfo() {
