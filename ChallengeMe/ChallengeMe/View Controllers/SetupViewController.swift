@@ -83,7 +83,7 @@ class SetupViewController: UIViewController {
     
     func loadUser() {
         if connectedToICloud() == false {
-            presentErrorForICloudConnection(title: "ICloud", message: "This app uses your ICloud account to see challenges on the map. Please sign in to ICloud to enable this feature.")
+            presentErrorForICloudConnection(title: "iCloud", message: "This app uses your iCloud account to see challenges on the map. Please sign in to iCloud to enable this feature.")
             return
         }
         UserController.shared.fetchCurrentUser { (networkSuccess, userExists) in

@@ -49,7 +49,7 @@ class UserController {
             if let profilePhoto = profilePhoto {
                 newUser = User(username: username, appleUserReference: reference, profilePhoto: profilePhoto)
             } else {
-                newUser = User(username: username, appleUserReference: reference, profilePhoto: UIImage(named: "d"))
+                newUser = User(username: username, appleUserReference: reference, profilePhoto: UIImage(named: "defaultProfileImage"))
             }
             let userRecord = CKRecord(user: newUser)
             self.publicDB.save(userRecord, completionHandler:  { (record, error) in
