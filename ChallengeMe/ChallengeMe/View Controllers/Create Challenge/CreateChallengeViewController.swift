@@ -56,6 +56,7 @@ class CreateChallengeViewController: UIViewController {
         createToolBar()
         titleTextField.delegate = self
         tagsTextField.delegate = self
+        descriptionTextView.delegate = self
     }
     
     // MARK: - Actions
@@ -89,12 +90,44 @@ class CreateChallengeViewController: UIViewController {
             let challengeImage = selectedImage.image,
             let tagString = tagsTextField.text,
             tagString.isEmpty == false,
-            tagString != " ",
             challengeLocation != nil else {
                 feedback.notificationOccurred(.error)
                 presentEmptyFieldsAlert()
                 return
         }
+        
+        var onlySpaces = true
+        for character in title {
+            if character != " " {
+                onlySpaces = false
+            }
+        }
+        if onlySpaces == true {
+            presentBasicAlert(title: "Title", message: "Title cannot contain only spaces")
+            return
+        }
+        onlySpaces = true
+        for character in tagString {
+            if character != " " {
+                onlySpaces = false
+            }
+        }
+        if onlySpaces == true {
+            presentBasicAlert(title: "Tags", message: "Tags cannot contain only spaces")
+            return
+        }
+        
+        onlySpaces = true
+        for character in description {
+            if character != " " {
+                onlySpaces = false
+            }
+        }
+        if onlySpaces == true {
+            presentBasicAlert(title: "Description", message: "Description cannot contain only spaces")
+            return
+        }
+        
         var hashtags: [String] {
                    return tagString
                        .split(separator: " ") // divide into 'substrings'
@@ -109,6 +142,14 @@ class CreateChallengeViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
+    
+    func presentBasicAlert(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+    
     func createToolBar() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -284,37 +325,22 @@ extension CreateChallengeViewController: UIImagePickerControllerDelegate, UINavi
     }
 }
 
-extension CreateChallengeViewController: UITextFieldDelegate {
+extension CreateChallengeViewController: UITextFieldDelegate, UITextViewDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // get the current text, or use an empty string if that failed
         let currentText = textField.text ?? ""
-
-        // attempt to read the range they are trying to change, or exit if we can't
         guard let stringRange = Range(range, in: currentText) else { return false }
-
-        // add their new text to the existing text
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-
-        // make sure the result is under 16 characters
-        return updatedText.count <= 20
+        return updatedText.count <= 25
     }
 
-    // Use this if you have a UITextView
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        // get the current text, or use an empty string if that failed
         let currentText = textView.text ?? ""
-
-        // attempt to read the range they are trying to change, or exit if we can't
         guard let stringRange = Range(range, in: currentText) else { return false }
-
-        // add their new text to the existing text
         let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
-
-        // make sure the result is under 16 characters
         return updatedText.count <= 150
     }
 }

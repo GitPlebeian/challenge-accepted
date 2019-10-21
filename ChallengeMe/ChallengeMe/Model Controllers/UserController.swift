@@ -148,6 +148,7 @@ class UserController {
                  completion(false)
                  return
             }
+            self.currentUser = nil
             completion(true)
         }
     }

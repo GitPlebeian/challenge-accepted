@@ -120,11 +120,11 @@
             </objects>
             <point key="canvasLocation" x="2057" y="46"/>
         </scene>
-        <!--Challenges-->
+        <!--Accepted Challenges-->
         <scene sceneID="RIt-8y-anA">
             <objects>
                 <navigationController id="XhV-aZ-IjI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Challenges" image="ChallengesTabIcon" id="2g5-Ld-glK"/>
+                    <tabBarItem key="tabBarItem" title="Accepted Challenges" image="ChallengesTabIcon" id="2g5-Ld-glK"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Q4x-4x-CdX">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -22,11 +22,12 @@ class SetupViewController: UIViewController {
     
     // MARK: - Properties
     weak var delegate: PhotoSelectedDelegate?
+    var userImage: UIImage?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        usernameTextField.delegate = self
         updateViews()
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +42,21 @@ class SetupViewController: UIViewController {
     
     @IBAction func saveUsernameButtonTapped(_ sender: Any) {
         guard let username = usernameTextField.text, username.isEmpty == false else {return}
-        UserController.shared.createCurrentUser(username: username, profilePhoto: profilePhotoImageView.image) { (success) in
+        var onlySpaces = true
+        for character in username {
+            if character != " " {
+                onlySpaces = false
+            }
+        }
+        if onlySpaces == true {
+            presentBasicAlert(title: "Username", message: "You cannot only have spaces")
+            return
+        }
+        if username.count > 20 {
+            presentBasicAlert(title: "Username", message: "Username can't be over 20 character")
+            return
+        }
+        UserController.shared.createCurrentUser(username: username, profilePhoto: userImage) { (success) in
             DispatchQueue.main.async {
                 if success {
                     let mainTabBarStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
@@ -61,6 +76,13 @@ class SetupViewController: UIViewController {
     }
     
     // MARK: - Custom Functions
+    
+    func presentBasicAlert(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
     
     func connectedToICloud() -> Bool{
         if FileManager.default.ubiquityIdentityToken == nil {
@@ -255,19 +277,19 @@ extension SetupViewController: UIImagePickerControllerDelegate, UINavigationCont
             self.profilePhotoImageView.image = selectedImage
             profilePhotoImageView.isHidden = false
             uploadPhotoButton.isHidden = true
-            UserController.shared.currentUser?.profilePhoto = selectedImage
-            UserController.shared.updateUser { (success) in
-                if success {
-                    print("User successfully updated profile photo")
-                } else {
-                    self.presentErrorAlertForImagePicker(error: nil)
-                }
-            }
+            userImage = selectedImage
         }
         dismiss(animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
+    }
+}
+
+extension SetupViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        usernameTextField.resignFirstResponder()
+        return true
     }
 }

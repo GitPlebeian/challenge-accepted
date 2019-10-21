@@ -60,14 +60,13 @@ class MainMapViewController: UIViewController {
         } else {
             return
         }
-        UIView.animate(withDuration: 0.2, animations: {
-            self.numberOfChallengesLabel.alpha = 0
-        }) { (_) in
-            self.numberOfChallengesLabel.isHidden = true
+        self.numberOfChallengesLabel.alpha = 0
+        self.numberOfChallengesLabel.isHidden = true
+        
+        if let currentSearchArea = currentSearchArea {
+            self.map.removeOverlay(currentSearchArea)
         }
-        if let searchArea = currentSearchArea {
-            map.removeOverlay(searchArea)
-        }
+        
         var cordinateArray: [CLLocationCoordinate2D] = []
         let latitude = map.centerCoordinate.latitude
         let longitude = map.centerCoordinate.longitude

@@ -11,9 +11,9 @@ import MessageUI
 import Photos
 
 class SettingsViewController: UIViewController {
-
+    
     // MARK: - Outlets
-
+    
     @IBOutlet weak var profilePhotoImageView: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -27,20 +27,40 @@ class SettingsViewController: UIViewController {
         loadViews()
         createToolBar()
     }
-
+    
     // MARK: - Actions
     @IBAction func editProfilePhotoButtonTapped(_ sender: Any) {
         presentImagePicker()
     }
-
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let newName = nameTextField.text, !newName.isEmpty else { return }
+        var onlySpaces = true
+        for character in newName {
+            if character != " " {
+                onlySpaces = false
+            }
+        }
+        if onlySpaces == true {
+            presentBasicAlert(title: "Username", message: "You cannot only have spaces")
+            return
+        }
+        if newName.count > 20 {
+            presentBasicAlert(title: "Username", message: "Username can't be over 20 character")
+            return
+        }
         UserController.shared.currentUser?.username = newName
+        let feedback = UINotificationFeedbackGenerator()
+        feedback.prepare()
         UserController.shared.updateUser { (success) in
-            if success {
-                print("User was successfully updated")
-            } else {
-                self.presentErrorAlert(error: nil)
+            DispatchQueue.main.async {
+                if success {
+                    feedback.notificationOccurred(.success)
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    feedback.notificationOccurred(.error)
+                    self.presentBasicAlert(title: "Error", message: "Unable to update user data")
+                }
             }
         }
     }
@@ -78,7 +98,7 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func dismissKeyboard() {
-           view.endEditing(true)
+        view.endEditing(true)
     }
     
     func showMailComposer() {
@@ -95,11 +115,20 @@ class SettingsViewController: UIViewController {
         guard let currentUser = UserController.shared.currentUser else { return }
         let alert = UIAlertController(title: "Delete Account?", message: "Are you sure you'd like to delete your account? All of your created challenges will be deleted as well", preferredStyle: .actionSheet)
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (delete) in
+            let feedback = UINotificationFeedbackGenerator()
+            feedback.prepare()
             UserController.shared.deleteUser(user: currentUser) { (success) in
-                if success {
-                    print("User was successfully removed")
-                } else {
-                    self.presentErrorAlert(error: nil)
+                DispatchQueue.main.async {
+                    if success {
+                        feedback.notificationOccurred(.success)
+                        let mainTabBarStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let viewController = mainTabBarStoryboard.instantiateViewController(withIdentifier: "loadingViewController")
+                        viewController.modalPresentationStyle = .fullScreen
+                        self.present(viewController, animated: true, completion: nil)
+                    } else {
+                        feedback.notificationOccurred(.error)
+                        self.presentBasicAlert(title: "Error", message: "Unable to delete user data. Please try again later.")
+                    }
                 }
             }
         }
@@ -110,10 +139,17 @@ class SettingsViewController: UIViewController {
     }
     
     func presentEmailAlert() {
-           let alert = UIAlertController(title: "Error", message: "Unable to access Mail. Please email challengeacceptedhelp@gmail.com with a description of the issue you experienced.", preferredStyle: .alert)
-           let ok = UIAlertAction(title: "OK", style: .cancel)
-           alert.addAction(ok)
-           present(alert, animated: true)
+        let alert = UIAlertController(title: "Error", message: "Unable to access Mail. Please email challengeacceptedhelp@gmail.com with a description of the issue you experienced.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(ok)
+        present(alert, animated: true)
+    }
+    
+    func presentBasicAlert(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
     
     func presentErrorAlert(error: Error?) {
@@ -224,7 +260,7 @@ class SettingsViewController: UIViewController {
     
 }
 
-    // MARK: - Mail Delegate
+// MARK: - Mail Delegate
 extension SettingsViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let error = error {
@@ -252,7 +288,7 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
     }
 }
 
-    // Mark: - Image Picker Delegate
+// Mark: - Image Picker Delegate
 extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
