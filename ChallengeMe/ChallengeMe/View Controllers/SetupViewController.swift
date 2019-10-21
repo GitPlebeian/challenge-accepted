@@ -28,6 +28,9 @@ class SetupViewController: UIViewController {
         super.viewDidLoad()
 
         updateViews()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         loadUser()
     }
     
@@ -59,6 +62,14 @@ class SetupViewController: UIViewController {
     
     // MARK: - Custom Functions
     
+    func connectedToICloud() -> Bool{
+        if FileManager.default.ubiquityIdentityToken == nil {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func updateViews() {
         usernameTextField.layer.cornerRadius = usernameTextField.frame.height / 2
         refreshButton.layer.cornerRadius = refreshButton.frame.height / 2
@@ -71,6 +82,10 @@ class SetupViewController: UIViewController {
     }
     
     func loadUser() {
+        if connectedToICloud() == false {
+            presentErrorForICloudConnection(title: "ICloud", message: "This app uses your ICloud account to see challenges on the map. Please sign in to ICloud to enable this feature.")
+            return
+        }
         UserController.shared.fetchCurrentUser { (networkSuccess, userExists) in
             DispatchQueue.main.async {
                 self.loadingDataActivityIndicator.isHidden = true
@@ -92,6 +107,18 @@ class SetupViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func presentErrorForICloudConnection(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+            let mainTabBarStoryboard = UIStoryboard(name: "TabBar", bundle: nil)
+            let viewController = mainTabBarStoryboard.instantiateViewController(withIdentifier: "mainTabBar")
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: true, completion: nil)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true)
     }
     
     func presentErrorAlertForFetch(title: String, message: String) {

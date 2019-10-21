@@ -37,7 +37,7 @@ class SavedChallengesTableViewController: UITableViewController {
                     self.tableView.reloadData()
                 } else {
                     feedback.notificationOccurred(.error)
-                    self.presentBasicAlert(title: "Error", message: "Could not get save challenges, please try again later")
+                    self.presentBasicAlert(title: "Error", message: "Could not get saved challenges, please try again later")
                 }
             }
         }
@@ -99,6 +99,7 @@ class SavedChallengesTableViewController: UITableViewController {
                         NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil, userInfo: challengeDataDict)
                     } else {
                         feedback.notificationOccurred(.error)
+                        self.presentBasicAlert(title: "Error", message: "Could not get remove saved challenge. Please try again later.")
                     }
                 }
             }

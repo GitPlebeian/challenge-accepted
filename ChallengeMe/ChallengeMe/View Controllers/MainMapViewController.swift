@@ -205,10 +205,8 @@ class MainMapViewController: UIViewController {
         numberOfChallengesLabel.isHidden = false
         if currentAnnotations.count == 1 {
             numberOfChallengesLabel.text = "\(currentAnnotations.count) Challenge"
-        } else if currentAnnotations.count > 1 {
-            numberOfChallengesLabel.text = "\(currentAnnotations.count) Challenges"
         } else {
-            numberOfChallengesLabel.text = "No Challenges Found"
+            numberOfChallengesLabel.text = "\(currentAnnotations.count) Challenges"
         }
         UIView.animate(withDuration: 0.1, animations: {
             self.numberOfChallengesLabel.alpha = 1
@@ -238,10 +236,7 @@ class MainMapViewController: UIViewController {
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
-//            checkLocationAuthorization()
             updateMapViewForLoad()
-        } else {
-            // Error handling
         }
     }
     
@@ -293,21 +288,6 @@ class MainMapViewController: UIViewController {
             }
         }
     }
-    
-//    func checkLocationAuthorization() {
-//        switch  CLLocationManager.authorizationStatus() {
-//        case .authorizedWhenInUse: break
-//        case .notDetermined: locationManager.requestWhenInUseAuthorization()
-//        case .restricted:
-//            break
-//        case .denied:
-//            break
-//        case .authorizedAlways:
-//            break
-//        @unknown default:
-//            break
-//        }
-//    }
 }
 
 extension MainMapViewController: CLLocationManagerDelegate {
@@ -317,7 +297,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
+        checkLocationServices()
     }
 }
 
