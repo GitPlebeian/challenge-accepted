@@ -12,10 +12,6 @@ class MapNavigationController: UINavigationController {
 
     // MARK: - Properties
     
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .darkContent
-//    }
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -29,15 +25,4 @@ class MapNavigationController: UINavigationController {
         tabBarController?.tabBar.barTintColor = .tabBar
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

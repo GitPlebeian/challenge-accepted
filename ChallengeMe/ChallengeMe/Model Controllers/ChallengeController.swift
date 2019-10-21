@@ -257,7 +257,6 @@ class ChallengeController {
             let challenges = records.compactMap({Challenge(record: $0)})
             self.challenges = challenges
             UserController.shared.assignCreatedChallenges()
-            NotificationCenter.default.post(name: NSNotification.Name(NotificationNameKeys.stopLoadingAnimationKey), object: nil)
             completion(true)
         }
     }

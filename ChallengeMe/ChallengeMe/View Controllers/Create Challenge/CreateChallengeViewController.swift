@@ -27,7 +27,7 @@ class CreateChallengeViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var tagsTextField: UITextField!
-
+    
     @IBOutlet weak var selectLocationButton: UIButton!
     @IBOutlet weak var createChallengeButton: UIButton!
     
@@ -60,33 +60,39 @@ class CreateChallengeViewController: UIViewController {
     }
     
     // MARK: - Actions
-
+    
+    // Segues to the select location map view controller
     @IBAction func selectLocationButtonTapped(_ sender: Any) {
         guard let mapVC = UIStoryboard(name: "CreateChallenge", bundle: nil).instantiateViewController(identifier: "CreateChallengeMap") as? CreateChallengeMapViewController else { return }
         mapVC.delegate = self
         if let title = titleTextField.text {
             mapVC.challengeTitle = title
         }
-//        mapVC.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(mapVC, animated: true)
     }
+    
+    // Attempts to present image selector
     @IBAction func uploadImageButtonTapped(_ sender: Any) {
         // checks to see if there are any photos in the photo library to access
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             requestPhotoLibraryAuthorization()
         }
     }
+    
+    // Attempts to take a picture after authorizaiton is granted.
     @IBAction func takePictureButtonTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             requestCameraAuthorization()
         }
     }
+    
+    // Attempts to create a challenge if the user filled out all of the fields.
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         let feedback = UINotificationFeedbackGenerator()
         guard let title = titleTextField.text,
             title.isEmpty == false,
             let description = descriptionTextView.text,
-        description.isEmpty == false,
+            description.isEmpty == false,
             let challengeImage = selectedImage.image,
             let tagString = tagsTextField.text,
             tagString.isEmpty == false,
@@ -129,20 +135,21 @@ class CreateChallengeViewController: UIViewController {
         }
         
         var hashtags: [String] {
-                   return tagString
-                       .split(separator: " ") // divide into 'substrings'
-                       .map { String($0) } // turn back into 'strings'
-               }
+            return tagString
+                .split(separator: " ") // divide into 'substrings'
+                .map { String($0) } // turn back into 'strings'
+        }
         feedback.prepare()
-            guard let selectedLocation = challengeLocation else { return }
-            ChallengeController.shared.createChallenge(title: title, description: description, longitude: selectedLocation.longitude, latitude: selectedLocation.latitude, tags: hashtags, photo: challengeImage) { (challenge) in
-                self.createChallengeCompletion(challenge: challenge, feedback: feedback)
-            }
+        guard let selectedLocation = challengeLocation else { return }
+        ChallengeController.shared.createChallenge(title: title, description: description, longitude: selectedLocation.longitude, latitude: selectedLocation.latitude, tags: hashtags, photo: challengeImage) { (challenge) in
+            self.createChallengeCompletion(challenge: challenge, feedback: feedback)
+        }
         navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Custom Methods
     
+    // Presents alert with an ok button that does nothing
     func presentBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -150,6 +157,7 @@ class CreateChallengeViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // Adds the tool bar to the keyboard.
     func createToolBar() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -162,9 +170,10 @@ class CreateChallengeViewController: UIViewController {
     }
     
     @objc func dismissKeyboard() {
-              view.endEditing(true)
+        view.endEditing(true)
     }
     
+    // Handles if the creation of a challenge was successful
     func createChallengeCompletion(challenge: Challenge?, feedback: UINotificationFeedbackGenerator) {
         DispatchQueue.main.async {
             guard let saveChallengeDelegate = self.saveChallengeDelegate else {return}
@@ -178,6 +187,7 @@ class CreateChallengeViewController: UIViewController {
         }
     }
     
+    // Updates ui on view did load
     func updateViews() {
         self.title = "Create Challenge"
         selectedImage.isHidden = false
@@ -211,6 +221,7 @@ class CreateChallengeViewController: UIViewController {
         
     }
     
+    // Tells user they they did not fill out all of the fields
     func presentEmptyFieldsAlert() {
         let alert = UIAlertController(title: "Uh-Oh!", message: "Looks like you forgot something. Please ensure all fields are completed", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .cancel)
@@ -218,6 +229,7 @@ class CreateChallengeViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // Presents photo picker controller
     fileprivate func presentPhotoPickerController() {
         DispatchQueue.main.async {
             let imagePickerController = UIImagePickerController()
@@ -227,6 +239,7 @@ class CreateChallengeViewController: UIViewController {
         }
     }
     
+    // Presents Camera
     func presentCamera() {
         DispatchQueue.main.async {
             let imagePickerController = UIImagePickerController()
@@ -236,8 +249,8 @@ class CreateChallengeViewController: UIViewController {
         }
     }
     
+    // request authorization to access photos
     fileprivate func requestPhotoLibraryAuthorization() {
-        // request authorization to access photos
         PHPhotoLibrary.requestAuthorization { (status) in
             switch status {
             case .authorized:
@@ -270,6 +283,7 @@ class CreateChallengeViewController: UIViewController {
         }
     }
     
+    // Requests camera authorization
     fileprivate func requestCameraAuthorization() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
@@ -305,6 +319,8 @@ class CreateChallengeViewController: UIViewController {
 }
 
 extension CreateChallengeViewController: CreateChallengeMapDelegate {
+    
+    // Sets the location of where the challenge should be created
     func didTap(at coordinates: CLLocationCoordinate2D) {
         challengeLocation = coordinates
     }
@@ -320,23 +336,29 @@ extension CreateChallengeViewController: UIImagePickerControllerDelegate, UINavi
         dismiss(animated: true)
     }
     
+    // Dismisses the picture image selection view
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
 }
 
 extension CreateChallengeViewController: UITextFieldDelegate, UITextViewDelegate {
+    
+    // Gets rid of keyboard when return button is tapped
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    // Sets max length for tags and title field
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        return updatedText.count <= 25
+        return updatedText.count <= 50
     }
-
+    
+    // Sets max length for description
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let currentText = textView.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }

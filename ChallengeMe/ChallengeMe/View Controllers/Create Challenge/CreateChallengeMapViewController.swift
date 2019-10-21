@@ -35,6 +35,8 @@ class CreateChallengeMapViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    // Will send the tapped coordinates to the create challenge view controller
     @IBAction func tappedOnMap(_ sender: UITapGestureRecognizer) {
         
         let location = sender.location(in: selectLocationMapView)
@@ -62,13 +64,12 @@ class CreateChallengeMapViewController: UIViewController {
         selectChallengeLabel.addCornerRadius()
     }
     
+    // Centers the map on user
     func centerMapOnUser() {
-           if let location = locationManager.location?.coordinate {
-               selectLocationMapView.showsUserLocation = true
-               let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-               selectLocationMapView.setRegion(region, animated: true)
-           }
-       }
-    
-    
+        if let location = locationManager.location?.coordinate {
+            selectLocationMapView.showsUserLocation = true
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            selectLocationMapView.setRegion(region, animated: true)
+        }
+    }
 }

@@ -38,11 +38,11 @@ class ChallengeDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(enableSaveChallengeButtonForUnsave), name: NSNotification.Name(NotificationNameKeys.enableSaveChallengeButtonForUnsaveKey), object: nil)
         // Disables save button while network is waiting
         NotificationCenter.default.addObserver(self, selector: #selector(disableSaveChallengeButton), name: NSNotification.Name(NotificationNameKeys.disableSaveChallengeButtonKey), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(popViewControllerIfChallengeDeleted(notification:)), name: NSNotification.Name(NotificationNameKeys.deletedChallengeKey), object: nil)
     }
     
     // MARK: - Actions
     
+    // Will show the location of the challenge on a map
     @IBAction func showOnMapButtonTapped(_ sender: Any) {
         guard let challenge = challenge else {return}
         
@@ -54,6 +54,7 @@ class ChallengeDetailViewController: UIViewController {
         self.navigationController?.pushViewController(challengeDetailMapViewController, animated: true)
     }
     
+    // Will attempt to save a new challenge
     @IBAction func saveChallengeButtonTapped(_ sender: Any) {
         guard let challenge = challenge else {return}
         let feedback = UINotificationFeedbackGenerator()
@@ -79,6 +80,8 @@ class ChallengeDetailViewController: UIViewController {
     }
     
     // MARK: - Custom Methods
+    
+    // Presents a basic alert
     func presentBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -86,6 +89,7 @@ class ChallengeDetailViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // An ok alert that will show and then pop the view controller when a challenge is deleted.
     func presentPopViewControllerBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
@@ -95,6 +99,7 @@ class ChallengeDetailViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // Will update the save button for a challenge
     func updateSaveButtonForChallenge() {
         loadViewIfNeeded()
         guard let challenge = challenge else {return}
@@ -105,6 +110,7 @@ class ChallengeDetailViewController: UIViewController {
         }
     }
     
+    // Will pop the view controller if the challenge they were looking at was deleted.
     @objc func popViewControllerIfChallengeDeleted(notification: NSNotification) {
         DispatchQueue.main.async {
             guard let challenge = self.challenge,
@@ -115,6 +121,7 @@ class ChallengeDetailViewController: UIViewController {
         }
     }
     
+    // Enables the save challenge button for when a user unsaves challenge
     @objc func enableSaveChallengeButtonForUnsave(notification: NSNotification) {
         DispatchQueue.main.async {
             guard let challenge = self.challenge,
@@ -127,6 +134,7 @@ class ChallengeDetailViewController: UIViewController {
         }
     }
     
+    // Enables the save challenge button for when a user succesfully saves
     @objc func enableSaveChallengeButtonForSave(notification: NSNotification) {
         DispatchQueue.main.async {
             guard let challenge = self.challenge,
@@ -139,6 +147,7 @@ class ChallengeDetailViewController: UIViewController {
         }
     }
     
+    // Diables the save challenge button
     @objc func disableSaveChallengeButton(notification: NSNotification) {
         DispatchQueue.main.async {
             guard let challenge = self.challenge,
@@ -149,17 +158,7 @@ class ChallengeDetailViewController: UIViewController {
         }
     }
     
-//    func updateSaveChallengeButtonLabel() {
-//        guard let currentUser = UserController.shared.currentUser,
-//        let challenge = challenge else {return}
-//
-//        for savedChallenge in currentUser.completedChallenges {
-//            if savedChallenge == challenge {
-//                acceptChallengeButton.titleLabel?.text = "Save Challenge"
-//            }
-//        }
-//    }
-    
+    // Sets style for ui.
     func loadViews() {
         guard let challenge = challenge else { return }
         challengeImageView.image = challenge.photo
@@ -175,6 +174,7 @@ class ChallengeDetailViewController: UIViewController {
         view.backgroundColor = .background
     }
     
+    // Presents a report alert.
     func presentReportAlert() {
         let alert = UIAlertController(title: "Report", message: "Would you like to report this challenge?", preferredStyle: .actionSheet)
         let report = UIAlertAction(title: "Report", style: .destructive) { (sendEmail) in
@@ -186,6 +186,7 @@ class ChallengeDetailViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // Presents error alert based on alert.
     func presentErrorAlert(error: Error) {
         let alert = UIAlertController(title: "Error", message: "There was an error sending your email. \(error.localizedDescription)", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .cancel)
@@ -193,6 +194,7 @@ class ChallengeDetailViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // Presents error if mail app is not available.
     func presentEmailAlert() {
         let alert = UIAlertController(title: "Error", message: "Unable to access Mail. Please email challengeacceptedhelp@gmail.com.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .cancel)
@@ -215,7 +217,9 @@ class ChallengeDetailViewController: UIViewController {
 }
 
 // MARK: - Mail Delegate
+
 extension ChallengeDetailViewController: MFMailComposeViewControllerDelegate {
+    // Sends email
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let error = error {
             print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")

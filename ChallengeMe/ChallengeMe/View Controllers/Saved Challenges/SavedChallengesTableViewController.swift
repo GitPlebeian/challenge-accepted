@@ -16,6 +16,8 @@ class SavedChallengesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        
+        // Reloads table view
         NotificationCenter.default.addObserver(self, selector: #selector(userUpdatedSavedChallenge), name: NSNotification.Name(NotificationNameKeys.updatedSavedChallengeKey), object: nil)
     }
     
@@ -44,6 +46,7 @@ class SavedChallengesTableViewController: UITableViewController {
     }
     
     // MARK: - Custom Functions
+    
     func updateViews() {
         title = "Accepted Challenges"
         let nav = self.navigationController?.navigationBar

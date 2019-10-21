@@ -73,10 +73,12 @@ class ProfileViewController: UIViewController {
 
 // MARK: - TableView Delegate and DataSource
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    // Number of rows in section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserController.shared.currentUser?.createdChallenges.count ?? 0
     }
     
+    // Cell for row at
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? CreatedChallengesTableViewCell,
             let challenge = UserController.shared.currentUser?.createdChallenges[indexPath.row] else { return UITableViewCell() }

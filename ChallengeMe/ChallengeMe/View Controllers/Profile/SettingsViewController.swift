@@ -33,6 +33,7 @@ class SettingsViewController: UIViewController {
         presentImagePicker()
     }
     
+    // Updates the user after save button 
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let newName = nameTextField.text, !newName.isEmpty else { return }
         var onlySpaces = true
@@ -87,7 +88,7 @@ class SettingsViewController: UIViewController {
         tabBarController?.tabBar.barTintColor = .tabBar
         view.backgroundColor = .background
     }
-    
+     // Adds toolbar to keyboard
     func createToolBar() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -97,10 +98,12 @@ class SettingsViewController: UIViewController {
         nameTextField.inputAccessoryView = toolBar
     }
     
+    // Dismiesses Keyboard
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
+    // Shows the mail composer to send mail
     func showMailComposer() {
         guard MFMailComposeViewController.canSendMail() else { presentEmailAlert(); return }
         let composer = MFMailComposeViewController()
@@ -111,6 +114,7 @@ class SettingsViewController: UIViewController {
         present(composer, animated: true)
     }
     
+    // Presents Alert to ask user if they are sure they want to delete all of their user data.
     func presentDeleteAlert() {
         guard let currentUser = UserController.shared.currentUser else { return }
         let alert = UIAlertController(title: "Delete Account?", message: "Are you sure you'd like to delete your account? All of your created challenges will be deleted as well", preferredStyle: .actionSheet)
@@ -138,6 +142,7 @@ class SettingsViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // Presents error that they don't have the mail app installed
     func presentEmailAlert() {
         let alert = UIAlertController(title: "Error", message: "Unable to access Mail. Please email challengeacceptedhelp@gmail.com with a description of the issue you experienced.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .cancel)
@@ -145,6 +150,7 @@ class SettingsViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // Presents basic alert with Ok button
     func presentBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -152,6 +158,7 @@ class SettingsViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // Presents an error alert based on error
     func presentErrorAlert(error: Error?) {
         guard let error = error else { return }
         let alert = UIAlertController(title: "Error", message: "There was an error, and we were unable to complete this action. If this continues to happen, please email challengeacceptedhelp@gmail.com . \(error.localizedDescription)", preferredStyle: .alert)
@@ -183,6 +190,7 @@ class SettingsViewController: UIViewController {
         self.present(alertController, animated: true)
     }
     
+    // Requests authorization to access photos
     fileprivate func requestPhotoLibraryAuthorization(imagePicker: UIImagePickerController) {
         // request authorization to access photos
         PHPhotoLibrary.requestAuthorization { (status) in
@@ -221,6 +229,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    // Request permission to use the user's camera
     fileprivate func requestCameraAuthorization(imagePicker: UIImagePickerController) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
@@ -261,6 +270,7 @@ class SettingsViewController: UIViewController {
 }
 
 // MARK: - Mail Delegate
+
 extension SettingsViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let error = error {

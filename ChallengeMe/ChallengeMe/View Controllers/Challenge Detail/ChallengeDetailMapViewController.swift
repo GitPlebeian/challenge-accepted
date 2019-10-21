@@ -35,6 +35,7 @@ class ChallengeDetailMapViewController: UIViewController {
     
     // MARK: - Actions
     
+    // Goes to the maps app for directions to the challenge
     @IBAction func getDirectionsButtonTapped(_ sender: Any) {
         guard let challenge = challenge else {return}
         let coordinate = CLLocationCoordinate2D(latitude: challenge.latitude, longitude: challenge.longitude)
@@ -46,6 +47,7 @@ class ChallengeDetailMapViewController: UIViewController {
     
     // MARK: - Custom Functions
     
+    // Centers map on top of the challenge
     func updateMapForChallenge() {
         loadViewIfNeeded()
         guard let challenge = challenge else {return}

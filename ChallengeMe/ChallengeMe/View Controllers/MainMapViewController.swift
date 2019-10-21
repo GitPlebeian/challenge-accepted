@@ -46,6 +46,7 @@ class MainMapViewController: UIViewController {
     
     // MARK: - Actions
     
+    // Segues the the create challenge
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         let createChallengeStoryboard = UIStoryboard(name: "CreateChallenge", bundle: nil)
         guard let viewController = createChallengeStoryboard.instantiateViewController(withIdentifier: "createChallengeViewController") as? CreateChallengeViewController else {return}
@@ -54,6 +55,7 @@ class MainMapViewController: UIViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    // Grabs the challenges near the user
     @IBAction func searchThisAreaButtonTapped(_ sender: Any) {
         if waitingForSearch == false {
             disableSearchThisAreaButton()
@@ -120,24 +122,28 @@ class MainMapViewController: UIViewController {
         }
     }
     
+    // Centers the map onto the user.
     @IBAction func centerOnUserButtonTapped(_ sender: Any) {
         centerMapOnUser()
     }
     
     // MARK: - Custom Funcitons
     
+    // Starts the loading animation
     @objc func startLoadingAnimation() {
         DispatchQueue.main.async {
             self.activityIndicator.startAnimating()
         }
     }
     
+    // Stops the loading animation
     @objc func stopLoadingAnimation() {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
         }
     }
     
+    // Removes annotation when a challenge is deleted.
     @objc func removeAnnotationForChallengeDeletion(notification: NSNotification) {
         DispatchQueue.main.async {
             var index = 0
@@ -153,6 +159,7 @@ class MainMapViewController: UIViewController {
         }
     }
     
+    // Disables the search this area button
     func disableSearchThisAreaButton() {
         searchThisAreaButton.isEnabled = false
         waitingForSearch = true
@@ -161,6 +168,7 @@ class MainMapViewController: UIViewController {
         }
     }
     
+    // Enables the search this area button
     func enableSearchThisAreaButton() {
         searchThisAreaButton.isEnabled = true
         UIView.animate(withDuration: 0.2) {
@@ -168,6 +176,7 @@ class MainMapViewController: UIViewController {
         }
     }
     
+    // Presents basic alert witha button that does nothing
     func presentBasicError(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -175,6 +184,7 @@ class MainMapViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // Centers map on the user
     func centerMapOnUser() {
         if let location = locationManager.location?.coordinate {
             map.showsUserLocation = true
@@ -183,6 +193,7 @@ class MainMapViewController: UIViewController {
         }
     }
     
+    // Updates ui for view did load.
     func updateViews() {
         centerOnUserButton.layer.cornerRadius = centerOnUserButton.frame.height / 2
         searchThisAreaButton.layer.cornerRadius = searchThisAreaButton.frame.height / 2
@@ -200,6 +211,7 @@ class MainMapViewController: UIViewController {
         tabBarController?.tabBar.barTintColor = .tabBar
     }
     
+    // Animates the number of challenges to equal the number of challenges
     func animateNumberOfChallenges() {
         numberOfChallengesLabel.isHidden = false
         if currentAnnotations.count == 1 {
@@ -227,11 +239,13 @@ class MainMapViewController: UIViewController {
         }
     }
     
+    // Sets up location manager
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
+    // Checks location services
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
@@ -239,6 +253,7 @@ class MainMapViewController: UIViewController {
         }
     }
     
+    // Loads initial challenges for view did load
     func updateMapViewForLoad() {
         loadViewIfNeeded()
         var locationToLoad: CLLocationCoordinate2D
@@ -291,10 +306,7 @@ class MainMapViewController: UIViewController {
 
 extension MainMapViewController: CLLocationManagerDelegate {
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-    }
-    
+    // Did change authorization status
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationServices()
     }
@@ -302,6 +314,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
 
 extension MainMapViewController: MKMapViewDelegate {
     
+    // View for annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKind(of: MKUserLocation.self) {
             return nil
@@ -323,6 +336,7 @@ extension MainMapViewController: MKMapViewDelegate {
         return view
     }
     
+    // Segues to the challenge detail view.
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let challengeDetailVC = UIStoryboard(name: "ChallengeDetail", bundle: nil).instantiateViewController(withIdentifier: "challengeDetail") as? ChallengeDetailViewController else { return }
         
@@ -334,12 +348,9 @@ extension MainMapViewController: MKMapViewDelegate {
         
         challengeDetailVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(challengeDetailVC, animated: true)
-//        let placemark = MKPlacemark(coordinate: view.annotation!.coordinate)
-//        let mapItem = MKMapItem(placemark: placemark)
-//        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-//        mapItem.openInMaps(launchOptions: launchOptions)
     }
     
+    // Adds the box around where the user searches.
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let overlay = overlay as? MKPolyline else {return MKOverlayRenderer()}
         let polyLineRender = MKPolylineRenderer(polyline: overlay)
@@ -350,6 +361,8 @@ extension MainMapViewController: MKMapViewDelegate {
 }
 
 extension MainMapViewController: SaveChallengeSuccessDelegate {
+    
+    // Adds an annotation for when the users successfully saves a challenge
     func saveChallengeSuccess(challenge: Challenge?) {
         if let challenge = challenge {
             let annotation = MKPointAnnotation()

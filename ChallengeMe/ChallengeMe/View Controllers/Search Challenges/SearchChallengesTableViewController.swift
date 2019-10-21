@@ -33,6 +33,8 @@ class SearchChallengesTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    
+    // Number of rows in section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBar.text == "" {
             return ChallengeController.shared.challenges.count
@@ -40,6 +42,7 @@ class SearchChallengesTableViewController: UITableViewController {
         return searchResults.count
     }
 
+    // Cell for row at
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "challengeCell", for: indexPath) as? SearchChallengesTableViewCell else { return UITableViewCell() }
         if searchBar.text == "" {
@@ -71,6 +74,8 @@ class SearchChallengesTableViewController: UITableViewController {
 
 // MARK: - SearchBar Delegate
 extension SearchChallengesTableViewController: UISearchBarDelegate {
+    
+    // Will update the table view for the text in the search bar.
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.showsCancelButton = true
         let searchTerm = searchText.lowercased()
@@ -92,6 +97,7 @@ extension SearchChallengesTableViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
 
+    // Empties the search bar when user cancels search
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""

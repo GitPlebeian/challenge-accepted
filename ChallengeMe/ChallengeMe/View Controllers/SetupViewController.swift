@@ -36,10 +36,12 @@ class SetupViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
     @IBAction func uploadPhotoButtonTapped(_ sender: Any) {
         presentImagePicker()
     }
     
+    // Attemps to create a new user based on their input
     @IBAction func saveUsernameButtonTapped(_ sender: Any) {
         guard let username = usernameTextField.text, username.isEmpty == false else {return}
         var onlySpaces = true
@@ -69,6 +71,8 @@ class SetupViewController: UIViewController {
             }
         }
     }
+    
+    // Attempts to load the user from the database
     @IBAction func refreshButtonTapped(_ sender: Any) {
         refreshButton.isHidden = true
         loadingDataActivityIndicator.isHidden = false
@@ -77,6 +81,7 @@ class SetupViewController: UIViewController {
     
     // MARK: - Custom Functions
     
+    // Presents basic alert with a button that does nothing
     func presentBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -84,6 +89,7 @@ class SetupViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // Is the user signed in to iCloud?
     func connectedToICloud() -> Bool{
         if FileManager.default.ubiquityIdentityToken == nil {
             return false
@@ -92,6 +98,7 @@ class SetupViewController: UIViewController {
         }
     }
     
+    // Updates ui on view did load
     func updateViews() {
         usernameTextField.layer.cornerRadius = usernameTextField.frame.height / 2
         refreshButton.layer.cornerRadius = refreshButton.frame.height / 2
@@ -103,6 +110,7 @@ class SetupViewController: UIViewController {
         tabBarController?.tabBar.barTintColor = .tabBar
     }
     
+    // Fetches the user for icloud id
     func loadUser() {
         if connectedToICloud() == false {
             presentErrorForICloudConnection(title: "iCloud", message: "This app uses your iCloud account to see challenges on the map. Please sign in to iCloud to enable this feature.")
@@ -131,6 +139,7 @@ class SetupViewController: UIViewController {
         }
     }
     
+    // Presents error alert for icloud connection
     func presentErrorForICloudConnection(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
@@ -143,6 +152,7 @@ class SetupViewController: UIViewController {
         self.present(alertController, animated: true)
     }
     
+    // Presents an error when the fetch cannot reach the database
     func presentErrorAlertForFetch(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
@@ -151,6 +161,8 @@ class SetupViewController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }
+    
+    // Presents an error alert for when the user tries to create a user.
     func presentErrorAlertForSaveUser(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: title, style: .default) { (_) in
@@ -161,6 +173,7 @@ class SetupViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // Presents error alert for image picker
     func presentErrorAlertForImagePicker(error: Error?) {
         guard let error = error else { return }
         let alert = UIAlertController(title: "Error", message: "There was an error, and we were unable to complete this action. If this continues to happen, please email challengeacceptedhelp@gmail.com . \(error.localizedDescription)", preferredStyle: .alert)
@@ -169,6 +182,7 @@ class SetupViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // Presents image picker
     func presentImagePicker() {
         let alertController = UIAlertController(title: "Choose a photo", message: nil, preferredStyle: .actionSheet)
         let imagePicker = UIImagePickerController()
@@ -192,6 +206,7 @@ class SetupViewController: UIViewController {
         self.present(alertController, animated: true)
     }
     
+    // Requests access to the users photo library
     fileprivate func requestPhotoLibraryAuthorization(imagePicker: UIImagePickerController) {
         // request authorization to access photos
         PHPhotoLibrary.requestAuthorization { (status) in
@@ -230,6 +245,7 @@ class SetupViewController: UIViewController {
         }
     }
     
+    // Requests camera authorization
     fileprivate func requestCameraAuthorization(imagePicker: UIImagePickerController) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
@@ -271,6 +287,7 @@ class SetupViewController: UIViewController {
 
 // Mark: - Image Picker Delegate
 extension SetupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // Sets the selected image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             delegate?.photoSelected(image: selectedImage)
@@ -282,12 +299,15 @@ extension SetupViewController: UIImagePickerControllerDelegate, UINavigationCont
         dismiss(animated: true)
     }
     
+    // Dismisses the image picker
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
 }
 
 extension SetupViewController: UITextFieldDelegate {
+    
+    // Gets rid of keyboard when return button is tapped
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         usernameTextField.resignFirstResponder()
         return true

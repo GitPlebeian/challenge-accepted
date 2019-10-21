@@ -15,6 +15,4 @@ struct NotificationNameKeys {
     static let enableSaveChallengeButtonForSaveKey = "enableSaveChallengeButtonForSave"
     static let enableSaveChallengeButtonForUnsaveKey = "enableSaveChallengeButtonForUnsave"
     static let deletedChallengeKey = "deletedChallenge"
-    static let stopLoadingAnimationKey = "stopLoadingAnimation"
-    static let startLoadingAnimationKey = "startLoadingAnimation"
 }
