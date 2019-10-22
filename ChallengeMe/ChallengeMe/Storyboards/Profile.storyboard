@@ -292,8 +292,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsp-WB-yZO" customClass="ActionButton" customModule="ChallengeMe" customModuleProvider="target">
-                                <rect key="frame" x="142.5" y="423.5" width="129" height="30"/>
-                                <state key="normal" title="   Delete Account   "/>
+                                <rect key="frame" x="135" y="423.5" width="144" height="33"/>
+                                <fontDescription key="fontDescription" name="Cochin" family="Cochin" pointSize="18"/>
+                                <state key="normal" title="   Delete Account   ">
+                                    <color key="titleColor" name="action"/>
+                                </state>
                                 <connections>
                                     <action selector="deleteAccountButtonTapped:" destination="EVO-Tf-6Ch" eventType="touchUpInside" id="d3h-sq-njQ"/>
                                 </connections>
@@ -360,6 +363,9 @@
     <resources>
         <image name="profileTabIcon" width="25" height="26"/>
         <image name="settingsButtonIcon" width="29" height="29"/>
+        <namedColor name="action">
+            <color red="0.50400000810623169" green="0.0080000003799796104" blue="0.048000000417232513" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="challenge">
             <color red="0.22699999809265137" green="0.23100000619888306" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
