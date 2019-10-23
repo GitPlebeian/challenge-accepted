@@ -7,19 +7,12 @@
 //
 
 import UIKit
-import CoreData
-import UserNotifications
-import CloudKit
-import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let locationManager = CLLocationManager()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
         return true
     }
 

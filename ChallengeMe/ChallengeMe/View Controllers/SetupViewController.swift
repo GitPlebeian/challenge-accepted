@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import SystemConfiguration
 
 class SetupViewController: UIViewController {
 
@@ -40,7 +41,7 @@ class SetupViewController: UIViewController {
     @IBAction func uploadPhotoButtonTapped(_ sender: Any) {
         presentImagePicker()
     }
-    
+
     // Attemps to create a new user based on their input
     @IBAction func saveUsernameButtonTapped(_ sender: Any) {
         guard let username = usernameTextField.text, username.isEmpty == false else {return}
@@ -81,6 +82,26 @@ class SetupViewController: UIViewController {
     
     // MARK: - Custom Functions
     
+    // Checks internet connection
+    func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        let ret = (isReachable && !needsConnection)
+        return ret
+    }
+    
     // Presents basic alert with a button that does nothing
     func presentBasicAlert(title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -112,11 +133,35 @@ class SetupViewController: UIViewController {
     
     // Fetches the user for icloud id
     func loadUser() {
-        if connectedToICloud() == false {
+        
+        if isConnectedToNetwork() == false{
+             self.loadingDataActivityIndicator.isHidden = true
+            presentErrorAlertForFetch(title: "Internet", message: "Your device has a bad internet connection. Please try again later")
+            return
+        } else if connectedToICloud() == false {
             presentErrorForICloudConnection(title: "iCloud", message: "This app uses your iCloud account to see challenges on the map. Please sign in to iCloud to enable this feature.")
             return
         }
+        var badConnection = false
+        var goodConnection = false
+        var secondsPassed: Double = 0
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            secondsPassed += 1
+            if goodConnection {
+                timer.invalidate()
+            } else if secondsPassed >= 5 {
+                self.loadingDataActivityIndicator.isHidden = true
+                self.presentErrorAlertForFetch(title: "Internet", message: "Your device has a bad internet connection. Please try again later")
+                badConnection = true
+                timer.invalidate()
+            }
+        }
+        
         UserController.shared.fetchCurrentUser { (networkSuccess, userExists) in
+            goodConnection = true
+            if badConnection == true {
+                return
+            }
             DispatchQueue.main.async {
                 self.loadingDataActivityIndicator.isHidden = true
                 self.setUserStackView.isHidden = true
