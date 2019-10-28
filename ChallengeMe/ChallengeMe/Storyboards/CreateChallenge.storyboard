@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljJ-1z-SF4">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1120"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8j1-BT-TcK" customClass="HighlightButton" customModule="ChallengeMe" customModuleProvider="target">
                                                 <rect key="frame" x="107" y="314" width="200" height="50"/>
@@ -155,7 +155,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ljJ-1z-SF4" firstAttribute="bottom" secondItem="zN1-31-wod" secondAttribute="bottom" id="7ZR-0b-Zak"/>
-                                    <constraint firstAttribute="height" secondItem="ljJ-1z-SF4" secondAttribute="height" id="FLG-iB-uci"/>
+                                    <constraint firstAttribute="height" secondItem="ljJ-1z-SF4" secondAttribute="height" multiplier="0.8" id="FLG-iB-uci"/>
                                     <constraint firstItem="ljJ-1z-SF4" firstAttribute="trailing" secondItem="zN1-31-wod" secondAttribute="trailing" id="JSZ-2P-TXu"/>
                                     <constraint firstItem="ljJ-1z-SF4" firstAttribute="width" secondItem="aK6-TM-Lku" secondAttribute="width" id="KM2-Vs-hQE"/>
                                     <constraint firstItem="ljJ-1z-SF4" firstAttribute="top" secondItem="zN1-31-wod" secondAttribute="top" id="kHV-KR-3b1"/>

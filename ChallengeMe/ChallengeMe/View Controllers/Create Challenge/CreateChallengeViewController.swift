@@ -89,17 +89,30 @@ class CreateChallengeViewController: UIViewController {
     // Attempts to create a challenge if the user filled out all of the fields.
     @IBAction func createChallengeButtonTapped(_ sender: Any) {
         let feedback = UINotificationFeedbackGenerator()
-        guard let title = titleTextField.text,
-            title.isEmpty == false,
-            let description = descriptionTextView.text,
-            description.isEmpty == false,
-            let challengeImage = selectedImage.image,
-            let tagString = tagsTextField.text,
-            tagString.isEmpty == false,
-            challengeLocation != nil else {
-                feedback.notificationOccurred(.error)
-                presentEmptyFieldsAlert()
-                return
+        guard let title = titleTextField.text, title.isEmpty == false else {
+            presentBasicAlert(title: "Title", message: "Please fill out the title")
+            feedback.notificationOccurred(.error)
+            return
+        }
+        guard let description = descriptionTextView.text, description.isEmpty == false else {
+            presentBasicAlert(title: "Description", message: "Please fill out the description")
+            feedback.notificationOccurred(.error)
+            return
+        }
+        guard let challengeImage = selectedImage.image else {
+            presentBasicAlert(title: "Image", message: "Please select an image")
+            feedback.notificationOccurred(.error)
+            return
+        }
+        guard let tagString = tagsTextField.text, tagString.isEmpty == false else {
+            feedback.notificationOccurred(.error)
+            presentBasicAlert(title: "Tags", message: "Please fill out the challenge tags")
+            return
+        }
+        guard let challengeLocation = challengeLocation else {
+            feedback.notificationOccurred(.error)
+            presentBasicAlert(title: "Location", message: "Please select a location")
+            return
         }
         
         var onlySpaces = true
@@ -139,15 +152,29 @@ class CreateChallengeViewController: UIViewController {
                 .split(separator: " ") // divide into 'substrings'
                 .map { String($0) } // turn back into 'strings'
         }
+        
+        if connectedToICloud() == false {
+            presentBasicAlert(title: "ICloud", message: "You must have ICloud drive enabled to save challenges")
+            return
+        }
+        
         feedback.prepare()
-        guard let selectedLocation = challengeLocation else { return }
-        ChallengeController.shared.createChallenge(title: title, description: description, longitude: selectedLocation.longitude, latitude: selectedLocation.latitude, tags: hashtags, photo: challengeImage) { (challenge) in
+        ChallengeController.shared.createChallenge(title: title, description: description, longitude: challengeLocation.longitude, latitude: challengeLocation.latitude, tags: hashtags, photo: challengeImage) { (challenge) in
             self.createChallengeCompletion(challenge: challenge, feedback: feedback)
         }
         navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Custom Methods
+    
+    // checks icloud connection
+    func connectedToICloud() -> Bool{
+        if FileManager.default.ubiquityIdentityToken == nil {
+            return false
+        } else {
+            return true
+        }
+    }
     
     // Presents alert with an ok button that does nothing
     func presentBasicAlert(title: String?, message: String?) {
@@ -252,33 +279,35 @@ class CreateChallengeViewController: UIViewController {
     // request authorization to access photos
     fileprivate func requestPhotoLibraryAuthorization() {
         PHPhotoLibrary.requestAuthorization { (status) in
-            switch status {
-            case .authorized:
-                self.presentPhotoPickerController()
-            case .notDetermined:
-                if status == PHAuthorizationStatus.authorized {
+            DispatchQueue.main.async {
+                switch status {
+                case .authorized:
                     self.presentPhotoPickerController()
-                }
-            case .restricted:
-                let alert = UIAlertController(title: "Photo Library Restricted", message: "Photo Library access is restricted and cannot be accessed", preferredStyle: .alert)
-                let okay = UIAlertAction(title: "Ok", style: .default)
-                alert.addAction(okay)
-                self.present(alert, animated: true)
-            case .denied:
-                let alert = UIAlertController(title: "Photo Library Denied", message: "Photo Library access was previously denied.  Please update your Settings.", preferredStyle: .alert)
-                let settings = UIAlertAction(title: "Settings", style: .default) { (action) in
-                    DispatchQueue.main.async {
-                        if let url = URL(string: UIApplication.openSettingsURLString) {
-                            UIApplication.shared.open(url, options: [:])
+                case .notDetermined:
+                    if status == PHAuthorizationStatus.authorized {
+                        self.presentPhotoPickerController()
+                    }
+                case .restricted:
+                    let alert = UIAlertController(title: "Photo Library Restricted", message: "Photo Library access is restricted and cannot be accessed", preferredStyle: .alert)
+                    let okay = UIAlertAction(title: "Ok", style: .default)
+                    alert.addAction(okay)
+                    self.present(alert, animated: true)
+                case .denied:
+                    let alert = UIAlertController(title: "Photo Library Denied", message: "Photo Library access was previously denied.  Please update your Settings.", preferredStyle: .alert)
+                    let settings = UIAlertAction(title: "Settings", style: .default) { (action) in
+                        DispatchQueue.main.async {
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                UIApplication.shared.open(url, options: [:])
+                            }
                         }
                     }
+                    let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+                    alert.addAction(settings)
+                    alert.addAction(cancel)
+                    self.present(alert, animated: true)
+                @unknown default:
+                    print("Unknown switch at \(#function)")
                 }
-                let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-                alert.addAction(settings)
-                alert.addAction(cancel)
-                self.present(alert, animated: true)
-            @unknown default:
-                print("Unknown switch at \(#function)")
             }
         }
     }
